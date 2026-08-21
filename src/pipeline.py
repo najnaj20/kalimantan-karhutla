@@ -16,9 +16,9 @@ from extract import extract  # noqa: E402
 from transform import transform  # noqa: E402
 
 
-def run_pipeline() -> None:
+def run_pipeline(refresh: bool = False) -> None:
     log.info("== EXTRACT ==")
-    frames = extract()
+    frames = extract(refresh=refresh)
     log.info("== TRANSFORM ==")
     df = transform(frames)
     log.info("== ANALYZE ==")
@@ -27,4 +27,6 @@ def run_pipeline() -> None:
 
 
 if __name__ == "__main__":
-    run_pipeline()
+    import sys
+
+    run_pipeline(refresh="--refresh" in sys.argv)

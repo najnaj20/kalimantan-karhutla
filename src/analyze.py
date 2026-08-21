@@ -57,6 +57,29 @@ def analyze(df: pd.DataFrame) -> dict[str, pd.DataFrame]:
         .reset_index()
     )
 
+    # 8. Accumulate history (cron daily) -> enables seasonality analysis later
+    history_path = PROC_DIR / "history_daily.csv"
+    today_snapshot = (
+        df.groupby(["provinsi", "tanggal"])
+        .size()
+        .rename("hotspot")
+        .reset_index()
+        .assign(fetched_at=pd.Timestamp.now().normalize())
+    )
+    # Normalize tanggal to string so dedupe works across mixed types
+    # (datetime.date from groupby vs str read back from CSV)
+    today_snapshot["tanggal"] = today_snapshot["tanggal"].astype(str)
+    if history_path.exists():
+        hist = pd.read_csv(history_path)
+        hist["tanggal"] = hist["tanggal"].astype(str)
+        hist = pd.concat([hist, today_snapshot], ignore_index=True)
+        # dedupe: same (provinsi, tanggal) from a re-run of the same day
+        hist = hist.drop_duplicates(subset=["provinsi", "tanggal"], keep="last")
+    else:
+        hist = today_snapshot
+    hist.to_csv(history_path, index=False)
+    print(f"[analyze] history_daily.csv: {len(hist):,} baris akumulasi")
+
     results = {
         "daily": daily,
         "province": prov,

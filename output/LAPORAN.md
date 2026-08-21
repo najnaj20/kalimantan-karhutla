@@ -7,14 +7,14 @@
 
 Pada 8 hari terakhir, satelit NASA mendeteksi **30.415 titik panas (hotspot)** di
 Pulau Kalimantan — konsentrasi tertinggi di Indonesia bagian barat pulau. Aktivitas
-ini terkonsentrasi di **Kalimantan Barat (41% dari total)** dan memuncak pada
+ini terkonsentrasi di **Kalimantan Barat (41.6% dari total)** dan memuncak pada
 **18 Agustus 2026** dengan 5.905 deteksi dalam satu hari. Pola ini konsisten dengan
 puncak musim kemarau dan pembukaan lahan berbasis api.
 
 ## Temuan Utama
 
 ### 1. 🔥 Kalimantan Barat adalah episentrum — 4 dari 10 hotspot ada di sana
-Kalbar menyumbang **12.495 titik (41,1%)**, disusul Kalteng (10.555; 34,7%).
+Kalbar menyumbang **12.875 titik (41,6%)**, disusul Kalteng (10.732; 34,7%).
 Konsentrasi di sepanjang koridor perbatasan dan lahan gambut menunjukkan pola
 pembakaran lahan skala luas, bukan kebakaran alamiah.
 

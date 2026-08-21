@@ -39,12 +39,12 @@ def _download(url: str, out: Path, retries: int = 3) -> Path:
     raise RuntimeError(f"unreachable: {url}")
 
 
-def extract() -> dict[str, pd.DataFrame]:
+def extract(refresh: bool = False) -> dict[str, pd.DataFrame]:
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     frames: dict[str, pd.DataFrame] = {}
     for name, url in SOURCES.items():
         out = RAW_DIR / f"{name}_7d.csv"
-        if not out.exists() or out.stat().st_size == 0:
+        if refresh or not out.exists() or out.stat().st_size == 0:
             print(f"[extract] downloading {name} ...")
             _download(url, out)
         df = pd.read_csv(out)
@@ -54,4 +54,6 @@ def extract() -> dict[str, pd.DataFrame]:
 
 
 if __name__ == "__main__":
-    extract()
+    import sys
+
+    extract(refresh="--refresh" in sys.argv)

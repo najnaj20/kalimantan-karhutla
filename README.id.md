@@ -7,8 +7,8 @@ Kalimantan** dari NASA FIRMS (VIIRS 375m + MODIS C6.1), ditarik **tanpa kunci AP
 lewat mirror Humanitarian Data Exchange (HDX). Dibangun sebagai proyek portofolio
 data analyst: data asli, cerita yang kuat, pipeline yang bisa direproduksi.
 
-**Jendela data:** 14–21 Agustus 2026 · **30.415 hotspot terdeteksi** · Puncak: 18 Agt
-(5.905/hari) · Provinsi terparah: Kalimantan Barat (41% dari total)
+**Jendela data:** 14–21 Agustus 2026 · **30.972 hotspot terdeteksi** · Puncak: 18 Agt
+(5.905/hari) · Provinsi terparah: Kalimantan Barat (41.6% dari total)
 
 ![Dashboard atas](output/dashboard_top.png)
 
@@ -17,26 +17,53 @@ data analyst: data asli, cerita yang kuat, pipeline yang bisa direproduksi.
 ```
 kalimantan-karhutla/
 ├── src/
-│   ├── extract.py    # tarik CSV FIRMS VIIRS+MODIS 7 hari (retry + backoff)
-│   ├── transform.py  # filter bbox → point-in-polygon → penentuan provinsi
-│   ├── analyze.py    # agregat harian/provinsi, kelas intensitas FRP
-│   └── pipeline.py   # extract → transform → analyze, ujung ke ujung
+│   ├── extract.py       # tarik CSV FIRMS VIIRS+MODIS 7 hari (retry + backoff, --refresh)
+│   ├── transform.py     # filter bbox → point-in-polygon → penentuan provinsi
+│   ├── analyze.py       # agregat harian/provinsi, kelas FRP, akumulasi history
+│   ├── export_tableau.py# export CSV siap-Tableau (data/tableau/)
+│   └── pipeline.py      # extract → transform → analyze, ujung ke ujung
 ├── dashboard/
-│   └── app.py        # Streamlit: peta folium interaktif + chart plotly
+│   └── app.py           # Streamlit: peta folium interaktif + chart plotly
+├── scripts/
+│   ├── screenshot.py    # capture dashboard headless (Playwright)
+│   └── daily_update.sh  # cron: refresh data + export (mode live)
 ├── data/
-│   ├── raw/          # CSV FIRMS asli (Asia Tenggara)
-│   ├── processed/    # hotspot Kalimantan yang sudah bersih + agregat
-│   └── boundaries/   # batas provinsi (geoBoundaries ADM1, CC BY)
+│   ├── raw/             # CSV FIRMS asli (Asia Tenggara, di-gitignore)
+│   ├── processed/       # hotspot bersih + agregat + history_daily.csv
+│   ├── tableau/         # export siap-Tableau (lihat panduan)
+│   └── boundaries/      # batas provinsi (geoBoundaries ADM1, CC BY)
 ├── output/
-│   ├── LAPORAN.md    # temuan & rekomendasi (Bahasa Indonesia)
+│   ├── LAPORAN.md       # temuan & rekomendasi (Bahasa Indonesia)
+│   ├── PANDUAN_TABLEAU.md  # panduan dashboard Tableau langkah demi langkah
 │   └── dashboard_*.png  # tangkapan layar dashboard
-└── scripts/screenshot.py  # capture dashboard headless (Playwright)
+└── requirements.txt
 ```
+
+## 📊 Versi Tableau
+
+Repo ini menyertakan **CSV siap-Tableau** (`data/tableau/`) dan **panduan
+lengkap** (`output/PANDUAN_TABLEAU.md`) untuk membuat dashboard Tableau Public:
+peta hotspot interaktif, ranking provinsi, tren harian, dan heatmap
+provinsi × hari — lalu publish sebagai link portofolio yang bisa dibagikan.
+Regenerasi export kapan saja: `python src/export_tableau.py`.
+
+## 🔄 Mode live (update harian)
+
+Jendela near-real-time FIRMS hanya ~7 hari, jadi proyek ini dirancang jalan
+harian via cron — mengakumulasi `data/processed/history_daily.csv` (jumlah
+provinsi × hari) yang tumbuh jadi dataset musiman dalam hitungan minggu/bulan:
+
+```bash
+# crontab -e
+0 6 * * * /home/ubuntu/projects/kalimantan-karhutla/scripts/daily_update.sh
+# atau: ./scripts/daily_update.sh  (refresh + export + ringkasan)
+```
+
 
 ## Temuan utama (jendela 8 hari)
 
-1. **Kalimantan Barat episentrum** — 12.495 hotspot (41,1%), disusul Kalimantan
-   Tengah (10.555; 34,7%).
+1. **Kalimantan Barat episentrum** — 12.875 hotspot (41,6%), disusul Kalimantan
+   Tengah (10.732; 34,7%).
 2. **Lonjakan tajam 16→18 Agt** — jumlah harian naik 2× lipat menjadi 5.905 dan
    tetap tinggi (5.500+) sampai 21 Agt: pola "ledakan api", bukan yang mereda.
 3. **Ada api berintensitas tinggi** — FRP hingga **817 MW** di Kaltim/Kalsel; titik
