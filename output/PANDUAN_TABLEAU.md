@@ -4,6 +4,12 @@ Panduan langkah demi langkah untuk membuat dashboard Tableau dari data
 `data/tableau/*.csv`. Dirancang untuk **Tableau Public (gratis)** — hasilnya bisa
 di-publish online dan jadi link portofolio.
 
+> 🎯 **Target visualisasi utama: peta Kalimantan + titik-titik api.**
+> Preview target-nya ada di `output/preview_peta_kalimantan.png` (dibuat dari data
+> asli pakai Folium). Buka gambar itu dulu — itulah look yang kita kejar di
+> Tableau: peta Kalimantan dengan batas provinsi, di atasnya titik-titik api yang
+> warna & ukurannya menggambarkan intensitas (FRP), plus legend.
+
 ---
 
 ## 0. Persiapan
@@ -38,14 +44,20 @@ di-publish online dan jadi link portofolio.
 
 ## 2. Buat 5 Sheet
 
-### Sheet 1 — Peta Hotspot (paling wow! 🔥)
+### Sheet 1 — Peta Kalimantan + Titik Api (visualisasi UTAMA 🔥)
+Ini sheet bintangnya — tiru persis preview `preview_peta_kalimantan.png`:
 1. Data source: `tableau_hotspots.csv`
-2. Dobel-klik **Latitude** dan **Longitude** → otomatis jadi peta.
-3. Drag **FRP** ke **Color** (Marks: warna titik).
-4. Drag **FRP** ke **Size** — titik api besar = intensitas tinggi.
-5. Edit warna: Colors → **Edit Colors** → pilih palette **"Orange-Red"** atau **"Temps"**.
-6. Filter: drag **acq_date** ke **Filters** → pilih **Range of Dates** (biar user bisa
-   geser slider tanggal di dashboard).
+2. Dobel-klik **Latitude** dan **Longitude** → otomatis jadi peta. Zoom ke
+   Kalimantan (semua 5 provinsi terlihat).
+3. **Batas provinsi**: drag **provinsi_id** ke **Detail** (Marks) → garis batas
+   provinsi muncul di peta.
+4. Drag **FRP** ke **Color** — warna titik = intensitas api.
+5. Drag **FRP** ke **Size** — titik api besar = api kuat (di preview: radius
+   membesar seiring FRP).
+6. Edit warna: Colors → **Edit Colors** → palette **"Orange-Red"** atau **"Temps"**.
+7. **Legend FRP** otomatis muncul di kanan atas — sama seperti preview.
+8. Filter: drag **acq_date** ke **Filters** → pilih **Range of Dates** (biar user
+   bisa geser slider tanggal di dashboard).
 
 > Alternatif bagus: ganti Marks ke **Density** — titik panas jadi "heat haze" yang
 > sangat fotogenik. Coba keduanya, pilih yang lebih enak dilihat.
@@ -84,11 +96,10 @@ di-publish online dan jadi link portofolio.
 
 1. Klik ikon **New Dashboard**.
 2. Set ukuran **Automatic** atau **Desktop Browser**.
-3. Susun:
-   - Kiri atas (besar): **Sheet 1 — Peta**
+3. Susun (peta jadi pusat — sesuai target visualisasi):
+   - **Kiri (besar, ~60% lebar): Sheet 1 — Peta Kalimantan + Titik Api**
    - Kanan atas: **Sheet 2 — Bar Ranking** (filter provinsi)
-   - Bawah kiri: **Sheet 3 — Tren Harian**
-   - Bawah kanan: **Sheet 4 — Heatmap**
+   - Kanan bawah: **Sheet 3 — Tren Harian**
 4. **Hubungkan filter**: klik Sheet 1 → ikon **Use as Filter**. Sekarang klik titik
    atau geser tanggal di peta → semua chart ikut berubah. (Coba juga dari bar chart.)
 5. Tambah **judul dashboard**: "Karhutla Kalimantan — Analisis Hotspot NASA FIRMS"
