@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wildfire Guardian — Kalimantan Hotspot Monitoring</title>
+  <meta name="description" content="Real-time active-fire monitoring for Indonesian Borneo using NASA FIRMS satellite data. Open-source, bilingual, village-search enabled." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --card: #1c2128;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-dim: #8b949e;
+      --accent: #e67e22;
+      --accent-hover: #f39c12;
+      --fire-red: #e74c3c;
+      --fire-amber: #f1c40f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(160deg, #0d1117 0%, #161b22 40%, #1a0f08 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(230,126,34,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(231,76,60,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
+
+    .flame-icon {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #f0f6fc 0%, #e67e22 60%, #d35400 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .hero .tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin: 32px 0;
+    }
+    .hero-stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      min-width: 140px;
+    }
+    .hero-stat .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .hero-stat .label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #d35400);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(230,126,34,0.3);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+      box-shadow: 0 6px 24px rgba(230,126,34,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 80px 0;
+    }
+    section:nth-child(even) {
+      background: var(--surface);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #f0f6fc;
+    }
+    .section-sub {
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    /* ===== FEATURES ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+    }
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    /* ===== TECH STACK ===== */
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      list-style: none;
+    }
+    .tech-list li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .tech-list li strong {
+      color: var(--text);
+    }
+
+    /* ===== SCREENSHOTS ===== */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .screenshots img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    /* ===== SCROLL DOWN ===== */
+    .scroll-down {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      text-decoration: none;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .hero { min-height: 70vh; }
+      .hero-stat { min-width: 100px; padding: 14px 18px; }
+      .hero-stat .num { font-size: 1.3rem; }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="flame-icon">🔥</div>
+    <h1>Wildfire Guardian</h1>
+    <p class="tagline">
+      Real-time active-fire monitoring for Indonesian Borneo — turning NASA
+      satellite detection into actionable early warning for the communities
+      most exposed to forest and peatland fires.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num" id="stat1">61,575</div><div class="label">Hotspots Detected</div></div>
+      <div class="hero-stat"><div class="num">8</div><div class="label">Days Window</div></div>
+      <div class="hero-stat"><div class="num">46%</div><div class="label">Central Kalimantan</div></div>
+      <div class="hero-stat"><div class="num">1,167</div><div class="label">Max FRP (MW)</div></div>
+    </div>
+
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://github.com/najnaj20/kalimantan-karhutla" target="_blank" rel="noopener">📦 View on GitHub</a>
+      <a class="btn btn-outline" href="#" target="_blank" rel="noopener">🚀 Live Dashboard</a>
+    </div>
+    <p style="margin-top:12px;font-size:0.8rem;color:var(--text-dim);">
+      Data: NASA FIRMS VIIRS 375m + MODIS C6.1 · Open-source · Bilingual (ID/EN)
+    </p>
+  </div>
+
+  <a class="scroll-down" href="#about">▼ Scroll</a>
+</section>
+
+<!-- ===== ABOUT / PROBLEM ===== -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">🌍 The Problem</h2>
+    <p class="section-sub">Why this matters — and why it's urgent.</p>
+
+    <p style="max-width:720px;margin-bottom:24px;">
+      Kalimantan (Indonesian Borneo) experiences some of the most severe
+      <strong>forest and peatland fires</strong> on the planet — the primary
+      driver of the transboundary haze crisis that blankets Southeast Asia
+      each dry season. These fires destroy carbon-rich peatlands, wipe out
+      biodiversity, and cause documented respiratory illness across millions.
+    </p>
+    <p style="max-width:720px;margin-bottom:32px;color:var(--text-dim);">
+      Yet the frontline responders — village fire crews, district health
+      offices — largely lack a simple, up-to-the-hour view of where fires
+      are <em>actually burning right now</em>. Official reports lag by days.
+      The result is reactive, not preventive.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">🛰️</div>
+        <h3>Fragmented Data</h3>
+        <p>NASA tracks every fire daily, but the data is locked in science portals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⏱️</div>
+        <h3>Reporting Lags</h3>
+        <p>Official reports arrive days after fires start — too late for prevention.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📍</div>
+        <h3>Unfiltered Overload</h3>
+        <p>60,000+ detections mean nothing without village-level, daily context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION ===== -->
+<section style="background:var(--surface);">
+  <div class="container">
+    <h2 class="section-title">💡 The Solution</h2>
+    <p class="section-sub">An open, reproducible data pipeline from satellite to dashboard.</p>
+
+    <div class="screenshots" style="margin-bottom:32px;">
+      <div>
+        <img src="output/dashboard_heatmap.png" alt="Wildfire Guardian dashboard heatmap view" loading="lazy" />
+        <p style="font-size:0.8rem;color:var(--text-dim);margin-top:4px;">Interactive dark-theme dashboard with village search</p>
+      </div>
+      <div>
+        <img src="output/preview_peta_kalimantan.png" alt="Kalimantan fire hotspot map" loading="lazy" />
+        <p style="font-size:0.8rem;color:var(--text-dim);margin-top:4px;">Satellite fire detection map over Kalimantan</p>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">📡</div>
+        <h3>1. Extract</h3>
+        <p>NASA FIRMS fire data (VIIRS 375m + MODIS C6.1) via HDX — no API key.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🗺️</div>
+        <h3>2. Transform</h3>
+        <p>Point-in-polygon geolocation → every hotspot mapped to its province.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>3. Analyze</h3>
+        <p>Daily + per-province aggregation, FRP intensity classification.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📂</div>
+        <h3>4. Export</h3>
+        <p>Tableau-ready CSVs, continuously accumulated history dataset.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🖥️</div>
+        <h3>5. Visualize</h3>
+        <p>Dark-themed Streamlit dashboard: map, search, trends, heatmaps.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔍</div>
+        <h3>+ Village Search</h3>
+        <p>Search any village via OpenStreetMap — see fire hotspots within radius.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TECH STACK ===== -->
+<section>
+  <div class="container">
+    <h2 class="section-title">🛠 Tech Stack</h2>
+    <p class="section-sub">Open-source, no paid services, fully reproducible.</p>
+
+    <ul class="tech-list">
+      <li><strong>Data Source</strong> NASA FIRMS (VIIRS + MODIS)</li>
+      <li><strong>Geospatial</strong> geoBoundaries, Shapely</li>
+      <li><strong>Analysis</strong> Pandas, NumPy</li>
+      <li><strong>Dashboard</strong> Streamlit, Folium, Plotly</li>
+      <li><strong>Geocoding</strong> OSM Nominatim</li>
+      <li><strong>Export</strong> Tableau Public (CSV)</li>
+      <li><strong>Automation</strong> Bash, Cron</li>
+      <li><strong>Hosting</strong> GitHub, Streamlit Cloud</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:var(--surface);padding:40px 0;border-top:1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <p style="color:var(--text-dim);font-size:0.85rem;">
+      Built by <strong style="color:var(--text);">Nanaj</strong> ·
+      Data: NASA FIRMS (CC BY) · Boundaries: geoBoundaries · Geocoding: OSM Nominatim
+    </p>
+    <p style="color:var(--text-dim);font-size:0.8rem;margin-top:8px;">
+      Not an official early-warning system. Developed for GatewayHacks 2026 —
+      Environmental Sustainability Track.
+    </p>
+    <p style="margin-top:16px;">
+      <a href="https://github.com/najnaj20/kalimantan-karhutla" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">GitHub</a>
+      <span style="color:var(--border);margin:0 8px;">·</span>
+      <a href="#" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Live Dashboard</a>
+      <span style="color:var(--border);margin:0 8px;">·</span>
+      <a href="https://gatewayhacks-2026.devpost.com/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">GatewayHacks 2026</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

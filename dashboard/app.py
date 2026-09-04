@@ -9,6 +9,7 @@ from pathlib import Path
 import folium
 import pandas as pd
 import plotly.express as px
+import plotly.io as pio
 import requests
 import streamlit as st
 from streamlit_folium import st_folium
@@ -18,6 +19,163 @@ PROC = ROOT / "data" / "processed"
 BOUNDARIES = ROOT / "data" / "boundaries" / "idn_adm1.geojson"
 
 st.set_page_config(page_title="Karhutla Kalimantan", layout="wide")
+
+# ---------- dark theme ----------
+pio.templates.default = "plotly_dark"
+
+st.markdown("""
+<style>
+    /* === Global dark theme === */
+    .stApp, .stSidebar, .st-emotion-cache-1y4p8pa, .st-emotion-cache-6qob1r {
+        background-color: #0d1117 !important;
+        color: #c9d1d9;
+    }
+    .stSidebar, .st-emotion-cache-1wrcr25 {
+        background-color: #161b22 !important;
+    }
+    /* Metric cards */
+    .stMetric {
+        background: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .stMetric label, .stMetric [data-testid="stMetricLabel"] {
+        color: #8b949e !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 0.5px;
+    }
+    .stMetric [data-testid="stMetricValue"] {
+        color: #f0f6fc !important;
+        font-size: 2rem !important;
+        font-weight: 700;
+    }
+    .stMetric [data-testid="stMetricDelta"] {
+        color: #e67e22 !important;
+    }
+    /* Metric cards hover */
+    .stMetric:hover {
+        border-color: #e67e22;
+        box-shadow: 0 0 20px rgba(230, 126, 34, 0.15);
+        transition: all 0.3s ease;
+    }
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #f0f6fc !important;
+    }
+    h1 {
+        background: linear-gradient(135deg, #f0f6fc, #e67e22);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    /* Subheader accent */
+    h3 {
+        border-left: 3px solid #e67e22;
+        padding-left: 12px;
+    }
+    /* Dataframe */
+    .stDataFrame, [data-testid="stDataFrame"] {
+        background-color: #161b22 !important;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+    }
+    .stDataFrame table {
+        background-color: #161b22 !important;
+        color: #c9d1d9 !important;
+    }
+    .stDataFrame th {
+        background-color: #1c2128 !important;
+        color: #e67e22 !important;
+        font-weight: 600;
+    }
+    .stDataFrame td {
+        color: #c9d1d9 !important;
+    }
+    /* Buttons */
+    .stButton button {
+        background: linear-gradient(135deg, #e67e22, #d35400) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+    }
+    .stButton button:hover {
+        background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+        box-shadow: 0 4px 16px rgba(230, 126, 34, 0.5);
+    }
+    /* Slider */
+    .stSlider [data-baseweb="slider"] {
+        background-color: #30363d !important;
+    }
+    .stSlider [data-baseweb="slider"] [role="slider"] {
+        background-color: #e67e22 !important;
+    }
+    /* Select slider (date filter) */
+    .stSelectSlider [data-baseweb="slider"] {
+        background-color: #30363d !important;
+    }
+    /* Text input */
+    .stTextInput input {
+        background-color: #161b22 !important;
+        border: 1px solid #30363d !important;
+        color: #c9d1d9 !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input:focus {
+        border-color: #e67e22 !important;
+        box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.3);
+    }
+    /* Divider */
+    hr {
+        border-color: #30363d !important;
+    }
+    /* Caption / footer */
+    .stCaption, .st-emotion-cache-1aehpvj, .st-emotion-cache-16idsys {
+        color: #8b949e !important;
+    }
+    /* Success / info boxes */
+    .stAlert {
+        background-color: #1c2128 !important;
+        border: 1px solid #30363d !important;
+        color: #c9d1d9 !important;
+    }
+    .stAlert [data-testid="stAlert"] {
+        background-color: #1c2128 !important;
+    }
+    /* Radio */
+    .stRadio label {
+        color: #c9d1d9 !important;
+    }
+    .stRadio [data-testid="stWidgetLabel"] {
+        color: #8b949e !important;
+    }
+    /* Sidebar text */
+    .stSidebar .st-emotion-cache-1aehpvj {
+        color: #8b949e !important;
+    }
+    /* Metric delta icon colors */
+    .st-emotion-cache-1wivap2 {
+        color: #e67e22 !important;
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0d1117;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #30363d;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #484f58;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # ---------- i18n strings ----------
 TEXT = {
@@ -332,15 +490,15 @@ with col_map:
         map_center = [-1.5, 114.5]
         zoom = 6
 
-    m = folium.Map(location=map_center, zoom_start=zoom, tiles="CartoDB positron")
+    m = folium.Map(location=map_center, zoom_start=zoom, tiles="CartoDB dark_matter")
     folium.GeoJson(
         gjson,
         name="provinsi",
         style_function=lambda f: {
             "fillColor": PROV_WARNA.get(f["properties"].get("shapeName"), "#cccccc"),
-            "color": "#444444",
-            "weight": 1.2,
-            "fillOpacity": 0.08,
+            "color": "#888888",
+            "weight": 1.5,
+            "fillOpacity": 0.1,
         },
         tooltip=folium.GeoJsonTooltip(fields=["shapeName"], aliases=[T("map_tooltip")]),
     ).add_to(m)
