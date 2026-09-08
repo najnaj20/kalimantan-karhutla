@@ -407,7 +407,7 @@ peak = aggs["daily"].loc[aggs["daily"]["hotspot"].idxmax()]
 
 st.title("🔥 Karhutla Kalimantan — Wildfire Hotspot Analysis (NASA FIRMS)")
 
-# ---------- ENSO / climate context (signature datajoget-style) ----------
+# ---------- ENSO / climate context ----------
 ENSO = {
     "label": {"en": "CLIMATE CONTEXT · EL NIÑO 2026", "id": "KONTEKS IKLIM · EL NIÑO 2026"},
     "oni": "JJA 2026: +1.80 °C",
@@ -742,7 +742,7 @@ fig_h = px.imshow(
 fig_h.update_layout(height=380, margin=dict(l=10, r=10, t=30, b=10))
 st.plotly_chart(fig_h, width="stretch")
 
-# ---------- "Inspect a Period" timeline tabs (datajoget-style) ----------
+# ---------- "Inspect a Period" timeline tabs ----------
 st.divider()
 st.subheader({"en": "🗓️ Inspect a Period", "id": "🗓️ Pilih Periode"}[lang])
 
