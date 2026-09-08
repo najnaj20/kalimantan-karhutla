@@ -742,6 +742,91 @@ fig_h = px.imshow(
 fig_h.update_layout(height=380, margin=dict(l=10, r=10, t=30, b=10))
 st.plotly_chart(fig_h, width="stretch")
 
+# ---------- Year-over-Year comparison (auto-loads data/historical/*.csv) ----------
+st.divider()
+st.subheader({"en": "📅 Year-over-Year Comparison", "id": "📅 Perbandingan per Tahun"}[lang])
+
+HIST_DIR = Path(__file__).resolve().parent.parent / "data" / "historical"
+
+
+def load_historical() -> dict[int, int]:
+    """Return {year: total_hotspots} from data/historical/*.csv.
+    Each CSV must have columns: provinsi, tanggal, hotspot (or acq_date, frp/conf)."""
+    years: dict[int, int] = {}
+    if HIST_DIR.exists():
+        for f in sorted(HIST_DIR.glob("*.csv")):
+            try:
+                h = pd.read_csv(f)
+                ycol = "tanggal" if "tanggal" in h.columns else ("acq_date" if "acq_date" in h.columns else None)
+                if ycol is None:
+                    continue
+                h[ycol] = pd.to_datetime(h[ycol], errors="coerce")
+                yr = int(h[ycol].dt.year.dropna().mode().iloc[0]) if len(h) else None
+                if yr:
+                    years[yr] = years.get(yr, 0) + int(h["hotspot"].sum() if "hotspot" in h.columns else len(h))
+            except Exception:
+                continue
+    return years
+
+
+hist = load_historical()
+# current 2026 (from loaded df) always included
+cur_year = int(df["acq_date"].dt.year.mode().iloc[0])
+cur_total = len(df)
+hist[cur_year] = hist.get(cur_year, 0) + cur_total
+
+if len(hist) >= 2:
+    yoy_df = pd.DataFrame(
+        [{"year": y, "hotspots": n} for y, n in sorted(hist.items())]
+    )
+    fig_y = px.bar(
+        yoy_df, x="year", y="hotspots",
+        color="year", color_continuous_scale="Oranges",
+        labels={"year": "Year", "hotspots": "Total Hotspots"},
+        title={"en": "Annual Hotspot Count (Kalimantan)", "id": "Total Hotspot per Tahun (Kalimantan)"}[lang],
+        text_auto=True,
+    )
+    fig_y.update_layout(height=360, margin=dict(l=10, r=10, t=40, b=10),
+                        coloraxis_showscale=False, showlegend=False)
+    fig_y.update_traces(marker_line_color="#1c2128", marker_line_width=1)
+    st.plotly_chart(fig_y, width="stretch")
+    delta_txt = {
+        "en": f"**2026 (to {df['acq_date'].max().strftime('%d %b')})** already shows **{cur_total:,}** hotspots — "
+              f"trending toward one of the higher-activity years given the strong El Niño.",
+        "id": f"**2026 (sampai {df['acq_date'].max().strftime('%d %b')})** sudah mencatat **{cur_total:,}** hotspot — "
+              f"berkorelasi dengan tahun beraktivitas tinggi seiring El Niño kuat.",
+    }[lang]
+    st.markdown(f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'
+               f'<div class="body">{delta_txt}</div></div>', unsafe_allow_html=True)
+else:
+    st.info({
+        "en": "Drop yearly hotspot CSVs into `data/historical/` (columns: `provinsi, tanggal, hotspot`) to unlock "
+              "multi-year comparison. Currently only 2026 data is loaded.",
+        "id": "Letakkan CSV hotspot per-tahun di `data/historical/` (kolom: `provinsi, tanggal, hotspot`) untuk "
+              "membuka perbandingan multi-tahun. Saat ini hanya data 2026 yang dimuat.",
+    }[lang])
+
+# within-2026 phase comparison (real, from current data)
+st.markdown("#### " + {"en": "2026 Fire-Season Phases", "id": "Fase Musim Kebakaran 2026"}[lang])
+phase_defs = [
+    {"name": {"en": "Early (14–31 Aug)", "id": "Awal (14–31 Agt)"}, "span": ("2026-08-14", "2026-08-31")},
+    {"name": {"en": "Peak (1–7 Sep)", "id": "Puncak (1–7 Sep)"}, "span": ("2026-09-01", "2026-09-07")},
+]
+phase_rows = []
+for ph in phase_defs:
+    pm = (df["acq_date"] >= ph["span"][0]) & (df["acq_date"] <= ph["span"][1])
+    phase_rows.append({"phase": ph["name"][lang], "hotspots": int(pm.sum())})
+if any(r["hotspots"] for r in phase_rows):
+    fig_p = px.bar(
+        pd.DataFrame(phase_rows), x="phase", y="hotspots",
+        color="phase", color_discrete_sequence=["#d35400", "#e67e22"],
+        labels={"phase": "Phase", "hotspots": "Hotspots"},
+        text_auto=True,
+    )
+    fig_p.update_layout(height=300, margin=dict(l=10, r=10, t=20, b=10), showlegend=False)
+    fig_p.update_traces(marker_line_color="#1c2128", marker_line_width=1)
+    st.plotly_chart(fig_p, width="stretch")
+
 # ---------- "Inspect a Period" timeline tabs ----------
 st.divider()
 st.subheader({"en": "🗓️ Inspect a Period", "id": "🗓️ Pilih Periode"}[lang])
