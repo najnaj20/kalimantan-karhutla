@@ -160,6 +160,52 @@ st.markdown("""
     .st-emotion-cache-1wivap2 {
         color: #e67e22 !important;
     }
+    /* Hero metric grid polish */
+    .stMetric > div {
+        gap: 2px;
+    }
+    /* Tab list styling (period selector) */
+    .stTabs [role="tablist"] button {
+        background: #161b22 !important;
+        border: 1px solid #30363d !important;
+        color: #8b949e !important;
+        border-radius: 8px !important;
+        margin-right: 6px !important;
+        font-size: 0.8rem !important;
+    }
+    .stTabs [role="tablist"] button[aria-selected="true"] {
+        background: linear-gradient(135deg, #e67e22, #d35400) !important;
+        color: #fff !important;
+        border-color: #e67e22 !important;
+    }
+    /* Section divider glow */
+    hr {
+        border: none !important;
+        height: 1px !important;
+        background: linear-gradient(90deg, transparent, #30363d, transparent) !important;
+    }
+    /* Insight callout box */
+    .insight-box {
+        background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+        border: 1px solid #30363d;
+        border-left: 4px solid #e67e22;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin: 10px 0;
+    }
+    .insight-box .title {
+        color: #e67e22;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    .insight-box .body {
+        color: #c9d1d9;
+        font-size: 0.88rem;
+        margin-top: 4px;
+        line-height: 1.5;
+    }
     /* scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
@@ -360,6 +406,59 @@ worst = aggs["province"].iloc[0]
 peak = aggs["daily"].loc[aggs["daily"]["hotspot"].idxmax()]
 
 st.title("🔥 Karhutla Kalimantan — Wildfire Hotspot Analysis (NASA FIRMS)")
+
+# ---------- ENSO / climate context (signature datajoget-style) ----------
+ENSO = {
+    "label": {"en": "CLIMATE CONTEXT · EL NIÑO 2026", "id": "KONTEKS IKLIM · EL NIÑO 2026"},
+    "oni": "JJA 2026: +1.80 °C",
+    "phase": {"en": "Strong El Niño", "id": "El Niño Kuat"},
+    "body": {
+        "en": (
+            "Equatorial Pacific sea-surface temperature anomalies drive Indonesia's "
+            "fire season. The 2026 El Niño (ONI +1.80 °C in JJA 2026, climbing from "
+            "-0.39 in DJF) deepens the dry season across Kalimantan — suppressing "
+            "monsoon rains and elevating peat-fire risk. The 29 Aug hotspot peak "
+            "lines up with this drying signal."
+        ),
+        "id": (
+            "Anomali suhu permukaan laut Pasifik ekuatorial mengendalikan musim "
+            "kebakaran Indonesia. El Niño 2026 (ONI +1,80 °C pada JJA 2026, naik dari "
+            "-0,39 di DJF) memperpanjang musim kering di Kalimantan — menekan hujan "
+            "monsun dan meningkatkan risiko kebakaran gambut. Puncak hotspot 29 Agt "
+            "selaras dengan sinyal kekeringan ini."
+        ),
+    },
+    "source": "NOAA Climate Prediction Center · ONI (Oceanic Niño Index)",
+}
+
+with st.container():
+    st.markdown(
+        f"""
+        <div style="
+            background: linear-gradient(135deg, #1c2128 0%, #2a1a0a 100%);
+            border: 1px solid #30363d;
+            border-left: 4px solid #e67e22;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 6px 0 12px;
+        ">
+            <div style="font-size:0.75rem;letter-spacing:1.5px;color:#e67e22;font-weight:700;text-transform:uppercase;">
+                {ENSO['label'][lang]}
+            </div>
+            <div style="font-size:1.05rem;color:#f0f6fc;font-weight:600;margin-top:4px;">
+                {ENSO['phase'][lang]} · {ENSO['oni']}
+            </div>
+            <div style="font-size:0.88rem;color:#c9d1d9;margin-top:8px;line-height:1.5;">
+                {ENSO['body'][lang]}
+            </div>
+            <div style="font-size:0.72rem;color:#8b949e;margin-top:8px;">
+                🛰️ Source: {ENSO['source']}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 st.caption(T("caption_data").format(
     min=df["acq_date"].min().strftime("%d %b %Y"),
     max=df["acq_date"].max().strftime("%d %b %Y"),
@@ -642,5 +741,46 @@ fig_h = px.imshow(
 )
 fig_h.update_layout(height=380, margin=dict(l=10, r=10, t=30, b=10))
 st.plotly_chart(fig_h, width="stretch")
+
+# ---------- "Inspect a Period" timeline tabs (datajoget-style) ----------
+st.divider()
+st.subheader({"en": "🗓️ Inspect a Period", "id": "🗓️ Pilih Periode"}[lang])
+
+periods = [
+    {"key": "all", "label": {"en": "All 2026", "id": "Semua 2026"}, "span": None},
+    {"key": "el_nino_rise", "label": {"en": "El Niño Rise (Apr–Jun)", "id": "Naik El Niño (Apr–Jun)"}, "span": ("2026-04-01", "2026-06-30")},
+    {"key": "peak", "label": {"en": "Peak (Aug)", "id": "Puncak (Agt)"}, "span": ("2026-08-01", "2026-08-31")},
+    {"key": "recent", "label": {"en": "Recent (last 7d)", "id": "Terbaru (7h)"}, "span": None},
+]
+tabs = st.tabs([p["label"][lang] for p in periods])
+for i, p in enumerate(periods):
+    with tabs[i]:
+        if p["span"]:
+            pmask = (df["acq_date"] >= p["span"][0]) & (df["acq_date"] <= p["span"][1])
+        elif p["key"] == "recent":
+            latest = df["acq_date"].max()
+            pmask = df["acq_date"] >= (latest - pd.Timedelta(days=7))
+        else:
+            pmask = pd.Series([True] * len(df))
+        pdf = df[pmask]
+        if len(pdf):
+            pc = len(pdf)
+            pworst = pdf.groupby("provinsi").size().idxmax()
+            pworst_n = int(pdf.groupby("provinsi").size().max())
+            ppeak = pdf.groupby(pdf["acq_date"].dt.date).size().idxmax()
+            ppeak_n = int(pdf.groupby(pdf["acq_date"].dt.date).size().max())
+            insight = {
+                "en": f"**{pc:,}** hotspots across this window. Worst province: **{loc_prov(pworst)}** ({pworst_n:,}). "
+                      f"Peak day: **{ppeak}** ({ppeak_n:,}).",
+                "id": f"**{pc:,}** hotspot di rentang ini. Provinsi terparah: **{loc_prov(pworst)}** ({pworst_n:,}). "
+                      f"Hari puncak: **{ppeak}** ({ppeak_n:,}).",
+            }[lang]
+            st.markdown(
+                f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'
+                f'<div class="body">{insight}</div></div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.info({"en": "No data in this window.", "id": "Tidak ada data di rentang ini."}[lang])
 
 st.caption(T("footer"))
