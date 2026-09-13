@@ -589,7 +589,7 @@ with col_map:
         map_center = [-1.5, 114.5]
         zoom = 6
 
-    m = folium.Map(location=map_center, zoom_start=zoom, tiles="CartoDB dark_matter")
+    m = folium.Map(location=map_center, zoom_start=zoom, tiles="OpenStreetMap")
     folium.GeoJson(
         gjson,
         name="provinsi",
@@ -791,9 +791,9 @@ if len(hist) >= 2:
     fig_y.update_traces(marker_line_color="#1c2128", marker_line_width=1)
     st.plotly_chart(fig_y, width="stretch")
     delta_txt = {
-        "en": f"**2026 (to {df['acq_date'].max().strftime('%d %b')})** already shows **{cur_total:,}** hotspots — "
+        "en": f"<b>2026 (to {df['acq_date'].max().strftime('%d %b')})</b> already shows <b>{cur_total:,}</b> hotspots — "
               f"trending toward one of the higher-activity years given the strong El Niño.",
-        "id": f"**2026 (sampai {df['acq_date'].max().strftime('%d %b')})** sudah mencatat **{cur_total:,}** hotspot — "
+        "id": f"<b>2026 (sampai {df['acq_date'].max().strftime('%d %b')})</b> sudah mencatat <b>{cur_total:,}</b> hotspot — "
               f"berkorelasi dengan tahun beraktivitas tinggi seiring El Niño kuat.",
     }[lang]
     st.markdown(f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'
@@ -806,20 +806,29 @@ else:
               "membuka perbandingan multi-tahun. Saat ini hanya data 2026 yang dimuat.",
     }[lang])
 
-# within-2026 phase comparison (real, from current data)
+# within-2026 phase comparison (real, from accumulated history)
 st.markdown("#### " + {"en": "2026 Fire-Season Phases", "id": "Fase Musim Kebakaran 2026"}[lang])
+hist_daily_path = Path(__file__).resolve().parent.parent / "data" / "processed" / "history_daily.csv"
+if hist_daily_path.exists():
+    hd = pd.read_csv(hist_daily_path, parse_dates=["tanggal"])
+    phase_src = hd.groupby("tanggal")["hotspot"].sum().reset_index()
+else:
+    phase_src = df.groupby(df["acq_date"].dt.date).size().reset_index(name="hotspot")
+    phase_src.columns = ["tanggal", "hotspot"]
+phase_src["tanggal"] = pd.to_datetime(phase_src["tanggal"])
 phase_defs = [
-    {"name": {"en": "Early (14–31 Aug)", "id": "Awal (14–31 Agt)"}, "span": ("2026-08-14", "2026-08-31")},
-    {"name": {"en": "Peak (1–7 Sep)", "id": "Puncak (1–7 Sep)"}, "span": ("2026-09-01", "2026-09-07")},
+    {"name": {"en": "Mid–Late Aug", "id": "Agt Pertengahan–Akhir"}, "span": ("2026-08-14", "2026-08-31")},
+    {"name": {"en": "Early Sep (peak)", "id": "Sep Awal (puncak)"}, "span": ("2026-09-01", "2026-09-07")},
+    {"name": {"en": "Recent (last 5d)", "id": "Terbaru (5h)"}, "span": (str((phase_src["tanggal"].max() - pd.Timedelta(days=4)).date()), str(phase_src["tanggal"].max().date()))},
 ]
 phase_rows = []
 for ph in phase_defs:
-    pm = (df["acq_date"] >= ph["span"][0]) & (df["acq_date"] <= ph["span"][1])
-    phase_rows.append({"phase": ph["name"][lang], "hotspots": int(pm.sum())})
+    pm = (phase_src["tanggal"] >= ph["span"][0]) & (phase_src["tanggal"] <= ph["span"][1])
+    phase_rows.append({"phase": ph["name"][lang], "hotspots": int(phase_src.loc[pm, "hotspot"].sum())})
 if any(r["hotspots"] for r in phase_rows):
     fig_p = px.bar(
         pd.DataFrame(phase_rows), x="phase", y="hotspots",
-        color="phase", color_discrete_sequence=["#d35400", "#e67e22"],
+        color="phase", color_discrete_sequence=["#f5b041", "#e67e22", "#d35400"],
         labels={"phase": "Phase", "hotspots": "Hotspots"},
         text_auto=True,
     )
@@ -855,10 +864,10 @@ for i, p in enumerate(periods):
             ppeak = pdf.groupby(pdf["acq_date"].dt.date).size().idxmax()
             ppeak_n = int(pdf.groupby(pdf["acq_date"].dt.date).size().max())
             insight = {
-                "en": f"**{pc:,}** hotspots across this window. Worst province: **{loc_prov(pworst)}** ({pworst_n:,}). "
-                      f"Peak day: **{ppeak}** ({ppeak_n:,}).",
-                "id": f"**{pc:,}** hotspot di rentang ini. Provinsi terparah: **{loc_prov(pworst)}** ({pworst_n:,}). "
-                      f"Hari puncak: **{ppeak}** ({ppeak_n:,}).",
+                "en": f"<b>{pc:,}</b> hotspots across this window. Worst province: <b>{loc_prov(pworst)}</b> ({pworst_n:,}). "
+                      f"Peak day: <b>{ppeak}</b> ({ppeak_n:,}).",
+                "id": f"<b>{pc:,}</b> hotspot di rentang ini. Provinsi terparah: <b>{loc_prov(pworst)}</b> ({pworst_n:,}). "
+                      f"Hari puncak: <b>{ppeak}</b> ({ppeak_n:,}).",
             }[lang]
             st.markdown(
                 f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'

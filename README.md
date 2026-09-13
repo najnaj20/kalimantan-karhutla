@@ -7,10 +7,22 @@ Borneo)** from NASA's FIRMS (VIIRS 375m + MODIS C6.1), pulled **without an API k
 via the Humanitarian Data Exchange (HDX) mirror. Built as a data-analyst portfolio
 project: real data, real storytelling, reproducible pipeline.
 
-**Live data window:** 14–21 Aug 2026 · **30,972 hotspots detected** · Peak: 18 Aug
-(5,905/day) · Worst province: West Kalimantan (41.6% of total)
+**Live data window:** 05–12 Sep 2026 · **30,712 hotspots detected** · Peak: 11 Sep
+(8,914/day) · Worst province: Central Kalimantan (56.6% of total)
 
-![Dashboard top](output/dashboard_top.png)
+### 📸 Dashboard
+
+| ![Dashboard top](output/dashboard_top.png) |
+|:--:|
+| *Hotspot map: province boundaries + FRP-colored points, town search (Nominatim), date slider — on an OpenStreetMap basemap* |
+
+| ![Trend](output/dashboard_charts.png) | ![Heatmap](output/dashboard_heatmap.png) |
+|:--:|:--:|
+| *Daily trend with weekly MA + fire-risk ribbon; FRP distribution; province leaderboard* | *Weekly × month heatmap with zoomable "Inspect a Period" tabs (All 2026 / El Niño Rise / Peak Aug / Recent)* |
+
+| ![ENSO & phases](output/dashboard_yoy.png) |
+|:--:|
+| *ENSO climate-context banner (NOAA ONI) + 2026 fire-season phase breakdown; multi-year comparison unlocks when CSVs are dropped into `data/historical/`* |
 
 ## What's inside
 
@@ -60,13 +72,14 @@ counts) that grows into a seasonality dataset over weeks/months:
 ```
 
 
-## Key findings (8-day window)
+## Key findings (05–12 Sep 2026 window)
 
-1. **West Kalimantan is the epicenter** — 12,875 hotspots (41.6%), followed by
-   Central Kalimantan (10,732; 34.7%).
-2. **Sharp surge 16→18 Aug** — daily count doubled to 5,905 and stayed high (5,500+)
-   through Aug 21: a "fire outbreak" pattern, not a fading event.
-3. **High-intensity fires present** — FRP up to **817 MW** in East/South Kalimantan;
+1. **Central Kalimantan is the epicenter** — 17,368 hotspots (56.6%), followed by
+   West Kalimantan (7,543; 24.5%).
+2. **Sharp surge peaking 11 Sep** — 8,914 detections in one day, ~3× the window
+   average: an escalating fire outbreak coinciding with the strong El Niño dry
+   season.
+3. **High-intensity fires present** — FRP up to **1,204 MW** (Central Kalimantan);
    high-FRP points are the source of transboundary haze.
 
 ## How to run

@@ -7,10 +7,22 @@ Kalimantan** dari NASA FIRMS (VIIRS 375m + MODIS C6.1), ditarik **tanpa kunci AP
 lewat mirror Humanitarian Data Exchange (HDX). Dibangun sebagai proyek portofolio
 data analyst: data asli, cerita yang kuat, pipeline yang bisa direproduksi.
 
-**Jendela data:** 14–21 Agustus 2026 · **30.972 hotspot terdeteksi** · Puncak: 18 Agt
-(5.905/hari) · Provinsi terparah: Kalimantan Barat (41.6% dari total)
+**Jendela data:** 05–12 September 2026 · **30.712 hotspot terdeteksi** · Puncak: 11 Sep
+(8.914/hari) · Provinsi terparah: Kalimantan Tengah (56.6% dari total)
 
-![Dashboard atas](output/dashboard_top.png)
+### 📸 Dashboard
+
+| ![Dashboard atas](output/dashboard_top.png) |
+|:--:|
+| *Peta hotspot: batas provinsi + titik berwarna FRP, pencarian kota (Nominatim), slider tanggal — basemap OpenStreetMap* |
+
+| ![Tren](output/dashboard_charts.png) | ![Heatmap](output/dashboard_heatmap.png) |
+|:--:|:--:|
+| *Tren harian dengan MA mingguan + pita risiko kebakaran; distribusi FRP; peringkat provinsi* | *Heatmap mingguan × bulan dengan tab "Pilih Periode" (Semua 2026 / Naik El Niño / Puncak Agt / Terbaru)* |
+
+| ![ENSO & fase](output/dashboard_yoy.png) |
+|:--:|
+| *Banner konteks iklim ENSO (NOAA ONI) + rincian fase musim kebakaran 2026; perbandingan multi-tahun terbuka saat CSV dimasukkan ke `data/historical/`* |
 
 ## Isi proyek
 
@@ -60,13 +72,13 @@ provinsi × hari) yang tumbuh jadi dataset musiman dalam hitungan minggu/bulan:
 ```
 
 
-## Temuan utama (jendela 8 hari)
+## Temuan utama (jendela 05–12 Sep 2026)
 
-1. **Kalimantan Barat episentrum** — 12.875 hotspot (41,6%), disusul Kalimantan
-   Tengah (10.732; 34,7%).
-2. **Lonjakan tajam 16→18 Agt** — jumlah harian naik 2× lipat menjadi 5.905 dan
-   tetap tinggi (5.500+) sampai 21 Agt: pola "ledakan api", bukan yang mereda.
-3. **Ada api berintensitas tinggi** — FRP hingga **817 MW** di Kaltim/Kalsel; titik
+1. **Kalimantan Tengah episentrum** — 17.368 hotspot (56,6%), disusul Kalimantan
+   Barat (7.543; 24,5%).
+2. **Lonjakan tajam memuncak 11 Sep** — 8.914 deteksi dalam sehari, ~3× rata-rata
+   jendela: ledakan kebakaran yang menguat seiring musim kemarau El Niño kuat.
+3. **Ada api berintensitas tinggi** — FRP hingga **1.204 MW** (Kalteng); titik
    FRP tinggi inilah sumber kabut asap lintas batas.
 
 ## Cara menjalankan
