@@ -9,6 +9,7 @@ from pathlib import Path
 import folium
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import plotly.io as pio
 import requests
 import streamlit as st
@@ -349,6 +350,18 @@ def load_data() -> tuple[pd.DataFrame, dict]:
     return df, gjson
 
 
+@st.cache_data(show_spinner=False, ttl=1800)
+def load_aqi():
+    """Hourly modelled air quality (Open-Meteo/CAMS) + summary. None if missing."""
+    import json as _json
+    csv_p, js_p = PROC / "aqi_hourly.csv", PROC / "aqi_summary.json"
+    if not (csv_p.exists() and js_p.exists()):
+        return None, None
+    aqi = pd.read_csv(csv_p, parse_dates=["time_utc"])
+    summary = _json.loads(js_p.read_text())
+    return aqi, summary
+
+
 @st.cache_data(show_spinner=False)
 def load_aggs() -> dict[str, pd.DataFrame]:
     return {
@@ -502,6 +515,85 @@ else:
 
 c3.metric(T("metric_worst"), loc_prov(worst_name), T("metric_worst_val").format(n=worst_val))
 c4.metric(T("metric_peak"), peak_date, T("metric_worst_val").format(n=peak_val))
+
+# ---------- Air Quality (AQI / PM2.5) ----------
+aqi_df, aqi_summary = load_aqi()
+if aqi_df is not None and aqi_summary:
+    st.divider()
+    st.subheader({"en": "🌫️ Air Quality (modelled)", "id": "🌫️ Kualitas Udara (model)"}[lang])
+    st.caption({
+        "en": ("PM2.5 and US AQI per provincial capital — CAMS ensemble via Open-Meteo "
+               "(hourly model data, not ground sensors). ISPU category uses Indonesia's "
+               "PP 41/1999 24h PM2.5 bands. Haze from the fires shows up here first."),
+        "id": ("PM2.5 & US AQI per ibu kota provinsi — ensemble CAMS via Open-Meteo "
+               "(data model per jam, bukan sensor permukaan). Kategori ISPU pakai "
+               "banding PM2.5 24 jam PP 41/1999. Asap kebakaran terlihat di sini lebih dulu."),
+    }[lang])
+
+    cities = list(aqi_summary["cities"].keys())
+    acols = st.columns(len(cities))
+    for acol, city in zip(acols, cities):
+        s = aqi_summary["cities"][city]
+        aqi_now = s["us_aqi_now"]
+        band_lbl = {"en": {0: "Good", 51: "Moderate", 101: "Unhealthy-SG", 151: "Unhealthy", 201: "Very Unhealthy", 301: "Hazardous"}[max([k for k in (0,51,101,151,201,301) if aqi_now >= k])],
+                    "id": {0: "Baik", 51: "Sedang", 101: "TDK Sehat-Peka", 151: "Tidak Sehat", 201: "Sangat Tdk Sehat", 301: "Berbahaya"}[max([k for k in (0,51,101,151,201,301) if aqi_now >= k])]}[lang]
+        with acol:
+            st.markdown(
+                f"""<div style="background:#1c2128;border:1px solid #30363d;border-top:4px solid {s['ispu_color']};
+                border-radius:10px;padding:14px 16px;">
+                  <div style="color:#f0f6fc;font-weight:700;font-size:1.0rem;">{city}</div>
+                  <div style="color:#8b949e;font-size:0.75rem;">{s['provinsi']}</div>
+                  <div style="margin:10px 0 2px;"><span style="font-size:1.9rem;font-weight:800;color:{s['ispu_color']};">{aqi_now:.0f}</span>
+                       <span style="color:#8b949e;font-size:0.8rem;">US AQI</span></div>
+                  <div style="display:inline-block;background:{s['ispu_color']}22;color:{s['ispu_color']};
+                       border:1px solid {s['ispu_color']};border-radius:999px;padding:2px 10px;font-size:0.72rem;font-weight:700;">{band_lbl} · ISPU: {s['ispu_category']}</div>
+                  <div style="color:#c9d1d9;font-size:0.8rem;margin-top:8px;">PM2.5 <b>{s['pm25_now']:.0f} µg/m³</b> · 24h avg {s['pm25_24h_mean']:.0f}</div>
+                </div>""",
+                unsafe_allow_html=True,
+            )
+
+    tab_hist, tab_now = st.tabs(
+        [{"en": "📈 PM2.5 — 7-day trend", "id": "📈 PM2.5 — tren 7 hari"}[lang],
+         {"en": "🗺️ AQI vs hotspots (24h)", "id": "🗺️ AQI vs hotspot (24j)"}[lang]])
+    with tab_hist:
+        recent = aqi_df[aqi_df["time_utc"] >= pd.Timestamp.now("UTC").tz_localize(None) - pd.Timedelta(days=7)]
+        fig_a = px.line(
+            recent, x="time_utc", y="pm25", color="city", markers=True,
+            labels={"time_utc": "", "pm25": {"en": "PM2.5 (µg/m³)", "id": "PM2.5 (µg/m³)"}[lang], "city": ""},
+        )
+        for lvl, colr, lbl in [(15, "#22c55e", "Baik"), (50, "#eab308", "Sedang"),
+                               (150, "#f97316", "Tidak Sehat")]:
+            fig_a.add_hline(y=lvl, line_dash="dot", line_color=colr, opacity=0.5,
+                            annotation_text=lbl, annotation_font_color=colr)
+        fig_a.update_layout(height=340, legend=dict(orientation="h", y=1.08),
+                            margin=dict(l=10, r=10, t=30, b=10))
+        st.plotly_chart(fig_a, width="stretch")
+
+    with tab_now:
+        # scatter hotspots + AQI badge positions (last 24h)
+        day_ago = df["acq_date"].max() - pd.Timedelta(days=1)
+        df24 = df[df["acq_date"] >= day_ago]
+        fig_b = px.scatter_map(
+            df24, lat="latitude", lon="longitude", color="provinsi",
+            opacity=0.55, zoom=5, center={"lat": -1.5, "lon": 114.5},
+            labels={"provinsi": ""},
+        )
+        for city in cities:
+            s = aqi_summary["cities"][city]
+            coord = {"Pontianak": (109.34, -0.02), "Palangka Raya": (113.92, -2.21),
+                     "Banjarmasin": (114.59, -2.23), "Samarinda": (117.15, -0.49),
+                     "Tanjung Selor": (117.36, 2.86)}[city]
+            fig_b.add_trace(go.Scattermap(
+                lon=[coord[0]], lat=[coord[1]],
+                text=[f"{city} · {s['us_aqi_now']:.0f} AQI"],
+                mode="markers+text", textposition="top center",
+                marker=dict(size=10, color=s["ispu_color"]),
+                textfont=dict(color=s["ispu_color"], size=12), showlegend=False,
+            ))
+        fig_b.update_layout(height=460, margin=dict(l=0, r=0, t=10, b=0))
+        st.plotly_chart(fig_b, width="stretch")
+        st.caption({"en": f"Orange points = hotspots in the last 24h; AQI badges = current US AQI per capital. Fetched {aqi_summary['fetched_at_utc']}.",
+                    "id": f"Titik oranye = hotspot 24 jam terakhir; badge AQI = US AQI terkini per ibu kota. Diambil {aqi_summary['fetched_at_utc']}."}[lang])
 
 st.divider()
 

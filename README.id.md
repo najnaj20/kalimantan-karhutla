@@ -115,3 +115,6 @@ python scripts/screenshot.py   # butuh playwright + chromium
   `nasa-firms-active-fire-southeast-asia-viirs` / `-modis` (CC BY).
 - **Batas provinsi**: geoBoundaries `IDN_ADM1` (CC BY) via HDX.
 - **Konteks ENSO** (untuk studi musiman): indeks NOAA ONI.
+- **Kualitas udara** (panel AQI dashboard): field model PM2.5/PM10 per jam dari
+  Open-Meteo Air Quality API (ensemble CAMS, gratis/tanpa key) — *berbasis model,
+  bukan sensor darat*; kategori ISPU mengikuti pita PM2.5 24 jam PP 41/1999.

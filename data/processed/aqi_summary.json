@@ -1,0 +1,50 @@
+{
+  "fetched_at_utc": "2026-09-15T23:35 UTC",
+  "cities": {
+    "Pontianak": {
+      "provinsi": "Kalimantan Barat",
+      "pm25_now": 20.6,
+      "us_aqi_now": 72.2,
+      "time_utc": "2026-09-15 23:00:00",
+      "pm25_24h_mean": 49.5,
+      "ispu_category": "Sedang",
+      "ispu_color": "#eab308"
+    },
+    "Palangka Raya": {
+      "provinsi": "Kalimantan Tengah",
+      "pm25_now": 113.2,
+      "us_aqi_now": 191.4,
+      "time_utc": "2026-09-15 23:00:00",
+      "pm25_24h_mean": 390.5,
+      "ispu_category": "Berbahaya",
+      "ispu_color": "#ef4444"
+    },
+    "Banjarmasin": {
+      "provinsi": "Kalimantan Selatan",
+      "pm25_now": 67.1,
+      "us_aqi_now": 159.1,
+      "time_utc": "2026-09-15 23:00:00",
+      "pm25_24h_mean": 509.1,
+      "ispu_category": "Berbahaya",
+      "ispu_color": "#ef4444"
+    },
+    "Samarinda": {
+      "provinsi": "Kalimantan Timur",
+      "pm25_now": 15.3,
+      "us_aqi_now": 62.3,
+      "time_utc": "2026-09-15 23:00:00",
+      "pm25_24h_mean": 19.2,
+      "ispu_category": "Sedang",
+      "ispu_color": "#eab308"
+    },
+    "Tanjung Selor": {
+      "provinsi": "Kalimantan Utara",
+      "pm25_now": 17.8,
+      "us_aqi_now": 67.0,
+      "time_utc": "2026-09-15 23:00:00",
+      "pm25_24h_mean": 43.6,
+      "ispu_category": "Sedang",
+      "ispu_color": "#eab308"
+    }
+  }
+}

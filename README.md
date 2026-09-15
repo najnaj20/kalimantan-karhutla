@@ -116,3 +116,6 @@ python scripts/screenshot.py   # needs playwright + chromium
   via HDX mirror: `nasa-firms-active-fire-southeast-asia-viirs` / `-modis` (CC BY).
 - **Province boundaries**: geoBoundaries `IDN_ADM1` (CC BY) via HDX.
 - **ENSO context** (for seasonality studies): NOAA ONI index.
+- **Air quality** (dashboard AQI panel): hourly PM2.5/PM10 model fields from
+  Open-Meteo Air Quality API (CAMS ensemble, free/no key) — *modelled, not ground
+  sensors*; ISPU categories follow Indonesia's PP 41/1999 24h PM2.5 bands.

@@ -1,0 +1,1201 @@
+time_utc,city,provinsi,pm25,pm10,us_aqi
+2026-09-07 00:00:00,Pontianak,Kalimantan Barat,47.3,50.1,130.1
+2026-09-07 01:00:00,Pontianak,Kalimantan Barat,46.8,49.7,128.8
+2026-09-07 02:00:00,Pontianak,Kalimantan Barat,48.0,50.9,131.8
+2026-09-07 03:00:00,Pontianak,Kalimantan Barat,54.6,57.9,148.0
+2026-09-07 04:00:00,Pontianak,Kalimantan Barat,74.5,78.2,164.3
+2026-09-07 05:00:00,Pontianak,Kalimantan Barat,94.1,98.3,178.1
+2026-09-07 06:00:00,Pontianak,Kalimantan Barat,123.4,128.1,198.6
+2026-09-07 07:00:00,Pontianak,Kalimantan Barat,159.7,164.4,234.9
+2026-09-07 08:00:00,Pontianak,Kalimantan Barat,193.7,198.8,268.6
+2026-09-07 09:00:00,Pontianak,Kalimantan Barat,192.8,197.9,267.7
+2026-09-07 10:00:00,Pontianak,Kalimantan Barat,192.8,197.0,267.7
+2026-09-07 11:00:00,Pontianak,Kalimantan Barat,199.8,203.5,274.6
+2026-09-07 12:00:00,Pontianak,Kalimantan Barat,208.6,214.7,283.4
+2026-09-07 13:00:00,Pontianak,Kalimantan Barat,166.2,171.8,241.3
+2026-09-07 14:00:00,Pontianak,Kalimantan Barat,139.7,144.8,215.1
+2026-09-07 15:00:00,Pontianak,Kalimantan Barat,129.5,133.6,205.0
+2026-09-07 16:00:00,Pontianak,Kalimantan Barat,136.4,139.7,211.8
+2026-09-07 17:00:00,Pontianak,Kalimantan Barat,140.6,143.9,216.0
+2026-09-07 18:00:00,Pontianak,Kalimantan Barat,143.9,147.1,219.2
+2026-09-07 19:00:00,Pontianak,Kalimantan Barat,130.4,134.1,205.9
+2026-09-07 20:00:00,Pontianak,Kalimantan Barat,115.9,119.7,193.3
+2026-09-07 21:00:00,Pontianak,Kalimantan Barat,131.8,136.0,207.2
+2026-09-07 22:00:00,Pontianak,Kalimantan Barat,142.5,147.1,217.8
+2026-09-07 23:00:00,Pontianak,Kalimantan Barat,151.3,156.0,226.6
+2026-09-08 00:00:00,Pontianak,Kalimantan Barat,190.5,195.6,265.4
+2026-09-08 01:00:00,Pontianak,Kalimantan Barat,183.5,188.1,258.5
+2026-09-08 02:00:00,Pontianak,Kalimantan Barat,164.8,169.0,239.9
+2026-09-08 03:00:00,Pontianak,Kalimantan Barat,143.4,147.1,218.7
+2026-09-08 04:00:00,Pontianak,Kalimantan Barat,135.5,138.8,210.9
+2026-09-08 05:00:00,Pontianak,Kalimantan Barat,141.1,144.4,216.5
+2026-09-08 06:00:00,Pontianak,Kalimantan Barat,156.0,159.3,231.2
+2026-09-08 07:00:00,Pontianak,Kalimantan Barat,177.0,180.7,252.0
+2026-09-08 08:00:00,Pontianak,Kalimantan Barat,200.7,204.4,275.5
+2026-09-08 09:00:00,Pontianak,Kalimantan Barat,209.1,213.3,283.8
+2026-09-08 10:00:00,Pontianak,Kalimantan Barat,163.4,166.7,238.6
+2026-09-08 11:00:00,Pontianak,Kalimantan Barat,155.1,157.9,230.3
+2026-09-08 12:00:00,Pontianak,Kalimantan Barat,112.5,117.8,191.0
+2026-09-08 13:00:00,Pontianak,Kalimantan Barat,75.4,80.6,164.9
+2026-09-08 14:00:00,Pontianak,Kalimantan Barat,52.9,57.5,143.8
+2026-09-08 15:00:00,Pontianak,Kalimantan Barat,43.5,48.3,120.7
+2026-09-08 16:00:00,Pontianak,Kalimantan Barat,47.0,51.7,129.3
+2026-09-08 17:00:00,Pontianak,Kalimantan Barat,55.3,59.6,149.8
+2026-09-08 18:00:00,Pontianak,Kalimantan Barat,65.0,68.7,157.7
+2026-09-08 19:00:00,Pontianak,Kalimantan Barat,77.5,81.0,166.4
+2026-09-08 20:00:00,Pontianak,Kalimantan Barat,94.1,97.3,178.1
+2026-09-08 21:00:00,Pontianak,Kalimantan Barat,110.4,113.6,189.5
+2026-09-08 22:00:00,Pontianak,Kalimantan Barat,122.0,125.7,197.6
+2026-09-08 23:00:00,Pontianak,Kalimantan Barat,132.2,136.0,207.6
+2026-09-09 00:00:00,Pontianak,Kalimantan Barat,104.8,109.0,185.6
+2026-09-09 01:00:00,Pontianak,Kalimantan Barat,108.3,112.7,188.0
+2026-09-09 02:00:00,Pontianak,Kalimantan Barat,101.5,106.4,183.2
+2026-09-09 03:00:00,Pontianak,Kalimantan Barat,99.4,104.5,181.8
+2026-09-09 04:00:00,Pontianak,Kalimantan Barat,101.5,106.6,183.2
+2026-09-09 05:00:00,Pontianak,Kalimantan Barat,105.0,110.4,185.7
+2026-09-09 06:00:00,Pontianak,Kalimantan Barat,102.4,107.8,183.9
+2026-09-09 07:00:00,Pontianak,Kalimantan Barat,96.4,101.7,179.7
+2026-09-09 08:00:00,Pontianak,Kalimantan Barat,84.8,90.1,171.5
+2026-09-09 09:00:00,Pontianak,Kalimantan Barat,66.8,71.9,158.9
+2026-09-09 10:00:00,Pontianak,Kalimantan Barat,46.1,51.2,127.1
+2026-09-09 11:00:00,Pontianak,Kalimantan Barat,33.2,37.8,95.9
+2026-09-09 12:00:00,Pontianak,Kalimantan Barat,36.1,40.9,102.5
+2026-09-09 13:00:00,Pontianak,Kalimantan Barat,34.0,38.6,97.4
+2026-09-09 14:00:00,Pontianak,Kalimantan Barat,41.8,45.9,116.5
+2026-09-09 15:00:00,Pontianak,Kalimantan Barat,48.2,52.0,132.3
+2026-09-09 16:00:00,Pontianak,Kalimantan Barat,53.9,57.9,146.3
+2026-09-09 17:00:00,Pontianak,Kalimantan Barat,57.6,61.9,152.5
+2026-09-09 18:00:00,Pontianak,Kalimantan Barat,64.5,68.9,157.3
+2026-09-09 19:00:00,Pontianak,Kalimantan Barat,75.2,79.4,164.8
+2026-09-09 20:00:00,Pontianak,Kalimantan Barat,87.3,91.0,173.3
+2026-09-09 21:00:00,Pontianak,Kalimantan Barat,99.9,103.6,182.1
+2026-09-09 22:00:00,Pontianak,Kalimantan Barat,115.7,119.2,193.2
+2026-09-09 23:00:00,Pontianak,Kalimantan Barat,132.2,135.5,207.6
+2026-09-10 00:00:00,Pontianak,Kalimantan Barat,141.6,144.8,217.0
+2026-09-10 01:00:00,Pontianak,Kalimantan Barat,137.8,142.5,213.2
+2026-09-10 02:00:00,Pontianak,Kalimantan Barat,128.1,133.6,203.6
+2026-09-10 03:00:00,Pontianak,Kalimantan Barat,125.3,131.8,199.9
+2026-09-10 04:00:00,Pontianak,Kalimantan Barat,124.8,131.3,199.6
+2026-09-10 05:00:00,Pontianak,Kalimantan Barat,129.5,136.4,205.0
+2026-09-10 06:00:00,Pontianak,Kalimantan Barat,135.5,143.0,210.9
+2026-09-10 07:00:00,Pontianak,Kalimantan Barat,134.1,141.1,209.5
+2026-09-10 08:00:00,Pontianak,Kalimantan Barat,124.8,131.8,199.6
+2026-09-10 09:00:00,Pontianak,Kalimantan Barat,100.6,106.4,182.6
+2026-09-10 10:00:00,Pontianak,Kalimantan Barat,74.7,79.9,164.5
+2026-09-10 11:00:00,Pontianak,Kalimantan Barat,53.4,57.5,145.1
+2026-09-10 12:00:00,Pontianak,Kalimantan Barat,58.7,63.1,153.2
+2026-09-10 13:00:00,Pontianak,Kalimantan Barat,40.5,44.2,113.3
+2026-09-10 14:00:00,Pontianak,Kalimantan Barat,32.4,36.0,94.4
+2026-09-10 15:00:00,Pontianak,Kalimantan Barat,28.6,32.1,87.2
+2026-09-10 16:00:00,Pontianak,Kalimantan Barat,26.7,30.3,83.7
+2026-09-10 17:00:00,Pontianak,Kalimantan Barat,24.9,28.3,80.3
+2026-09-10 18:00:00,Pontianak,Kalimantan Barat,23.6,27.0,77.8
+2026-09-10 19:00:00,Pontianak,Kalimantan Barat,23.4,26.6,77.5
+2026-09-10 20:00:00,Pontianak,Kalimantan Barat,26.5,29.5,83.3
+2026-09-10 21:00:00,Pontianak,Kalimantan Barat,34.0,36.8,97.4
+2026-09-10 22:00:00,Pontianak,Kalimantan Barat,45.5,48.1,125.6
+2026-09-10 23:00:00,Pontianak,Kalimantan Barat,58.0,60.3,152.8
+2026-09-11 00:00:00,Pontianak,Kalimantan Barat,95.0,97.8,178.7
+2026-09-11 01:00:00,Pontianak,Kalimantan Barat,102.7,106.2,184.1
+2026-09-11 02:00:00,Pontianak,Kalimantan Barat,104.3,108.3,185.2
+2026-09-11 03:00:00,Pontianak,Kalimantan Barat,107.8,112.0,187.7
+2026-09-11 04:00:00,Pontianak,Kalimantan Barat,112.7,117.1,191.1
+2026-09-11 05:00:00,Pontianak,Kalimantan Barat,118.3,122.9,195.0
+2026-09-11 06:00:00,Pontianak,Kalimantan Barat,122.9,127.6,198.2
+2026-09-11 07:00:00,Pontianak,Kalimantan Barat,126.7,130.9,202.2
+2026-09-11 08:00:00,Pontianak,Kalimantan Barat,123.9,128.5,198.9
+2026-09-11 09:00:00,Pontianak,Kalimantan Barat,113.2,117.6,191.4
+2026-09-11 10:00:00,Pontianak,Kalimantan Barat,89.6,93.6,174.9
+2026-09-11 11:00:00,Pontianak,Kalimantan Barat,71.2,74.7,162.0
+2026-09-11 12:00:00,Pontianak,Kalimantan Barat,45.2,48.7,124.9
+2026-09-11 13:00:00,Pontianak,Kalimantan Barat,26.6,29.6,83.5
+2026-09-11 14:00:00,Pontianak,Kalimantan Barat,19.3,22.2,69.8
+2026-09-11 15:00:00,Pontianak,Kalimantan Barat,17.8,20.5,67.0
+2026-09-11 16:00:00,Pontianak,Kalimantan Barat,20.9,23.8,72.8
+2026-09-11 17:00:00,Pontianak,Kalimantan Barat,25.4,28.5,81.2
+2026-09-11 18:00:00,Pontianak,Kalimantan Barat,30.4,33.4,90.6
+2026-09-11 19:00:00,Pontianak,Kalimantan Barat,39.1,42.1,109.9
+2026-09-11 20:00:00,Pontianak,Kalimantan Barat,56.6,59.6,151.8
+2026-09-11 21:00:00,Pontianak,Kalimantan Barat,77.1,80.1,166.1
+2026-09-11 22:00:00,Pontianak,Kalimantan Barat,94.3,97.1,178.2
+2026-09-11 23:00:00,Pontianak,Kalimantan Barat,113.6,116.4,191.7
+2026-09-12 00:00:00,Pontianak,Kalimantan Barat,124.3,128.1,199.2
+2026-09-12 01:00:00,Pontianak,Kalimantan Barat,137.8,142.5,213.2
+2026-09-12 02:00:00,Pontianak,Kalimantan Barat,147.6,153.7,222.9
+2026-09-12 03:00:00,Pontianak,Kalimantan Barat,154.6,161.1,229.8
+2026-09-12 04:00:00,Pontianak,Kalimantan Barat,160.2,167.2,235.4
+2026-09-12 05:00:00,Pontianak,Kalimantan Barat,173.2,180.2,248.3
+2026-09-12 06:00:00,Pontianak,Kalimantan Barat,181.6,188.6,256.6
+2026-09-12 07:00:00,Pontianak,Kalimantan Barat,192.3,199.3,267.2
+2026-09-12 08:00:00,Pontianak,Kalimantan Barat,198.8,205.4,273.6
+2026-09-12 09:00:00,Pontianak,Kalimantan Barat,197.9,204.4,272.7
+2026-09-12 10:00:00,Pontianak,Kalimantan Barat,168.1,173.7,243.2
+2026-09-12 11:00:00,Pontianak,Kalimantan Barat,126.7,132.2,202.2
+2026-09-12 12:00:00,Pontianak,Kalimantan Barat,109.9,115.7,189.1
+2026-09-12 13:00:00,Pontianak,Kalimantan Barat,99.9,104.8,182.1
+2026-09-12 14:00:00,Pontianak,Kalimantan Barat,95.0,99.4,178.7
+2026-09-12 15:00:00,Pontianak,Kalimantan Barat,97.6,101.5,180.5
+2026-09-12 16:00:00,Pontianak,Kalimantan Barat,98.7,102.2,181.3
+2026-09-12 17:00:00,Pontianak,Kalimantan Barat,104.1,107.8,185.1
+2026-09-12 18:00:00,Pontianak,Kalimantan Barat,96.2,99.9,179.5
+2026-09-12 19:00:00,Pontianak,Kalimantan Barat,82.7,86.1,170.1
+2026-09-12 20:00:00,Pontianak,Kalimantan Barat,70.5,74.0,161.5
+2026-09-12 21:00:00,Pontianak,Kalimantan Barat,58.0,61.0,152.8
+2026-09-12 22:00:00,Pontianak,Kalimantan Barat,52.2,54.8,142.1
+2026-09-12 23:00:00,Pontianak,Kalimantan Barat,50.9,53.2,138.9
+2026-09-13 00:00:00,Pontianak,Kalimantan Barat,70.5,74.3,161.5
+2026-09-13 01:00:00,Pontianak,Kalimantan Barat,75.2,78.9,164.8
+2026-09-13 02:00:00,Pontianak,Kalimantan Barat,96.6,100.8,179.8
+2026-09-13 03:00:00,Pontianak,Kalimantan Barat,120.6,125.7,196.6
+2026-09-13 04:00:00,Pontianak,Kalimantan Barat,137.4,142.5,212.8
+2026-09-13 05:00:00,Pontianak,Kalimantan Barat,145.3,151.3,220.6
+2026-09-13 06:00:00,Pontianak,Kalimantan Barat,162.1,168.1,237.3
+2026-09-13 07:00:00,Pontianak,Kalimantan Barat,173.2,179.7,248.3
+2026-09-13 08:00:00,Pontianak,Kalimantan Barat,175.1,181.6,250.2
+2026-09-13 09:00:00,Pontianak,Kalimantan Barat,156.0,162.1,231.2
+2026-09-13 10:00:00,Pontianak,Kalimantan Barat,119.7,125.7,196.0
+2026-09-13 11:00:00,Pontianak,Kalimantan Barat,81.5,86.6,169.2
+2026-09-13 12:00:00,Pontianak,Kalimantan Barat,86.8,93.4,172.9
+2026-09-13 13:00:00,Pontianak,Kalimantan Barat,74.0,79.4,164.0
+2026-09-13 14:00:00,Pontianak,Kalimantan Barat,78.7,83.1,167.3
+2026-09-13 15:00:00,Pontianak,Kalimantan Barat,81.3,85.7,169.1
+2026-09-13 16:00:00,Pontianak,Kalimantan Barat,79.2,83.4,167.6
+2026-09-13 17:00:00,Pontianak,Kalimantan Barat,77.5,82.0,166.4
+2026-09-13 18:00:00,Pontianak,Kalimantan Barat,77.3,81.7,166.3
+2026-09-13 19:00:00,Pontianak,Kalimantan Barat,74.5,78.2,164.3
+2026-09-13 20:00:00,Pontianak,Kalimantan Barat,72.2,75.4,162.7
+2026-09-13 21:00:00,Pontianak,Kalimantan Barat,72.9,75.9,163.2
+2026-09-13 22:00:00,Pontianak,Kalimantan Barat,68.2,71.5,159.9
+2026-09-13 23:00:00,Pontianak,Kalimantan Barat,67.8,70.8,159.6
+2026-09-14 00:00:00,Pontianak,Kalimantan Barat,54.0,55.2,146.6
+2026-09-14 01:00:00,Pontianak,Kalimantan Barat,54.4,55.1,147.5
+2026-09-14 02:00:00,Pontianak,Kalimantan Barat,54.1,54.6,146.8
+2026-09-14 03:00:00,Pontianak,Kalimantan Barat,59.1,59.6,153.5
+2026-09-14 04:00:00,Pontianak,Kalimantan Barat,74.0,74.7,164.0
+2026-09-14 05:00:00,Pontianak,Kalimantan Barat,93.1,94.1,177.4
+2026-09-14 06:00:00,Pontianak,Kalimantan Barat,113.6,115.3,191.7
+2026-09-14 07:00:00,Pontianak,Kalimantan Barat,134.1,136.0,209.5
+2026-09-14 08:00:00,Pontianak,Kalimantan Barat,149.9,151.8,225.2
+2026-09-14 09:00:00,Pontianak,Kalimantan Barat,153.7,156.5,228.9
+2026-09-14 10:00:00,Pontianak,Kalimantan Barat,122.9,124.8,198.2
+2026-09-14 11:00:00,Pontianak,Kalimantan Barat,95.2,97.6,178.8
+2026-09-14 12:00:00,Pontianak,Kalimantan Barat,136.4,139.2,211.8
+2026-09-14 13:00:00,Pontianak,Kalimantan Barat,93.4,96.6,177.6
+2026-09-14 14:00:00,Pontianak,Kalimantan Barat,57.5,60.8,152.4
+2026-09-14 15:00:00,Pontianak,Kalimantan Barat,48.2,51.8,132.3
+2026-09-14 16:00:00,Pontianak,Kalimantan Barat,54.8,58.0,148.5
+2026-09-14 17:00:00,Pontianak,Kalimantan Barat,45.6,48.3,125.9
+2026-09-14 18:00:00,Pontianak,Kalimantan Barat,31.1,33.2,91.9
+2026-09-14 19:00:00,Pontianak,Kalimantan Barat,32.8,34.8,95.1
+2026-09-14 20:00:00,Pontianak,Kalimantan Barat,28.6,30.5,87.2
+2026-09-14 21:00:00,Pontianak,Kalimantan Barat,31.3,33.3,92.3
+2026-09-14 22:00:00,Pontianak,Kalimantan Barat,37.8,39.5,106.7
+2026-09-14 23:00:00,Pontianak,Kalimantan Barat,39.2,40.5,110.1
+2026-09-15 00:00:00,Pontianak,Kalimantan Barat,52.4,54.2,142.6
+2026-09-15 01:00:00,Pontianak,Kalimantan Barat,41.4,43.0,115.5
+2026-09-15 02:00:00,Pontianak,Kalimantan Barat,40.2,41.3,112.6
+2026-09-15 03:00:00,Pontianak,Kalimantan Barat,43.2,44.2,120.0
+2026-09-15 04:00:00,Pontianak,Kalimantan Barat,47.1,47.6,129.6
+2026-09-15 05:00:00,Pontianak,Kalimantan Barat,58.3,58.8,153.0
+2026-09-15 06:00:00,Pontianak,Kalimantan Barat,78.0,79.2,166.8
+2026-09-15 07:00:00,Pontianak,Kalimantan Barat,86.8,88.5,172.9
+2026-09-15 08:00:00,Pontianak,Kalimantan Barat,80.1,81.0,168.2
+2026-09-15 09:00:00,Pontianak,Kalimantan Barat,62.2,62.6,155.7
+2026-09-15 10:00:00,Pontianak,Kalimantan Barat,50.5,50.8,137.9
+2026-09-15 11:00:00,Pontianak,Kalimantan Barat,40.3,40.5,112.8
+2026-09-15 12:00:00,Pontianak,Kalimantan Barat,50.3,52.0,137.4
+2026-09-15 13:00:00,Pontianak,Kalimantan Barat,48.9,50.8,134.0
+2026-09-15 14:00:00,Pontianak,Kalimantan Barat,48.2,50.5,132.3
+2026-09-15 15:00:00,Pontianak,Kalimantan Barat,50.1,52.9,136.9
+2026-09-15 16:00:00,Pontianak,Kalimantan Barat,49.5,52.6,135.5
+2026-09-15 17:00:00,Pontianak,Kalimantan Barat,47.0,50.2,129.3
+2026-09-15 18:00:00,Pontianak,Kalimantan Barat,42.4,45.2,118.0
+2026-09-15 19:00:00,Pontianak,Kalimantan Barat,43.5,46.6,120.7
+2026-09-15 20:00:00,Pontianak,Kalimantan Barat,41.0,44.1,114.5
+2026-09-15 21:00:00,Pontianak,Kalimantan Barat,36.3,39.5,103.0
+2026-09-15 22:00:00,Pontianak,Kalimantan Barat,30.5,33.5,90.8
+2026-09-15 23:00:00,Pontianak,Kalimantan Barat,20.6,23.1,72.2
+2026-09-16 00:00:00,Pontianak,Kalimantan Barat,27.9,30.9,85.9
+2026-09-16 01:00:00,Pontianak,Kalimantan Barat,39.6,43.4,111.1
+2026-09-16 02:00:00,Pontianak,Kalimantan Barat,51.2,55.2,139.7
+2026-09-16 03:00:00,Pontianak,Kalimantan Barat,61.9,65.9,155.5
+2026-09-16 04:00:00,Pontianak,Kalimantan Barat,71.0,75.0,161.9
+2026-09-16 05:00:00,Pontianak,Kalimantan Barat,80.1,84.1,168.2
+2026-09-16 06:00:00,Pontianak,Kalimantan Barat,89.9,93.8,175.1
+2026-09-16 07:00:00,Pontianak,Kalimantan Barat,98.7,102.4,181.3
+2026-09-16 08:00:00,Pontianak,Kalimantan Barat,103.4,107.1,184.6
+2026-09-16 09:00:00,Pontianak,Kalimantan Barat,103.1,106.2,184.4
+2026-09-16 10:00:00,Pontianak,Kalimantan Barat,116.2,118.7,193.6
+2026-09-16 11:00:00,Pontianak,Kalimantan Barat,135.5,137.4,210.9
+2026-09-16 12:00:00,Pontianak,Kalimantan Barat,155.5,156.9,230.7
+2026-09-16 13:00:00,Pontianak,Kalimantan Barat,174.2,175.6,249.3
+2026-09-16 14:00:00,Pontianak,Kalimantan Barat,190.9,193.7,265.8
+2026-09-16 15:00:00,Pontianak,Kalimantan Barat,202.1,204.9,276.9
+2026-09-16 16:00:00,Pontianak,Kalimantan Barat,214.2,217.5,288.9
+2026-09-16 17:00:00,Pontianak,Kalimantan Barat,223.5,226.8,298.1
+2026-09-16 18:00:00,Pontianak,Kalimantan Barat,228.2,231.4,303.7
+2026-09-16 19:00:00,Pontianak,Kalimantan Barat,229.6,232.8,305.1
+2026-09-16 20:00:00,Pontianak,Kalimantan Barat,221.7,225.4,296.3
+2026-09-16 21:00:00,Pontianak,Kalimantan Barat,194.6,197.9,269.5
+2026-09-16 22:00:00,Pontianak,Kalimantan Barat,152.7,156.0,228.0
+2026-09-16 23:00:00,Pontianak,Kalimantan Barat,99.0,101.5,181.5
+2026-09-07 00:00:00,Palangka Raya,Kalimantan Tengah,19.9,21.9,70.9
+2026-09-07 01:00:00,Palangka Raya,Kalimantan Tengah,33.9,36.0,97.2
+2026-09-07 02:00:00,Palangka Raya,Kalimantan Tengah,37.3,39.3,105.4
+2026-09-07 03:00:00,Palangka Raya,Kalimantan Tengah,76.8,79.6,165.9
+2026-09-07 04:00:00,Palangka Raya,Kalimantan Tengah,166.7,171.4,241.8
+2026-09-07 05:00:00,Palangka Raya,Kalimantan Tengah,270.1,276.6,345.2
+2026-09-07 06:00:00,Palangka Raya,Kalimantan Tengah,380.9,389.3,500.0
+2026-09-07 07:00:00,Palangka Raya,Kalimantan Tengah,519.7,530.9,500.0
+2026-09-07 08:00:00,Palangka Raya,Kalimantan Tengah,644.5,655.7,500.0
+2026-09-07 09:00:00,Palangka Raya,Kalimantan Tengah,929.5,944.4,500.0
+2026-09-07 10:00:00,Palangka Raya,Kalimantan Tengah,894.1,905.2,500.0
+2026-09-07 11:00:00,Palangka Raya,Kalimantan Tengah,532.7,540.2,500.0
+2026-09-07 12:00:00,Palangka Raya,Kalimantan Tengah,810.3,825.2,500.0
+2026-09-07 13:00:00,Palangka Raya,Kalimantan Tengah,609.1,620.3,500.0
+2026-09-07 14:00:00,Palangka Raya,Kalimantan Tengah,421.9,429.3,500.0
+2026-09-07 15:00:00,Palangka Raya,Kalimantan Tengah,346.5,352.0,500.0
+2026-09-07 16:00:00,Palangka Raya,Kalimantan Tengah,310.1,314.8,384.8
+2026-09-07 17:00:00,Palangka Raya,Kalimantan Tengah,285.0,289.6,360.0
+2026-09-07 18:00:00,Palangka Raya,Kalimantan Tengah,265.4,270.1,340.5
+2026-09-07 19:00:00,Palangka Raya,Kalimantan Tengah,268.2,271.9,343.3
+2026-09-07 20:00:00,Palangka Raya,Kalimantan Tengah,225.8,229.1,301.3
+2026-09-07 21:00:00,Palangka Raya,Kalimantan Tengah,197.0,199.3,271.9
+2026-09-07 22:00:00,Palangka Raya,Kalimantan Tengah,176.5,178.3,251.5
+2026-09-07 23:00:00,Palangka Raya,Kalimantan Tengah,163.0,164.8,238.2
+2026-09-08 00:00:00,Palangka Raya,Kalimantan Tengah,113.9,116.9,191.9
+2026-09-08 01:00:00,Palangka Raya,Kalimantan Tengah,65.4,68.5,157.9
+2026-09-08 02:00:00,Palangka Raya,Kalimantan Tengah,51.5,54.4,140.4
+2026-09-08 03:00:00,Palangka Raya,Kalimantan Tengah,74.7,77.8,164.5
+2026-09-08 04:00:00,Palangka Raya,Kalimantan Tengah,128.1,131.3,203.6
+2026-09-08 05:00:00,Palangka Raya,Kalimantan Tengah,199.8,203.5,274.6
+2026-09-08 06:00:00,Palangka Raya,Kalimantan Tengah,279.4,284.1,354.4
+2026-09-08 07:00:00,Palangka Raya,Kalimantan Tengah,353.0,357.6,500.0
+2026-09-08 08:00:00,Palangka Raya,Kalimantan Tengah,562.5,566.2,500.0
+2026-09-08 09:00:00,Palangka Raya,Kalimantan Tengah,590.5,596.0,500.0
+2026-09-08 10:00:00,Palangka Raya,Kalimantan Tengah,618.4,622.1,500.0
+2026-09-08 11:00:00,Palangka Raya,Kalimantan Tengah,525.3,529.0,500.0
+2026-09-08 12:00:00,Palangka Raya,Kalimantan Tengah,549.5,556.9,500.0
+2026-09-08 13:00:00,Palangka Raya,Kalimantan Tengah,403.3,408.9,500.0
+2026-09-08 14:00:00,Palangka Raya,Kalimantan Tengah,323.2,327.8,397.8
+2026-09-08 15:00:00,Palangka Raya,Kalimantan Tengah,283.1,286.8,358.1
+2026-09-08 16:00:00,Palangka Raya,Kalimantan Tengah,241.2,244.9,316.6
+2026-09-08 17:00:00,Palangka Raya,Kalimantan Tengah,191.4,194.2,266.3
+2026-09-08 18:00:00,Palangka Raya,Kalimantan Tengah,143.4,145.8,218.7
+2026-09-08 19:00:00,Palangka Raya,Kalimantan Tengah,92.0,93.8,176.6
+2026-09-08 20:00:00,Palangka Raya,Kalimantan Tengah,97.6,99.4,180.5
+2026-09-08 21:00:00,Palangka Raya,Kalimantan Tengah,118.5,120.6,195.2
+2026-09-08 22:00:00,Palangka Raya,Kalimantan Tengah,141.1,143.0,216.5
+2026-09-08 23:00:00,Palangka Raya,Kalimantan Tengah,156.0,158.3,231.2
+2026-09-09 00:00:00,Palangka Raya,Kalimantan Tengah,97.6,100.8,180.5
+2026-09-09 01:00:00,Palangka Raya,Kalimantan Tengah,56.9,60.5,152.0
+2026-09-09 02:00:00,Palangka Raya,Kalimantan Tengah,58.4,62.6,153.0
+2026-09-09 03:00:00,Palangka Raya,Kalimantan Tengah,85.0,89.6,171.7
+2026-09-09 04:00:00,Palangka Raya,Kalimantan Tengah,109.4,113.4,188.8
+2026-09-09 05:00:00,Palangka Raya,Kalimantan Tengah,150.4,154.1,225.7
+2026-09-09 06:00:00,Palangka Raya,Kalimantan Tengah,191.4,195.6,266.3
+2026-09-09 07:00:00,Palangka Raya,Kalimantan Tengah,234.2,238.4,309.6
+2026-09-09 08:00:00,Palangka Raya,Kalimantan Tengah,350.2,355.8,500.0
+2026-09-09 09:00:00,Palangka Raya,Kalimantan Tengah,439.6,444.2,500.0
+2026-09-09 10:00:00,Palangka Raya,Kalimantan Tengah,625.8,631.4,500.0
+2026-09-09 11:00:00,Palangka Raya,Kalimantan Tengah,631.4,637.0,500.0
+2026-09-09 12:00:00,Palangka Raya,Kalimantan Tengah,949.9,961.1,500.0
+2026-09-09 13:00:00,Palangka Raya,Kalimantan Tengah,601.6,610.9,500.0
+2026-09-09 14:00:00,Palangka Raya,Kalimantan Tengah,390.2,397.7,500.0
+2026-09-09 15:00:00,Palangka Raya,Kalimantan Tengah,271.0,276.6,346.1
+2026-09-09 16:00:00,Palangka Raya,Kalimantan Tengah,203.5,207.7,278.3
+2026-09-09 17:00:00,Palangka Raya,Kalimantan Tengah,163.0,165.8,238.2
+2026-09-09 18:00:00,Palangka Raya,Kalimantan Tengah,144.8,147.1,220.1
+2026-09-09 19:00:00,Palangka Raya,Kalimantan Tengah,138.3,140.2,213.7
+2026-09-09 20:00:00,Palangka Raya,Kalimantan Tengah,138.8,140.6,214.2
+2026-09-09 21:00:00,Palangka Raya,Kalimantan Tengah,143.9,145.8,219.2
+2026-09-09 22:00:00,Palangka Raya,Kalimantan Tengah,149.5,151.3,224.8
+2026-09-09 23:00:00,Palangka Raya,Kalimantan Tengah,157.4,159.3,232.6
+2026-09-10 00:00:00,Palangka Raya,Kalimantan Tengah,170.9,174.2,246.0
+2026-09-10 01:00:00,Palangka Raya,Kalimantan Tengah,115.9,119.7,193.3
+2026-09-10 02:00:00,Palangka Raya,Kalimantan Tengah,75.0,79.2,164.7
+2026-09-10 03:00:00,Palangka Raya,Kalimantan Tengah,91.3,96.4,176.1
+2026-09-10 04:00:00,Palangka Raya,Kalimantan Tengah,132.2,137.8,207.6
+2026-09-10 05:00:00,Palangka Raya,Kalimantan Tengah,192.3,198.8,267.2
+2026-09-10 06:00:00,Palangka Raya,Kalimantan Tengah,244.9,251.5,320.2
+2026-09-10 07:00:00,Palangka Raya,Kalimantan Tengah,284.1,290.6,359.1
+2026-09-10 08:00:00,Palangka Raya,Kalimantan Tengah,387.4,393.9,500.0
+2026-09-10 09:00:00,Palangka Raya,Kalimantan Tengah,454.5,461.0,500.0
+2026-09-10 10:00:00,Palangka Raya,Kalimantan Tengah,739.5,745.1,500.0
+2026-09-10 11:00:00,Palangka Raya,Kalimantan Tengah,724.6,733.9,500.0
+2026-09-10 12:00:00,Palangka Raya,Kalimantan Tengah,828.9,841.9,500.0
+2026-09-10 13:00:00,Palangka Raya,Kalimantan Tengah,581.1,590.5,500.0
+2026-09-10 14:00:00,Palangka Raya,Kalimantan Tengah,378.1,385.6,500.0
+2026-09-10 15:00:00,Palangka Raya,Kalimantan Tengah,239.3,244.9,314.7
+2026-09-10 16:00:00,Palangka Raya,Kalimantan Tengah,136.9,141.1,212.3
+2026-09-10 17:00:00,Palangka Raya,Kalimantan Tengah,92.9,96.4,177.2
+2026-09-10 18:00:00,Palangka Raya,Kalimantan Tengah,69.4,72.4,160.7
+2026-09-10 19:00:00,Palangka Raya,Kalimantan Tengah,74.5,76.8,164.3
+2026-09-10 20:00:00,Palangka Raya,Kalimantan Tengah,89.9,91.7,175.1
+2026-09-10 21:00:00,Palangka Raya,Kalimantan Tengah,109.9,111.8,189.1
+2026-09-10 22:00:00,Palangka Raya,Kalimantan Tengah,134.1,136.0,209.5
+2026-09-10 23:00:00,Palangka Raya,Kalimantan Tengah,154.1,156.0,229.3
+2026-09-11 00:00:00,Palangka Raya,Kalimantan Tengah,150.9,154.1,226.2
+2026-09-11 01:00:00,Palangka Raya,Kalimantan Tengah,105.7,109.4,186.2
+2026-09-11 02:00:00,Palangka Raya,Kalimantan Tengah,72.9,76.4,163.2
+2026-09-11 03:00:00,Palangka Raya,Kalimantan Tengah,100.1,103.6,182.3
+2026-09-11 04:00:00,Palangka Raya,Kalimantan Tengah,136.4,140.2,211.8
+2026-09-11 05:00:00,Palangka Raya,Kalimantan Tengah,177.4,181.1,252.4
+2026-09-11 06:00:00,Palangka Raya,Kalimantan Tengah,224.0,228.2,298.6
+2026-09-11 07:00:00,Palangka Raya,Kalimantan Tengah,264.5,268.2,339.6
+2026-09-11 08:00:00,Palangka Raya,Kalimantan Tengah,411.6,416.3,500.0
+2026-09-11 09:00:00,Palangka Raya,Kalimantan Tengah,564.4,568.1,500.0
+2026-09-11 10:00:00,Palangka Raya,Kalimantan Tengah,875.4,881.0,500.0
+2026-09-11 11:00:00,Palangka Raya,Kalimantan Tengah,968.6,979.8,500.0
+2026-09-11 12:00:00,Palangka Raya,Kalimantan Tengah,868.0,875.4,500.0
+2026-09-11 13:00:00,Palangka Raya,Kalimantan Tengah,573.7,579.3,500.0
+2026-09-11 14:00:00,Palangka Raya,Kalimantan Tengah,314.8,319.4,389.5
+2026-09-11 15:00:00,Palangka Raya,Kalimantan Tengah,187.7,191.4,262.6
+2026-09-11 16:00:00,Palangka Raya,Kalimantan Tengah,108.3,111.3,188.0
+2026-09-11 17:00:00,Palangka Raya,Kalimantan Tengah,72.4,75.2,162.8
+2026-09-11 18:00:00,Palangka Raya,Kalimantan Tengah,44.7,47.4,123.7
+2026-09-11 19:00:00,Palangka Raya,Kalimantan Tengah,34.6,36.9,98.5
+2026-09-11 20:00:00,Palangka Raya,Kalimantan Tengah,34.5,36.6,98.3
+2026-09-11 21:00:00,Palangka Raya,Kalimantan Tengah,48.0,49.7,131.8
+2026-09-11 22:00:00,Palangka Raya,Kalimantan Tengah,85.0,86.8,171.7
+2026-09-11 23:00:00,Palangka Raya,Kalimantan Tengah,115.7,117.6,193.2
+2026-09-12 00:00:00,Palangka Raya,Kalimantan Tengah,101.7,103.8,183.4
+2026-09-12 01:00:00,Palangka Raya,Kalimantan Tengah,76.4,79.4,165.7
+2026-09-12 02:00:00,Palangka Raya,Kalimantan Tengah,56.5,59.5,151.7
+2026-09-12 03:00:00,Palangka Raya,Kalimantan Tengah,90.3,93.6,175.4
+2026-09-12 04:00:00,Palangka Raya,Kalimantan Tengah,150.4,154.6,225.7
+2026-09-12 05:00:00,Palangka Raya,Kalimantan Tengah,219.3,224.4,294.0
+2026-09-12 06:00:00,Palangka Raya,Kalimantan Tengah,302.7,308.3,377.5
+2026-09-12 07:00:00,Palangka Raya,Kalimantan Tengah,378.1,385.6,500.0
+2026-09-12 08:00:00,Palangka Raya,Kalimantan Tengah,480.6,489.9,500.0
+2026-09-12 09:00:00,Palangka Raya,Kalimantan Tengah,700.4,709.7,500.0
+2026-09-12 10:00:00,Palangka Raya,Kalimantan Tengah,1043.1,1054.3,500.0
+2026-09-12 11:00:00,Palangka Raya,Kalimantan Tengah,1214.4,1229.3,500.0
+2026-09-12 12:00:00,Palangka Raya,Kalimantan Tengah,1620.5,1642.9,500.0
+2026-09-12 13:00:00,Palangka Raya,Kalimantan Tengah,1460.3,1475.2,500.0
+2026-09-12 14:00:00,Palangka Raya,Kalimantan Tengah,1117.6,1132.5,500.0
+2026-09-12 15:00:00,Palangka Raya,Kalimantan Tengah,709.7,719.0,500.0
+2026-09-12 16:00:00,Palangka Raya,Kalimantan Tengah,435.9,442.4,500.0
+2026-09-12 17:00:00,Palangka Raya,Kalimantan Tengah,282.2,286.8,357.2
+2026-09-12 18:00:00,Palangka Raya,Kalimantan Tengah,194.6,197.9,269.5
+2026-09-12 19:00:00,Palangka Raya,Kalimantan Tengah,153.2,156.5,228.5
+2026-09-12 20:00:00,Palangka Raya,Kalimantan Tengah,156.0,158.3,231.2
+2026-09-12 21:00:00,Palangka Raya,Kalimantan Tengah,157.4,159.7,232.6
+2026-09-12 22:00:00,Palangka Raya,Kalimantan Tengah,159.7,161.6,234.9
+2026-09-12 23:00:00,Palangka Raya,Kalimantan Tengah,149.5,151.3,224.8
+2026-09-13 00:00:00,Palangka Raya,Kalimantan Tengah,122.0,124.3,197.6
+2026-09-13 01:00:00,Palangka Raya,Kalimantan Tengah,61.9,65.4,155.5
+2026-09-13 02:00:00,Palangka Raya,Kalimantan Tengah,53.7,57.7,145.8
+2026-09-13 03:00:00,Palangka Raya,Kalimantan Tengah,93.1,98.0,177.4
+2026-09-13 04:00:00,Palangka Raya,Kalimantan Tengah,158.8,164.8,234.0
+2026-09-13 05:00:00,Palangka Raya,Kalimantan Tengah,236.1,243.1,311.5
+2026-09-13 06:00:00,Palangka Raya,Kalimantan Tengah,312.0,320.4,386.7
+2026-09-13 07:00:00,Palangka Raya,Kalimantan Tengah,393.0,401.4,500.0
+2026-09-13 08:00:00,Palangka Raya,Kalimantan Tengah,599.8,609.1,500.0
+2026-09-13 09:00:00,Palangka Raya,Kalimantan Tengah,875.4,884.8,500.0
+2026-09-13 10:00:00,Palangka Raya,Kalimantan Tengah,1046.8,1058.0,500.0
+2026-09-13 11:00:00,Palangka Raya,Kalimantan Tengah,948.1,961.1,500.0
+2026-09-13 12:00:00,Palangka Raya,Kalimantan Tengah,890.3,901.5,500.0
+2026-09-13 13:00:00,Palangka Raya,Kalimantan Tengah,663.1,672.4,500.0
+2026-09-13 14:00:00,Palangka Raya,Kalimantan Tengah,460.1,466.6,500.0
+2026-09-13 15:00:00,Palangka Raya,Kalimantan Tengah,294.3,299.0,369.2
+2026-09-13 16:00:00,Palangka Raya,Kalimantan Tengah,165.8,169.0,240.9
+2026-09-13 17:00:00,Palangka Raya,Kalimantan Tengah,92.9,95.0,177.2
+2026-09-13 18:00:00,Palangka Raya,Kalimantan Tengah,66.4,68.5,158.6
+2026-09-13 19:00:00,Palangka Raya,Kalimantan Tengah,82.2,84.1,169.7
+2026-09-13 20:00:00,Palangka Raya,Kalimantan Tengah,105.2,107.3,185.8
+2026-09-13 21:00:00,Palangka Raya,Kalimantan Tengah,126.2,128.5,201.7
+2026-09-13 22:00:00,Palangka Raya,Kalimantan Tengah,144.8,146.7,220.1
+2026-09-13 23:00:00,Palangka Raya,Kalimantan Tengah,158.3,160.2,233.5
+2026-09-14 00:00:00,Palangka Raya,Kalimantan Tengah,153.7,156.9,228.9
+2026-09-14 01:00:00,Palangka Raya,Kalimantan Tengah,79.9,83.4,168.1
+2026-09-14 02:00:00,Palangka Raya,Kalimantan Tengah,68.9,72.6,160.4
+2026-09-14 03:00:00,Palangka Raya,Kalimantan Tengah,80.3,84.3,168.4
+2026-09-14 04:00:00,Palangka Raya,Kalimantan Tengah,109.7,113.6,189.0
+2026-09-14 05:00:00,Palangka Raya,Kalimantan Tengah,153.7,157.9,228.9
+2026-09-14 06:00:00,Palangka Raya,Kalimantan Tengah,200.2,204.9,275.0
+2026-09-14 07:00:00,Palangka Raya,Kalimantan Tengah,238.0,242.1,313.4
+2026-09-14 08:00:00,Palangka Raya,Kalimantan Tengah,311.1,315.7,385.8
+2026-09-14 09:00:00,Palangka Raya,Kalimantan Tengah,478.7,484.3,500.0
+2026-09-14 10:00:00,Palangka Raya,Kalimantan Tengah,694.8,700.4,500.0
+2026-09-14 11:00:00,Palangka Raya,Kalimantan Tengah,635.2,640.7,500.0
+2026-09-14 12:00:00,Palangka Raya,Kalimantan Tengah,907.1,916.4,500.0
+2026-09-14 13:00:00,Palangka Raya,Kalimantan Tengah,442.4,449.8,500.0
+2026-09-14 14:00:00,Palangka Raya,Kalimantan Tengah,200.7,206.8,275.5
+2026-09-14 15:00:00,Palangka Raya,Kalimantan Tengah,116.9,122.5,194.0
+2026-09-14 16:00:00,Palangka Raya,Kalimantan Tengah,74.0,79.2,164.0
+2026-09-14 17:00:00,Palangka Raya,Kalimantan Tengah,47.1,52.3,129.6
+2026-09-14 18:00:00,Palangka Raya,Kalimantan Tengah,38.5,43.7,108.4
+2026-09-14 19:00:00,Palangka Raya,Kalimantan Tengah,45.1,49.7,124.6
+2026-09-14 20:00:00,Palangka Raya,Kalimantan Tengah,86.1,90.1,172.5
+2026-09-14 21:00:00,Palangka Raya,Kalimantan Tengah,116.9,119.7,194.0
+2026-09-14 22:00:00,Palangka Raya,Kalimantan Tengah,137.4,140.2,212.8
+2026-09-14 23:00:00,Palangka Raya,Kalimantan Tengah,149.5,151.8,224.8
+2026-09-15 00:00:00,Palangka Raya,Kalimantan Tengah,184.9,190.5,259.9
+2026-09-15 01:00:00,Palangka Raya,Kalimantan Tengah,123.4,129.9,198.6
+2026-09-15 02:00:00,Palangka Raya,Kalimantan Tengah,77.8,84.5,166.6
+2026-09-15 03:00:00,Palangka Raya,Kalimantan Tengah,68.9,75.4,160.4
+2026-09-15 04:00:00,Palangka Raya,Kalimantan Tengah,136.4,143.9,211.8
+2026-09-15 05:00:00,Palangka Raya,Kalimantan Tengah,268.2,277.5,343.3
+2026-09-15 06:00:00,Palangka Raya,Kalimantan Tengah,394.9,405.1,500.0
+2026-09-15 07:00:00,Palangka Raya,Kalimantan Tengah,577.4,590.5,500.0
+2026-09-15 08:00:00,Palangka Raya,Kalimantan Tengah,1356.0,1370.9,500.0
+2026-09-15 09:00:00,Palangka Raya,Kalimantan Tengah,1788.1,1806.8,500.0
+2026-09-15 10:00:00,Palangka Raya,Kalimantan Tengah,1478.9,1497.6,500.0
+2026-09-15 11:00:00,Palangka Raya,Kalimantan Tengah,815.8,828.9,500.0
+2026-09-15 12:00:00,Palangka Raya,Kalimantan Tengah,810.3,821.4,500.0
+2026-09-15 13:00:00,Palangka Raya,Kalimantan Tengah,521.5,529.0,500.0
+2026-09-15 14:00:00,Palangka Raya,Kalimantan Tengah,293.4,300.8,368.3
+2026-09-15 15:00:00,Palangka Raya,Kalimantan Tengah,148.5,154.6,223.8
+2026-09-15 16:00:00,Palangka Raya,Kalimantan Tengah,79.4,85.0,167.8
+2026-09-15 17:00:00,Palangka Raya,Kalimantan Tengah,40.9,45.9,114.3
+2026-09-15 18:00:00,Palangka Raya,Kalimantan Tengah,15.1,20.0,61.9
+2026-09-15 19:00:00,Palangka Raya,Kalimantan Tengah,10.4,15.3,53.1
+2026-09-15 20:00:00,Palangka Raya,Kalimantan Tengah,10.5,15.4,53.3
+2026-09-15 21:00:00,Palangka Raya,Kalimantan Tengah,10.1,14.6,52.5
+2026-09-15 22:00:00,Palangka Raya,Kalimantan Tengah,48.9,52.9,134.0
+2026-09-15 23:00:00,Palangka Raya,Kalimantan Tengah,113.2,116.4,191.4
+2026-09-16 00:00:00,Palangka Raya,Kalimantan Tengah,158.8,162.5,234.0
+2026-09-16 01:00:00,Palangka Raya,Kalimantan Tengah,71.2,75.4,162.0
+2026-09-16 02:00:00,Palangka Raya,Kalimantan Tengah,58.2,62.6,152.9
+2026-09-16 03:00:00,Palangka Raya,Kalimantan Tengah,91.7,97.3,176.4
+2026-09-16 04:00:00,Palangka Raya,Kalimantan Tengah,176.0,183.0,251.0
+2026-09-16 05:00:00,Palangka Raya,Kalimantan Tengah,291.5,300.8,366.4
+2026-09-16 06:00:00,Palangka Raya,Kalimantan Tengah,413.5,424.7,500.0
+2026-09-16 07:00:00,Palangka Raya,Kalimantan Tengah,674.3,689.2,500.0
+2026-09-16 08:00:00,Palangka Raya,Kalimantan Tengah,1438.0,1456.6,500.0
+2026-09-16 09:00:00,Palangka Raya,Kalimantan Tengah,2078.7,2108.5,500.0
+2026-09-16 10:00:00,Palangka Raya,Kalimantan Tengah,2123.4,2153.2,500.0
+2026-09-16 11:00:00,Palangka Raya,Kalimantan Tengah,1944.6,1967.0,500.0
+2026-09-16 12:00:00,Palangka Raya,Kalimantan Tengah,1628.0,1646.6,500.0
+2026-09-16 13:00:00,Palangka Raya,Kalimantan Tengah,1236.8,1251.7,500.0
+2026-09-16 14:00:00,Palangka Raya,Kalimantan Tengah,968.6,976.0,500.0
+2026-09-16 15:00:00,Palangka Raya,Kalimantan Tengah,808.4,817.7,500.0
+2026-09-16 16:00:00,Palangka Raya,Kalimantan Tengah,730.2,737.6,500.0
+2026-09-16 17:00:00,Palangka Raya,Kalimantan Tengah,719.0,726.4,500.0
+2026-09-16 18:00:00,Palangka Raya,Kalimantan Tengah,709.7,717.1,500.0
+2026-09-16 19:00:00,Palangka Raya,Kalimantan Tengah,685.5,691.0,500.0
+2026-09-16 20:00:00,Palangka Raya,Kalimantan Tengah,655.7,663.1,500.0
+2026-09-16 21:00:00,Palangka Raya,Kalimantan Tengah,659.4,665.0,500.0
+2026-09-16 22:00:00,Palangka Raya,Kalimantan Tengah,655.7,659.4,500.0
+2026-09-16 23:00:00,Palangka Raya,Kalimantan Tengah,657.5,663.1,500.0
+2026-09-07 00:00:00,Banjarmasin,Kalimantan Selatan,25.2,26.9,80.9
+2026-09-07 01:00:00,Banjarmasin,Kalimantan Selatan,34.2,36.0,97.7
+2026-09-07 02:00:00,Banjarmasin,Kalimantan Selatan,26.3,28.1,82.9
+2026-09-07 03:00:00,Banjarmasin,Kalimantan Selatan,38.4,40.4,108.1
+2026-09-07 04:00:00,Banjarmasin,Kalimantan Selatan,89.2,92.0,174.6
+2026-09-07 05:00:00,Banjarmasin,Kalimantan Selatan,164.4,168.6,239.5
+2026-09-07 06:00:00,Banjarmasin,Kalimantan Selatan,256.1,261.7,331.3
+2026-09-07 07:00:00,Banjarmasin,Kalimantan Selatan,341.8,348.3,500.0
+2026-09-07 08:00:00,Banjarmasin,Kalimantan Selatan,499.2,506.6,500.0
+2026-09-07 09:00:00,Banjarmasin,Kalimantan Selatan,778.6,789.8,500.0
+2026-09-07 10:00:00,Banjarmasin,Kalimantan Selatan,998.4,1009.6,500.0
+2026-09-07 11:00:00,Banjarmasin,Kalimantan Selatan,707.8,715.3,500.0
+2026-09-07 12:00:00,Banjarmasin,Kalimantan Selatan,758.1,773.0,500.0
+2026-09-07 13:00:00,Banjarmasin,Kalimantan Selatan,700.4,713.4,500.0
+2026-09-07 14:00:00,Banjarmasin,Kalimantan Selatan,516.0,523.4,500.0
+2026-09-07 15:00:00,Banjarmasin,Kalimantan Selatan,417.2,422.8,500.0
+2026-09-07 16:00:00,Banjarmasin,Kalimantan Selatan,359.5,365.1,500.0
+2026-09-07 17:00:00,Banjarmasin,Kalimantan Selatan,320.4,325.0,395.0
+2026-09-07 18:00:00,Banjarmasin,Kalimantan Selatan,280.3,285.0,355.3
+2026-09-07 19:00:00,Banjarmasin,Kalimantan Selatan,271.0,274.7,346.1
+2026-09-07 20:00:00,Banjarmasin,Kalimantan Selatan,203.0,205.8,277.8
+2026-09-07 21:00:00,Banjarmasin,Kalimantan Selatan,176.0,178.3,251.0
+2026-09-07 22:00:00,Banjarmasin,Kalimantan Selatan,149.0,150.9,224.3
+2026-09-07 23:00:00,Banjarmasin,Kalimantan Selatan,128.1,129.9,203.6
+2026-09-08 00:00:00,Banjarmasin,Kalimantan Selatan,112.5,115.0,191.0
+2026-09-08 01:00:00,Banjarmasin,Kalimantan Selatan,65.9,68.9,158.3
+2026-09-08 02:00:00,Banjarmasin,Kalimantan Selatan,41.6,44.7,116.0
+2026-09-08 03:00:00,Banjarmasin,Kalimantan Selatan,51.3,54.7,139.9
+2026-09-08 04:00:00,Banjarmasin,Kalimantan Selatan,88.2,92.0,173.9
+2026-09-08 05:00:00,Banjarmasin,Kalimantan Selatan,148.5,152.7,223.8
+2026-09-08 06:00:00,Banjarmasin,Kalimantan Selatan,212.3,216.5,287.0
+2026-09-08 07:00:00,Banjarmasin,Kalimantan Selatan,270.1,274.7,345.2
+2026-09-08 08:00:00,Banjarmasin,Kalimantan Selatan,711.5,717.1,500.0
+2026-09-08 09:00:00,Banjarmasin,Kalimantan Selatan,819.6,825.2,500.0
+2026-09-08 10:00:00,Banjarmasin,Kalimantan Selatan,776.7,780.4,500.0
+2026-09-08 11:00:00,Banjarmasin,Kalimantan Selatan,534.6,538.3,500.0
+2026-09-08 12:00:00,Banjarmasin,Kalimantan Selatan,523.4,529.0,500.0
+2026-09-08 13:00:00,Banjarmasin,Kalimantan Selatan,393.9,398.6,500.0
+2026-09-08 14:00:00,Banjarmasin,Kalimantan Selatan,337.1,340.9,500.0
+2026-09-08 15:00:00,Banjarmasin,Kalimantan Selatan,300.8,304.5,375.6
+2026-09-08 16:00:00,Banjarmasin,Kalimantan Selatan,257.0,260.8,332.2
+2026-09-08 17:00:00,Banjarmasin,Kalimantan Selatan,204.4,207.2,279.2
+2026-09-08 18:00:00,Banjarmasin,Kalimantan Selatan,151.8,154.1,227.1
+2026-09-08 19:00:00,Banjarmasin,Kalimantan Selatan,111.8,113.6,190.5
+2026-09-08 20:00:00,Banjarmasin,Kalimantan Selatan,94.8,96.6,178.5
+2026-09-08 21:00:00,Banjarmasin,Kalimantan Selatan,97.8,99.7,180.7
+2026-09-08 22:00:00,Banjarmasin,Kalimantan Selatan,105.7,107.6,186.2
+2026-09-08 23:00:00,Banjarmasin,Kalimantan Selatan,110.6,112.5,189.6
+2026-09-09 00:00:00,Banjarmasin,Kalimantan Selatan,92.2,94.8,176.7
+2026-09-09 01:00:00,Banjarmasin,Kalimantan Selatan,48.0,51.2,131.8
+2026-09-09 02:00:00,Banjarmasin,Kalimantan Selatan,44.1,47.6,122.2
+2026-09-09 03:00:00,Banjarmasin,Kalimantan Selatan,61.5,65.2,155.2
+2026-09-09 04:00:00,Banjarmasin,Kalimantan Selatan,86.1,89.6,172.5
+2026-09-09 05:00:00,Banjarmasin,Kalimantan Selatan,114.3,117.8,192.2
+2026-09-09 06:00:00,Banjarmasin,Kalimantan Selatan,137.4,140.6,212.8
+2026-09-09 07:00:00,Banjarmasin,Kalimantan Selatan,166.7,170.4,241.8
+2026-09-09 08:00:00,Banjarmasin,Kalimantan Selatan,339.0,342.7,500.0
+2026-09-09 09:00:00,Banjarmasin,Kalimantan Selatan,466.6,470.3,500.0
+2026-09-09 10:00:00,Banjarmasin,Kalimantan Selatan,627.7,629.6,500.0
+2026-09-09 11:00:00,Banjarmasin,Kalimantan Selatan,663.1,666.8,500.0
+2026-09-09 12:00:00,Banjarmasin,Kalimantan Selatan,929.5,936.9,500.0
+2026-09-09 13:00:00,Banjarmasin,Kalimantan Selatan,631.4,638.9,500.0
+2026-09-09 14:00:00,Banjarmasin,Kalimantan Selatan,471.2,476.8,500.0
+2026-09-09 15:00:00,Banjarmasin,Kalimantan Selatan,360.4,365.1,500.0
+2026-09-09 16:00:00,Banjarmasin,Kalimantan Selatan,275.7,279.4,350.7
+2026-09-09 17:00:00,Banjarmasin,Kalimantan Selatan,209.1,211.9,283.8
+2026-09-09 18:00:00,Banjarmasin,Kalimantan Selatan,171.4,173.7,246.5
+2026-09-09 19:00:00,Banjarmasin,Kalimantan Selatan,152.3,154.6,227.6
+2026-09-09 20:00:00,Banjarmasin,Kalimantan Selatan,143.0,144.8,218.3
+2026-09-09 21:00:00,Banjarmasin,Kalimantan Selatan,140.6,142.5,216.0
+2026-09-09 22:00:00,Banjarmasin,Kalimantan Selatan,139.7,141.6,215.1
+2026-09-09 23:00:00,Banjarmasin,Kalimantan Selatan,138.3,139.7,213.7
+2026-09-10 00:00:00,Banjarmasin,Kalimantan Selatan,161.6,164.4,236.8
+2026-09-10 01:00:00,Banjarmasin,Kalimantan Selatan,114.1,117.6,192.1
+2026-09-10 02:00:00,Banjarmasin,Kalimantan Selatan,63.1,67.1,156.3
+2026-09-10 03:00:00,Banjarmasin,Kalimantan Selatan,72.2,76.8,162.7
+2026-09-10 04:00:00,Banjarmasin,Kalimantan Selatan,103.6,109.0,184.7
+2026-09-10 05:00:00,Banjarmasin,Kalimantan Selatan,146.7,152.3,222.0
+2026-09-10 06:00:00,Banjarmasin,Kalimantan Selatan,185.3,190.9,260.3
+2026-09-10 07:00:00,Banjarmasin,Kalimantan Selatan,214.7,219.8,289.4
+2026-09-10 08:00:00,Banjarmasin,Kalimantan Selatan,411.6,416.3,500.0
+2026-09-10 09:00:00,Banjarmasin,Kalimantan Selatan,581.1,586.7,500.0
+2026-09-10 10:00:00,Banjarmasin,Kalimantan Selatan,830.7,836.3,500.0
+2026-09-10 11:00:00,Banjarmasin,Kalimantan Selatan,786.0,791.6,500.0
+2026-09-10 12:00:00,Banjarmasin,Kalimantan Selatan,778.6,789.8,500.0
+2026-09-10 13:00:00,Banjarmasin,Kalimantan Selatan,610.9,622.1,500.0
+2026-09-10 14:00:00,Banjarmasin,Kalimantan Selatan,451.7,459.1,500.0
+2026-09-10 15:00:00,Banjarmasin,Kalimantan Selatan,327.8,333.4,500.0
+2026-09-10 16:00:00,Banjarmasin,Kalimantan Selatan,228.6,232.4,304.1
+2026-09-10 17:00:00,Banjarmasin,Kalimantan Selatan,169.5,173.2,244.6
+2026-09-10 18:00:00,Banjarmasin,Kalimantan Selatan,129.5,132.7,205.0
+2026-09-10 19:00:00,Banjarmasin,Kalimantan Selatan,111.3,113.6,190.1
+2026-09-10 20:00:00,Banjarmasin,Kalimantan Selatan,109.0,110.8,188.5
+2026-09-10 21:00:00,Banjarmasin,Kalimantan Selatan,116.4,118.3,193.7
+2026-09-10 22:00:00,Banjarmasin,Kalimantan Selatan,130.4,132.2,205.9
+2026-09-10 23:00:00,Banjarmasin,Kalimantan Selatan,142.0,143.4,217.4
+2026-09-11 00:00:00,Banjarmasin,Kalimantan Selatan,135.0,137.8,210.4
+2026-09-11 01:00:00,Banjarmasin,Kalimantan Selatan,106.4,109.7,186.7
+2026-09-11 02:00:00,Banjarmasin,Kalimantan Selatan,65.9,69.4,158.3
+2026-09-11 03:00:00,Banjarmasin,Kalimantan Selatan,88.5,91.7,174.1
+2026-09-11 04:00:00,Banjarmasin,Kalimantan Selatan,122.9,126.2,198.2
+2026-09-11 05:00:00,Banjarmasin,Kalimantan Selatan,149.9,153.2,225.2
+2026-09-11 06:00:00,Banjarmasin,Kalimantan Selatan,178.3,181.1,253.3
+2026-09-11 07:00:00,Banjarmasin,Kalimantan Selatan,204.0,206.8,278.8
+2026-09-11 08:00:00,Banjarmasin,Kalimantan Selatan,508.5,510.4,500.0
+2026-09-11 09:00:00,Banjarmasin,Kalimantan Selatan,797.2,800.9,500.0
+2026-09-11 10:00:00,Banjarmasin,Kalimantan Selatan,1061.7,1065.4,500.0
+2026-09-11 11:00:00,Banjarmasin,Kalimantan Selatan,1154.8,1158.6,500.0
+2026-09-11 12:00:00,Banjarmasin,Kalimantan Selatan,979.8,987.2,500.0
+2026-09-11 13:00:00,Banjarmasin,Kalimantan Selatan,739.5,745.1,500.0
+2026-09-11 14:00:00,Banjarmasin,Kalimantan Selatan,470.3,475.0,500.0
+2026-09-11 15:00:00,Banjarmasin,Kalimantan Selatan,309.2,312.9,383.9
+2026-09-11 16:00:00,Banjarmasin,Kalimantan Selatan,210.5,213.3,285.2
+2026-09-11 17:00:00,Banjarmasin,Kalimantan Selatan,148.1,150.9,223.4
+2026-09-11 18:00:00,Banjarmasin,Kalimantan Selatan,91.5,94.1,176.2
+2026-09-11 19:00:00,Banjarmasin,Kalimantan Selatan,75.2,77.5,164.8
+2026-09-11 20:00:00,Banjarmasin,Kalimantan Selatan,79.6,81.5,167.9
+2026-09-11 21:00:00,Banjarmasin,Kalimantan Selatan,86.1,88.0,172.5
+2026-09-11 22:00:00,Banjarmasin,Kalimantan Selatan,102.9,104.5,184.2
+2026-09-11 23:00:00,Banjarmasin,Kalimantan Selatan,120.1,122.0,196.3
+2026-09-12 00:00:00,Banjarmasin,Kalimantan Selatan,116.6,119.0,193.8
+2026-09-12 01:00:00,Banjarmasin,Kalimantan Selatan,93.4,96.4,177.6
+2026-09-12 02:00:00,Banjarmasin,Kalimantan Selatan,67.5,70.5,159.4
+2026-09-12 03:00:00,Banjarmasin,Kalimantan Selatan,97.6,100.4,180.5
+2026-09-12 04:00:00,Banjarmasin,Kalimantan Selatan,142.5,145.3,217.8
+2026-09-12 05:00:00,Banjarmasin,Kalimantan Selatan,194.6,197.9,269.5
+2026-09-12 06:00:00,Banjarmasin,Kalimantan Selatan,254.3,258.0,329.5
+2026-09-12 07:00:00,Banjarmasin,Kalimantan Selatan,312.0,315.7,386.7
+2026-09-12 08:00:00,Banjarmasin,Kalimantan Selatan,468.5,473.1,500.0
+2026-09-12 09:00:00,Banjarmasin,Kalimantan Selatan,1005.8,1009.6,500.0
+2026-09-12 10:00:00,Banjarmasin,Kalimantan Selatan,1300.1,1303.9,500.0
+2026-09-12 11:00:00,Banjarmasin,Kalimantan Selatan,1408.2,1415.6,500.0
+2026-09-12 12:00:00,Banjarmasin,Kalimantan Selatan,1750.9,1765.8,500.0
+2026-09-12 13:00:00,Banjarmasin,Kalimantan Selatan,1616.8,1631.7,500.0
+2026-09-12 14:00:00,Banjarmasin,Kalimantan Selatan,1404.4,1419.3,500.0
+2026-09-12 15:00:00,Banjarmasin,Kalimantan Selatan,987.2,998.4,500.0
+2026-09-12 16:00:00,Banjarmasin,Kalimantan Selatan,678.0,685.5,500.0
+2026-09-12 17:00:00,Banjarmasin,Kalimantan Selatan,472.2,476.8,500.0
+2026-09-12 18:00:00,Banjarmasin,Kalimantan Selatan,344.6,349.2,500.0
+2026-09-12 19:00:00,Banjarmasin,Kalimantan Selatan,285.0,288.7,360.0
+2026-09-12 20:00:00,Banjarmasin,Kalimantan Selatan,255.2,258.9,330.4
+2026-09-12 21:00:00,Banjarmasin,Kalimantan Selatan,239.3,242.1,314.7
+2026-09-12 22:00:00,Banjarmasin,Kalimantan Selatan,226.8,229.1,302.3
+2026-09-12 23:00:00,Banjarmasin,Kalimantan Selatan,202.1,204.0,276.9
+2026-09-13 00:00:00,Banjarmasin,Kalimantan Selatan,155.1,157.9,230.3
+2026-09-13 01:00:00,Banjarmasin,Kalimantan Selatan,78.0,82.0,166.8
+2026-09-13 02:00:00,Banjarmasin,Kalimantan Selatan,71.5,76.1,162.2
+2026-09-13 03:00:00,Banjarmasin,Kalimantan Selatan,108.0,113.2,187.8
+2026-09-13 04:00:00,Banjarmasin,Kalimantan Selatan,163.0,168.1,238.2
+2026-09-13 05:00:00,Banjarmasin,Kalimantan Selatan,233.3,239.3,308.7
+2026-09-13 06:00:00,Banjarmasin,Kalimantan Selatan,304.5,311.1,379.3
+2026-09-13 07:00:00,Banjarmasin,Kalimantan Selatan,366.9,373.5,500.0
+2026-09-13 08:00:00,Banjarmasin,Kalimantan Selatan,691.0,696.6,500.0
+2026-09-13 09:00:00,Banjarmasin,Kalimantan Selatan,1095.2,1102.7,500.0
+2026-09-13 10:00:00,Banjarmasin,Kalimantan Selatan,1274.0,1281.5,500.0
+2026-09-13 11:00:00,Banjarmasin,Kalimantan Selatan,1210.7,1221.9,500.0
+2026-09-13 12:00:00,Banjarmasin,Kalimantan Selatan,914.6,922.0,500.0
+2026-09-13 13:00:00,Banjarmasin,Kalimantan Selatan,661.2,668.7,500.0
+2026-09-13 14:00:00,Banjarmasin,Kalimantan Selatan,476.8,482.4,500.0
+2026-09-13 15:00:00,Banjarmasin,Kalimantan Selatan,313.9,317.6,388.6
+2026-09-13 16:00:00,Banjarmasin,Kalimantan Selatan,187.7,190.5,262.6
+2026-09-13 17:00:00,Banjarmasin,Kalimantan Selatan,130.4,132.7,205.9
+2026-09-13 18:00:00,Banjarmasin,Kalimantan Selatan,115.7,118.0,193.2
+2026-09-13 19:00:00,Banjarmasin,Kalimantan Selatan,119.2,121.5,195.7
+2026-09-13 20:00:00,Banjarmasin,Kalimantan Selatan,131.8,134.1,207.2
+2026-09-13 21:00:00,Banjarmasin,Kalimantan Selatan,146.7,149.0,222.0
+2026-09-13 22:00:00,Banjarmasin,Kalimantan Selatan,157.4,159.7,232.6
+2026-09-13 23:00:00,Banjarmasin,Kalimantan Selatan,162.1,164.4,237.3
+2026-09-14 00:00:00,Banjarmasin,Kalimantan Selatan,125.7,129.0,201.2
+2026-09-14 01:00:00,Banjarmasin,Kalimantan Selatan,75.4,78.9,164.9
+2026-09-14 02:00:00,Banjarmasin,Kalimantan Selatan,59.0,62.9,153.5
+2026-09-14 03:00:00,Banjarmasin,Kalimantan Selatan,66.1,70.1,158.4
+2026-09-14 04:00:00,Banjarmasin,Kalimantan Selatan,86.1,90.1,172.5
+2026-09-14 05:00:00,Banjarmasin,Kalimantan Selatan,115.7,119.7,193.2
+2026-09-14 06:00:00,Banjarmasin,Kalimantan Selatan,148.1,152.3,223.4
+2026-09-14 07:00:00,Banjarmasin,Kalimantan Selatan,175.6,179.7,250.6
+2026-09-14 08:00:00,Banjarmasin,Kalimantan Selatan,299.0,303.6,373.8
+2026-09-14 09:00:00,Banjarmasin,Kalimantan Selatan,536.4,540.2,500.0
+2026-09-14 10:00:00,Banjarmasin,Kalimantan Selatan,651.9,655.7,500.0
+2026-09-14 11:00:00,Banjarmasin,Kalimantan Selatan,644.5,648.2,500.0
+2026-09-14 12:00:00,Banjarmasin,Kalimantan Selatan,1125.0,1132.5,500.0
+2026-09-14 13:00:00,Banjarmasin,Kalimantan Selatan,705.9,713.4,500.0
+2026-09-14 14:00:00,Banjarmasin,Kalimantan Selatan,386.5,393.0,500.0
+2026-09-14 15:00:00,Banjarmasin,Kalimantan Selatan,230.0,235.2,305.5
+2026-09-14 16:00:00,Banjarmasin,Kalimantan Selatan,135.0,140.2,210.4
+2026-09-14 17:00:00,Banjarmasin,Kalimantan Selatan,83.1,88.2,170.3
+2026-09-14 18:00:00,Banjarmasin,Kalimantan Selatan,72.2,77.1,162.7
+2026-09-14 19:00:00,Banjarmasin,Kalimantan Selatan,88.2,93.1,173.9
+2026-09-14 20:00:00,Banjarmasin,Kalimantan Selatan,97.8,101.5,180.7
+2026-09-14 21:00:00,Banjarmasin,Kalimantan Selatan,108.7,111.8,188.3
+2026-09-14 22:00:00,Banjarmasin,Kalimantan Selatan,117.6,120.1,194.5
+2026-09-14 23:00:00,Banjarmasin,Kalimantan Selatan,124.3,126.7,199.2
+2026-09-15 00:00:00,Banjarmasin,Kalimantan Selatan,174.6,179.7,249.7
+2026-09-15 01:00:00,Banjarmasin,Kalimantan Selatan,137.8,143.9,213.2
+2026-09-15 02:00:00,Banjarmasin,Kalimantan Selatan,88.2,94.8,173.9
+2026-09-15 03:00:00,Banjarmasin,Kalimantan Selatan,89.6,96.2,174.9
+2026-09-15 04:00:00,Banjarmasin,Kalimantan Selatan,134.1,140.6,209.5
+2026-09-15 05:00:00,Banjarmasin,Kalimantan Selatan,247.7,255.2,323.0
+2026-09-15 06:00:00,Banjarmasin,Kalimantan Selatan,359.5,366.9,500.0
+2026-09-15 07:00:00,Banjarmasin,Kalimantan Selatan,672.4,681.7,500.0
+2026-09-15 08:00:00,Banjarmasin,Kalimantan Selatan,1583.2,1598.1,500.0
+2026-09-15 09:00:00,Banjarmasin,Kalimantan Selatan,2034.0,2048.9,500.0
+2026-09-15 10:00:00,Banjarmasin,Kalimantan Selatan,1959.5,1981.9,500.0
+2026-09-15 11:00:00,Banjarmasin,Kalimantan Selatan,1501.3,1519.9,500.0
+2026-09-15 12:00:00,Banjarmasin,Kalimantan Selatan,1117.6,1132.5,500.0
+2026-09-15 13:00:00,Banjarmasin,Kalimantan Selatan,830.7,840.1,500.0
+2026-09-15 14:00:00,Banjarmasin,Kalimantan Selatan,551.3,560.7,500.0
+2026-09-15 15:00:00,Banjarmasin,Kalimantan Selatan,307.3,313.9,382.1
+2026-09-15 16:00:00,Banjarmasin,Kalimantan Selatan,169.5,174.6,244.6
+2026-09-15 17:00:00,Banjarmasin,Kalimantan Selatan,92.7,97.3,177.1
+2026-09-15 18:00:00,Banjarmasin,Kalimantan Selatan,33.9,38.4,97.2
+2026-09-15 19:00:00,Banjarmasin,Kalimantan Selatan,17.1,21.7,65.6
+2026-09-15 20:00:00,Banjarmasin,Kalimantan Selatan,14.8,19.6,61.3
+2026-09-15 21:00:00,Banjarmasin,Kalimantan Selatan,15.7,20.4,63.0
+2026-09-15 22:00:00,Banjarmasin,Kalimantan Selatan,19.4,23.5,70.0
+2026-09-15 23:00:00,Banjarmasin,Kalimantan Selatan,67.1,70.5,159.1
+2026-09-16 00:00:00,Banjarmasin,Kalimantan Selatan,108.5,111.8,188.2
+2026-09-16 01:00:00,Banjarmasin,Kalimantan Selatan,79.9,84.1,168.1
+2026-09-16 02:00:00,Banjarmasin,Kalimantan Selatan,83.6,88.0,170.7
+2026-09-16 03:00:00,Banjarmasin,Kalimantan Selatan,94.1,98.7,178.1
+2026-09-16 04:00:00,Banjarmasin,Kalimantan Selatan,154.6,159.7,229.8
+2026-09-16 05:00:00,Banjarmasin,Kalimantan Selatan,251.5,257.0,326.8
+2026-09-16 06:00:00,Banjarmasin,Kalimantan Selatan,350.2,357.6,500.0
+2026-09-16 07:00:00,Banjarmasin,Kalimantan Selatan,637.0,646.3,500.0
+2026-09-16 08:00:00,Banjarmasin,Kalimantan Selatan,1259.1,1270.3,500.0
+2026-09-16 09:00:00,Banjarmasin,Kalimantan Selatan,1806.8,1825.4,500.0
+2026-09-16 10:00:00,Banjarmasin,Kalimantan Selatan,1773.2,1791.9,500.0
+2026-09-16 11:00:00,Banjarmasin,Kalimantan Selatan,1598.1,1616.8,500.0
+2026-09-16 12:00:00,Banjarmasin,Kalimantan Selatan,1501.3,1516.2,500.0
+2026-09-16 13:00:00,Banjarmasin,Kalimantan Selatan,1285.2,1296.4,500.0
+2026-09-16 14:00:00,Banjarmasin,Kalimantan Selatan,1099.0,1110.1,500.0
+2026-09-16 15:00:00,Banjarmasin,Kalimantan Selatan,1028.2,1035.6,500.0
+2026-09-16 16:00:00,Banjarmasin,Kalimantan Selatan,1039.4,1046.8,500.0
+2026-09-16 17:00:00,Banjarmasin,Kalimantan Selatan,1069.2,1080.3,500.0
+2026-09-16 18:00:00,Banjarmasin,Kalimantan Selatan,1084.1,1091.5,500.0
+2026-09-16 19:00:00,Banjarmasin,Kalimantan Selatan,1028.2,1035.6,500.0
+2026-09-16 20:00:00,Banjarmasin,Kalimantan Selatan,976.0,979.8,500.0
+2026-09-16 21:00:00,Banjarmasin,Kalimantan Selatan,931.3,936.9,500.0
+2026-09-16 22:00:00,Banjarmasin,Kalimantan Selatan,877.3,881.0,500.0
+2026-09-16 23:00:00,Banjarmasin,Kalimantan Selatan,817.7,823.3,500.0
+2026-09-07 00:00:00,Samarinda,Kalimantan Timur,17.9,21.9,67.1
+2026-09-07 01:00:00,Samarinda,Kalimantan Timur,20.1,24.7,71.3
+2026-09-07 02:00:00,Samarinda,Kalimantan Timur,21.0,25.6,73.0
+2026-09-07 03:00:00,Samarinda,Kalimantan Timur,21.4,25.8,73.7
+2026-09-07 04:00:00,Samarinda,Kalimantan Timur,21.1,25.2,73.2
+2026-09-07 05:00:00,Samarinda,Kalimantan Timur,20.4,24.3,71.8
+2026-09-07 06:00:00,Samarinda,Kalimantan Timur,19.8,23.6,70.7
+2026-09-07 07:00:00,Samarinda,Kalimantan Timur,19.9,23.6,70.9
+2026-09-07 08:00:00,Samarinda,Kalimantan Timur,20.6,24.4,72.2
+2026-09-07 09:00:00,Samarinda,Kalimantan Timur,21.1,25.0,73.2
+2026-09-07 10:00:00,Samarinda,Kalimantan Timur,21.2,25.1,73.3
+2026-09-07 11:00:00,Samarinda,Kalimantan Timur,20.6,24.5,72.2
+2026-09-07 12:00:00,Samarinda,Kalimantan Timur,22.3,27.2,75.4
+2026-09-07 13:00:00,Samarinda,Kalimantan Timur,20.1,24.4,71.3
+2026-09-07 14:00:00,Samarinda,Kalimantan Timur,18.2,21.7,67.7
+2026-09-07 15:00:00,Samarinda,Kalimantan Timur,18.3,21.8,67.9
+2026-09-07 16:00:00,Samarinda,Kalimantan Timur,19.2,22.8,69.6
+2026-09-07 17:00:00,Samarinda,Kalimantan Timur,19.6,23.2,70.3
+2026-09-07 18:00:00,Samarinda,Kalimantan Timur,19.4,23.0,70.0
+2026-09-07 19:00:00,Samarinda,Kalimantan Timur,19.2,22.6,69.6
+2026-09-07 20:00:00,Samarinda,Kalimantan Timur,18.4,21.7,68.1
+2026-09-07 21:00:00,Samarinda,Kalimantan Timur,18.3,21.7,67.9
+2026-09-07 22:00:00,Samarinda,Kalimantan Timur,18.5,21.9,68.3
+2026-09-07 23:00:00,Samarinda,Kalimantan Timur,17.2,20.8,65.8
+2026-09-08 00:00:00,Samarinda,Kalimantan Timur,21.0,26.1,73.0
+2026-09-08 01:00:00,Samarinda,Kalimantan Timur,20.8,25.8,72.6
+2026-09-08 02:00:00,Samarinda,Kalimantan Timur,20.5,25.3,72.0
+2026-09-08 03:00:00,Samarinda,Kalimantan Timur,19.5,23.9,70.1
+2026-09-08 04:00:00,Samarinda,Kalimantan Timur,26.1,32.0,82.5
+2026-09-08 05:00:00,Samarinda,Kalimantan Timur,19.4,23.6,70.0
+2026-09-08 06:00:00,Samarinda,Kalimantan Timur,21.2,25.5,73.3
+2026-09-08 07:00:00,Samarinda,Kalimantan Timur,20.6,24.4,72.2
+2026-09-08 08:00:00,Samarinda,Kalimantan Timur,21.0,24.7,73.0
+2026-09-08 09:00:00,Samarinda,Kalimantan Timur,21.0,24.6,73.0
+2026-09-08 10:00:00,Samarinda,Kalimantan Timur,20.5,24.0,72.0
+2026-09-08 11:00:00,Samarinda,Kalimantan Timur,19.7,23.2,70.5
+2026-09-08 12:00:00,Samarinda,Kalimantan Timur,18.3,22.3,67.9
+2026-09-08 13:00:00,Samarinda,Kalimantan Timur,16.9,20.7,65.3
+2026-09-08 14:00:00,Samarinda,Kalimantan Timur,13.7,16.6,59.3
+2026-09-08 15:00:00,Samarinda,Kalimantan Timur,12.6,15.3,57.2
+2026-09-08 16:00:00,Samarinda,Kalimantan Timur,11.3,13.6,54.8
+2026-09-08 17:00:00,Samarinda,Kalimantan Timur,10.7,12.9,53.6
+2026-09-08 18:00:00,Samarinda,Kalimantan Timur,10.3,12.5,52.9
+2026-09-08 19:00:00,Samarinda,Kalimantan Timur,10.0,12.1,52.3
+2026-09-08 20:00:00,Samarinda,Kalimantan Timur,9.9,11.9,52.1
+2026-09-08 21:00:00,Samarinda,Kalimantan Timur,10.1,12.1,52.5
+2026-09-08 22:00:00,Samarinda,Kalimantan Timur,9.7,11.8,51.8
+2026-09-08 23:00:00,Samarinda,Kalimantan Timur,10.0,12.3,52.3
+2026-09-09 00:00:00,Samarinda,Kalimantan Timur,12.0,15.4,56.1
+2026-09-09 01:00:00,Samarinda,Kalimantan Timur,12.8,16.4,57.6
+2026-09-09 02:00:00,Samarinda,Kalimantan Timur,13.6,17.2,59.1
+2026-09-09 03:00:00,Samarinda,Kalimantan Timur,13.7,17.3,59.3
+2026-09-09 04:00:00,Samarinda,Kalimantan Timur,14.1,17.7,60.0
+2026-09-09 05:00:00,Samarinda,Kalimantan Timur,14.6,18.3,61.0
+2026-09-09 06:00:00,Samarinda,Kalimantan Timur,14.1,17.6,60.0
+2026-09-09 07:00:00,Samarinda,Kalimantan Timur,14.1,17.6,60.0
+2026-09-09 08:00:00,Samarinda,Kalimantan Timur,14.2,17.6,60.2
+2026-09-09 09:00:00,Samarinda,Kalimantan Timur,14.2,17.6,60.2
+2026-09-09 10:00:00,Samarinda,Kalimantan Timur,14.0,17.5,59.8
+2026-09-09 11:00:00,Samarinda,Kalimantan Timur,13.8,17.2,59.4
+2026-09-09 12:00:00,Samarinda,Kalimantan Timur,17.9,22.6,67.1
+2026-09-09 13:00:00,Samarinda,Kalimantan Timur,17.3,21.8,66.0
+2026-09-09 14:00:00,Samarinda,Kalimantan Timur,17.2,21.8,65.8
+2026-09-09 15:00:00,Samarinda,Kalimantan Timur,16.1,20.0,63.8
+2026-09-09 16:00:00,Samarinda,Kalimantan Timur,15.1,18.7,61.9
+2026-09-09 17:00:00,Samarinda,Kalimantan Timur,14.2,17.5,60.2
+2026-09-09 18:00:00,Samarinda,Kalimantan Timur,13.9,17.1,59.6
+2026-09-09 19:00:00,Samarinda,Kalimantan Timur,13.8,16.9,59.4
+2026-09-09 20:00:00,Samarinda,Kalimantan Timur,13.8,16.9,59.4
+2026-09-09 21:00:00,Samarinda,Kalimantan Timur,14.6,17.8,61.0
+2026-09-09 22:00:00,Samarinda,Kalimantan Timur,15.6,18.8,62.8
+2026-09-09 23:00:00,Samarinda,Kalimantan Timur,15.7,19.2,63.0
+2026-09-10 00:00:00,Samarinda,Kalimantan Timur,19.3,25.3,69.8
+2026-09-10 01:00:00,Samarinda,Kalimantan Timur,19.4,25.5,70.0
+2026-09-10 02:00:00,Samarinda,Kalimantan Timur,19.4,25.2,70.0
+2026-09-10 03:00:00,Samarinda,Kalimantan Timur,19.6,25.1,70.3
+2026-09-10 04:00:00,Samarinda,Kalimantan Timur,18.9,23.9,69.0
+2026-09-10 05:00:00,Samarinda,Kalimantan Timur,18.5,23.2,68.3
+2026-09-10 06:00:00,Samarinda,Kalimantan Timur,18.3,22.8,67.9
+2026-09-10 07:00:00,Samarinda,Kalimantan Timur,18.5,22.8,68.3
+2026-09-10 08:00:00,Samarinda,Kalimantan Timur,18.8,23.1,68.8
+2026-09-10 09:00:00,Samarinda,Kalimantan Timur,18.8,23.0,68.8
+2026-09-10 10:00:00,Samarinda,Kalimantan Timur,18.7,22.8,68.6
+2026-09-10 11:00:00,Samarinda,Kalimantan Timur,18.3,22.4,67.9
+2026-09-10 12:00:00,Samarinda,Kalimantan Timur,21.0,25.9,73.0
+2026-09-10 13:00:00,Samarinda,Kalimantan Timur,20.1,24.9,71.3
+2026-09-10 14:00:00,Samarinda,Kalimantan Timur,19.3,23.8,69.8
+2026-09-10 15:00:00,Samarinda,Kalimantan Timur,18.7,23.1,68.6
+2026-09-10 16:00:00,Samarinda,Kalimantan Timur,17.8,21.7,67.0
+2026-09-10 17:00:00,Samarinda,Kalimantan Timur,17.2,20.8,65.8
+2026-09-10 18:00:00,Samarinda,Kalimantan Timur,16.9,20.3,65.3
+2026-09-10 19:00:00,Samarinda,Kalimantan Timur,16.9,20.3,65.3
+2026-09-10 20:00:00,Samarinda,Kalimantan Timur,17.0,20.2,65.5
+2026-09-10 21:00:00,Samarinda,Kalimantan Timur,17.2,20.3,65.8
+2026-09-10 22:00:00,Samarinda,Kalimantan Timur,17.3,20.3,66.0
+2026-09-10 23:00:00,Samarinda,Kalimantan Timur,17.3,20.6,66.0
+2026-09-11 00:00:00,Samarinda,Kalimantan Timur,16.9,21.1,65.3
+2026-09-11 01:00:00,Samarinda,Kalimantan Timur,16.3,20.5,64.1
+2026-09-11 02:00:00,Samarinda,Kalimantan Timur,15.5,19.6,62.6
+2026-09-11 03:00:00,Samarinda,Kalimantan Timur,15.1,19.0,61.9
+2026-09-11 04:00:00,Samarinda,Kalimantan Timur,14.8,18.7,61.3
+2026-09-11 05:00:00,Samarinda,Kalimantan Timur,13.7,17.3,59.3
+2026-09-11 06:00:00,Samarinda,Kalimantan Timur,13.2,16.7,58.3
+2026-09-11 07:00:00,Samarinda,Kalimantan Timur,12.6,15.9,57.2
+2026-09-11 08:00:00,Samarinda,Kalimantan Timur,14.0,17.8,59.8
+2026-09-11 09:00:00,Samarinda,Kalimantan Timur,12.9,16.3,57.8
+2026-09-11 10:00:00,Samarinda,Kalimantan Timur,13.0,16.4,57.9
+2026-09-11 11:00:00,Samarinda,Kalimantan Timur,15.2,18.9,62.1
+2026-09-11 12:00:00,Samarinda,Kalimantan Timur,18.2,22.8,67.7
+2026-09-11 13:00:00,Samarinda,Kalimantan Timur,19.0,23.6,69.2
+2026-09-11 14:00:00,Samarinda,Kalimantan Timur,19.5,24.0,70.1
+2026-09-11 15:00:00,Samarinda,Kalimantan Timur,20.1,24.4,71.3
+2026-09-11 16:00:00,Samarinda,Kalimantan Timur,21.1,25.3,73.2
+2026-09-11 17:00:00,Samarinda,Kalimantan Timur,21.9,26.0,74.7
+2026-09-11 18:00:00,Samarinda,Kalimantan Timur,22.4,26.2,75.6
+2026-09-11 19:00:00,Samarinda,Kalimantan Timur,22.7,26.4,76.2
+2026-09-11 20:00:00,Samarinda,Kalimantan Timur,23.5,27.0,77.7
+2026-09-11 21:00:00,Samarinda,Kalimantan Timur,24.9,28.5,80.3
+2026-09-11 22:00:00,Samarinda,Kalimantan Timur,27.4,31.1,85.0
+2026-09-11 23:00:00,Samarinda,Kalimantan Timur,24.5,27.8,79.5
+2026-09-12 00:00:00,Samarinda,Kalimantan Timur,18.4,22.5,68.1
+2026-09-12 01:00:00,Samarinda,Kalimantan Timur,17.3,21.4,66.0
+2026-09-12 02:00:00,Samarinda,Kalimantan Timur,17.2,21.2,65.8
+2026-09-12 03:00:00,Samarinda,Kalimantan Timur,17.3,21.4,66.0
+2026-09-12 04:00:00,Samarinda,Kalimantan Timur,17.3,21.4,66.0
+2026-09-12 05:00:00,Samarinda,Kalimantan Timur,17.8,21.9,67.0
+2026-09-12 06:00:00,Samarinda,Kalimantan Timur,17.7,21.7,66.8
+2026-09-12 07:00:00,Samarinda,Kalimantan Timur,17.5,21.5,66.4
+2026-09-12 08:00:00,Samarinda,Kalimantan Timur,17.0,21.0,65.5
+2026-09-12 09:00:00,Samarinda,Kalimantan Timur,16.2,20.1,64.0
+2026-09-12 10:00:00,Samarinda,Kalimantan Timur,15.4,19.2,62.5
+2026-09-12 11:00:00,Samarinda,Kalimantan Timur,14.8,18.3,61.3
+2026-09-12 12:00:00,Samarinda,Kalimantan Timur,14.2,17.6,60.2
+2026-09-12 13:00:00,Samarinda,Kalimantan Timur,14.6,17.9,61.0
+2026-09-12 14:00:00,Samarinda,Kalimantan Timur,15.5,18.7,62.6
+2026-09-12 15:00:00,Samarinda,Kalimantan Timur,15.8,18.8,63.2
+2026-09-12 16:00:00,Samarinda,Kalimantan Timur,15.5,18.3,62.6
+2026-09-12 17:00:00,Samarinda,Kalimantan Timur,15.8,18.6,63.2
+2026-09-12 18:00:00,Samarinda,Kalimantan Timur,16.9,19.6,65.3
+2026-09-12 19:00:00,Samarinda,Kalimantan Timur,18.7,21.7,68.6
+2026-09-12 20:00:00,Samarinda,Kalimantan Timur,20.2,23.3,71.5
+2026-09-12 21:00:00,Samarinda,Kalimantan Timur,20.7,23.9,72.4
+2026-09-12 22:00:00,Samarinda,Kalimantan Timur,21.3,24.6,73.5
+2026-09-12 23:00:00,Samarinda,Kalimantan Timur,20.6,23.6,72.2
+2026-09-13 00:00:00,Samarinda,Kalimantan Timur,16.1,20.4,63.8
+2026-09-13 01:00:00,Samarinda,Kalimantan Timur,15.1,19.1,61.9
+2026-09-13 02:00:00,Samarinda,Kalimantan Timur,14.4,18.2,60.6
+2026-09-13 03:00:00,Samarinda,Kalimantan Timur,18.4,23.4,68.1
+2026-09-13 04:00:00,Samarinda,Kalimantan Timur,14.8,18.5,61.3
+2026-09-13 05:00:00,Samarinda,Kalimantan Timur,15.5,19.1,62.6
+2026-09-13 06:00:00,Samarinda,Kalimantan Timur,15.8,19.2,63.2
+2026-09-13 07:00:00,Samarinda,Kalimantan Timur,16.0,19.3,63.6
+2026-09-13 08:00:00,Samarinda,Kalimantan Timur,16.2,19.4,64.0
+2026-09-13 09:00:00,Samarinda,Kalimantan Timur,16.1,19.3,63.8
+2026-09-13 10:00:00,Samarinda,Kalimantan Timur,17.2,20.5,65.8
+2026-09-13 11:00:00,Samarinda,Kalimantan Timur,19.1,22.6,69.4
+2026-09-13 12:00:00,Samarinda,Kalimantan Timur,21.9,26.0,74.7
+2026-09-13 13:00:00,Samarinda,Kalimantan Timur,22.9,27.3,76.5
+2026-09-13 14:00:00,Samarinda,Kalimantan Timur,22.8,27.0,76.3
+2026-09-13 15:00:00,Samarinda,Kalimantan Timur,22.8,27.0,76.3
+2026-09-13 16:00:00,Samarinda,Kalimantan Timur,22.9,27.0,76.5
+2026-09-13 17:00:00,Samarinda,Kalimantan Timur,22.5,26.3,75.8
+2026-09-13 18:00:00,Samarinda,Kalimantan Timur,21.9,25.7,74.7
+2026-09-13 19:00:00,Samarinda,Kalimantan Timur,21.0,24.6,73.0
+2026-09-13 20:00:00,Samarinda,Kalimantan Timur,20.0,23.6,71.1
+2026-09-13 21:00:00,Samarinda,Kalimantan Timur,19.6,23.3,70.3
+2026-09-13 22:00:00,Samarinda,Kalimantan Timur,20.1,23.9,71.3
+2026-09-13 23:00:00,Samarinda,Kalimantan Timur,20.8,24.2,72.6
+2026-09-14 00:00:00,Samarinda,Kalimantan Timur,19.3,25.0,69.8
+2026-09-14 01:00:00,Samarinda,Kalimantan Timur,19.2,24.8,69.6
+2026-09-14 02:00:00,Samarinda,Kalimantan Timur,18.6,23.6,68.5
+2026-09-14 03:00:00,Samarinda,Kalimantan Timur,18.3,23.0,67.9
+2026-09-14 04:00:00,Samarinda,Kalimantan Timur,18.0,22.5,67.3
+2026-09-14 05:00:00,Samarinda,Kalimantan Timur,18.2,22.5,67.7
+2026-09-14 06:00:00,Samarinda,Kalimantan Timur,18.2,22.5,67.7
+2026-09-14 07:00:00,Samarinda,Kalimantan Timur,17.9,22.5,67.1
+2026-09-14 08:00:00,Samarinda,Kalimantan Timur,20.0,25.2,71.1
+2026-09-14 09:00:00,Samarinda,Kalimantan Timur,16.9,21.5,65.3
+2026-09-14 10:00:00,Samarinda,Kalimantan Timur,16.1,20.9,63.8
+2026-09-14 11:00:00,Samarinda,Kalimantan Timur,15.9,21.0,63.4
+2026-09-14 12:00:00,Samarinda,Kalimantan Timur,20.3,26.7,71.7
+2026-09-14 13:00:00,Samarinda,Kalimantan Timur,21.2,27.6,73.3
+2026-09-14 14:00:00,Samarinda,Kalimantan Timur,21.8,28.1,74.5
+2026-09-14 15:00:00,Samarinda,Kalimantan Timur,21.9,28.1,74.7
+2026-09-14 16:00:00,Samarinda,Kalimantan Timur,21.5,27.6,73.9
+2026-09-14 17:00:00,Samarinda,Kalimantan Timur,20.0,25.3,71.1
+2026-09-14 18:00:00,Samarinda,Kalimantan Timur,19.3,24.3,69.8
+2026-09-14 19:00:00,Samarinda,Kalimantan Timur,18.1,22.6,67.5
+2026-09-14 20:00:00,Samarinda,Kalimantan Timur,16.5,20.3,64.5
+2026-09-14 21:00:00,Samarinda,Kalimantan Timur,15.4,18.8,62.5
+2026-09-14 22:00:00,Samarinda,Kalimantan Timur,14.7,17.8,61.1
+2026-09-14 23:00:00,Samarinda,Kalimantan Timur,14.3,17.6,60.4
+2026-09-15 00:00:00,Samarinda,Kalimantan Timur,18.5,24.4,68.3
+2026-09-15 01:00:00,Samarinda,Kalimantan Timur,19.3,25.4,69.8
+2026-09-15 02:00:00,Samarinda,Kalimantan Timur,19.0,24.7,69.2
+2026-09-15 03:00:00,Samarinda,Kalimantan Timur,19.4,24.9,70.0
+2026-09-15 04:00:00,Samarinda,Kalimantan Timur,19.9,25.3,70.9
+2026-09-15 05:00:00,Samarinda,Kalimantan Timur,19.9,25.2,70.9
+2026-09-15 06:00:00,Samarinda,Kalimantan Timur,19.7,24.7,70.5
+2026-09-15 07:00:00,Samarinda,Kalimantan Timur,19.7,24.7,70.5
+2026-09-15 08:00:00,Samarinda,Kalimantan Timur,19.0,23.8,69.2
+2026-09-15 09:00:00,Samarinda,Kalimantan Timur,17.9,22.7,67.1
+2026-09-15 10:00:00,Samarinda,Kalimantan Timur,16.8,21.5,65.1
+2026-09-15 11:00:00,Samarinda,Kalimantan Timur,15.8,20.7,63.2
+2026-09-15 12:00:00,Samarinda,Kalimantan Timur,28.1,33.6,86.3
+2026-09-15 13:00:00,Samarinda,Kalimantan Timur,25.7,31.3,81.8
+2026-09-15 14:00:00,Samarinda,Kalimantan Timur,23.4,29.5,77.5
+2026-09-15 15:00:00,Samarinda,Kalimantan Timur,21.5,28.1,73.9
+2026-09-15 16:00:00,Samarinda,Kalimantan Timur,19.8,26.7,70.7
+2026-09-15 17:00:00,Samarinda,Kalimantan Timur,18.5,25.7,68.3
+2026-09-15 18:00:00,Samarinda,Kalimantan Timur,18.0,25.1,67.3
+2026-09-15 19:00:00,Samarinda,Kalimantan Timur,17.4,24.2,66.2
+2026-09-15 20:00:00,Samarinda,Kalimantan Timur,16.7,23.1,64.9
+2026-09-15 21:00:00,Samarinda,Kalimantan Timur,15.9,22.0,63.4
+2026-09-15 22:00:00,Samarinda,Kalimantan Timur,15.2,21.0,62.1
+2026-09-15 23:00:00,Samarinda,Kalimantan Timur,15.3,20.8,62.3
+2026-09-16 00:00:00,Samarinda,Kalimantan Timur,17.1,22.4,65.6
+2026-09-16 01:00:00,Samarinda,Kalimantan Timur,19.0,24.0,69.2
+2026-09-16 02:00:00,Samarinda,Kalimantan Timur,19.2,23.8,69.6
+2026-09-16 03:00:00,Samarinda,Kalimantan Timur,21.2,25.4,73.3
+2026-09-16 04:00:00,Samarinda,Kalimantan Timur,25.0,28.9,80.5
+2026-09-16 05:00:00,Samarinda,Kalimantan Timur,30.6,34.3,91.0
+2026-09-16 06:00:00,Samarinda,Kalimantan Timur,39.7,43.4,111.3
+2026-09-16 07:00:00,Samarinda,Kalimantan Timur,45.2,48.8,124.9
+2026-09-16 08:00:00,Samarinda,Kalimantan Timur,49.0,52.6,134.2
+2026-09-16 09:00:00,Samarinda,Kalimantan Timur,47.1,50.9,129.6
+2026-09-16 10:00:00,Samarinda,Kalimantan Timur,43.1,46.9,119.7
+2026-09-16 11:00:00,Samarinda,Kalimantan Timur,39.8,44.1,111.6
+2026-09-16 12:00:00,Samarinda,Kalimantan Timur,39.6,44.5,111.1
+2026-09-16 13:00:00,Samarinda,Kalimantan Timur,40.3,45.4,112.8
+2026-09-16 14:00:00,Samarinda,Kalimantan Timur,39.1,44.1,109.9
+2026-09-16 15:00:00,Samarinda,Kalimantan Timur,33.9,38.2,97.2
+2026-09-16 16:00:00,Samarinda,Kalimantan Timur,26.7,30.5,83.7
+2026-09-16 17:00:00,Samarinda,Kalimantan Timur,20.6,24.3,72.2
+2026-09-16 18:00:00,Samarinda,Kalimantan Timur,16.3,19.8,64.1
+2026-09-16 19:00:00,Samarinda,Kalimantan Timur,14.4,17.8,60.6
+2026-09-16 20:00:00,Samarinda,Kalimantan Timur,12.2,15.5,56.4
+2026-09-16 21:00:00,Samarinda,Kalimantan Timur,11.3,14.4,54.8
+2026-09-16 22:00:00,Samarinda,Kalimantan Timur,11.3,14.2,54.8
+2026-09-16 23:00:00,Samarinda,Kalimantan Timur,12.2,15.2,56.4
+2026-09-07 00:00:00,Tanjung Selor,Kalimantan Utara,89.2,95.0,174.6
+2026-09-07 01:00:00,Tanjung Selor,Kalimantan Utara,81.5,88.7,169.2
+2026-09-07 02:00:00,Tanjung Selor,Kalimantan Utara,70.5,78.0,161.5
+2026-09-07 03:00:00,Tanjung Selor,Kalimantan Utara,70.1,77.3,161.2
+2026-09-07 04:00:00,Tanjung Selor,Kalimantan Utara,67.1,73.8,159.1
+2026-09-07 05:00:00,Tanjung Selor,Kalimantan Utara,60.8,67.1,154.7
+2026-09-07 06:00:00,Tanjung Selor,Kalimantan Utara,54.9,61.0,148.8
+2026-09-07 07:00:00,Tanjung Selor,Kalimantan Utara,48.5,54.2,133.0
+2026-09-07 08:00:00,Tanjung Selor,Kalimantan Utara,44.5,49.9,123.2
+2026-09-07 09:00:00,Tanjung Selor,Kalimantan Utara,42.0,47.3,117.0
+2026-09-07 10:00:00,Tanjung Selor,Kalimantan Utara,41.3,46.2,115.3
+2026-09-07 11:00:00,Tanjung Selor,Kalimantan Utara,39.7,43.8,111.3
+2026-09-07 12:00:00,Tanjung Selor,Kalimantan Utara,43.7,48.7,121.2
+2026-09-07 13:00:00,Tanjung Selor,Kalimantan Utara,41.2,46.4,115.0
+2026-09-07 14:00:00,Tanjung Selor,Kalimantan Utara,38.0,43.0,107.2
+2026-09-07 15:00:00,Tanjung Selor,Kalimantan Utara,37.6,43.0,106.2
+2026-09-07 16:00:00,Tanjung Selor,Kalimantan Utara,37.1,41.9,104.9
+2026-09-07 17:00:00,Tanjung Selor,Kalimantan Utara,37.6,42.1,106.2
+2026-09-07 18:00:00,Tanjung Selor,Kalimantan Utara,36.3,40.5,103.0
+2026-09-07 19:00:00,Tanjung Selor,Kalimantan Utara,32.7,36.1,94.9
+2026-09-07 20:00:00,Tanjung Selor,Kalimantan Utara,31.1,34.2,91.9
+2026-09-07 21:00:00,Tanjung Selor,Kalimantan Utara,31.3,34.5,92.3
+2026-09-07 22:00:00,Tanjung Selor,Kalimantan Utara,31.3,34.2,92.3
+2026-09-07 23:00:00,Tanjung Selor,Kalimantan Utara,31.1,33.6,91.9
+2026-09-08 00:00:00,Tanjung Selor,Kalimantan Utara,59.8,66.4,154.0
+2026-09-08 01:00:00,Tanjung Selor,Kalimantan Utara,51.8,58.3,141.1
+2026-09-08 02:00:00,Tanjung Selor,Kalimantan Utara,46.0,52.4,126.9
+2026-09-08 03:00:00,Tanjung Selor,Kalimantan Utara,43.4,49.6,120.5
+2026-09-08 04:00:00,Tanjung Selor,Kalimantan Utara,43.0,48.8,119.5
+2026-09-08 05:00:00,Tanjung Selor,Kalimantan Utara,42.1,47.7,117.3
+2026-09-08 06:00:00,Tanjung Selor,Kalimantan Utara,41.4,46.8,115.5
+2026-09-08 07:00:00,Tanjung Selor,Kalimantan Utara,41.9,46.9,116.8
+2026-09-08 08:00:00,Tanjung Selor,Kalimantan Utara,43.9,48.7,121.7
+2026-09-08 09:00:00,Tanjung Selor,Kalimantan Utara,46.6,51.1,128.3
+2026-09-08 10:00:00,Tanjung Selor,Kalimantan Utara,47.7,51.8,131.0
+2026-09-08 11:00:00,Tanjung Selor,Kalimantan Utara,49.7,53.1,136.0
+2026-09-08 12:00:00,Tanjung Selor,Kalimantan Utara,65.0,69.4,157.7
+2026-09-08 13:00:00,Tanjung Selor,Kalimantan Utara,67.3,71.9,159.3
+2026-09-08 14:00:00,Tanjung Selor,Kalimantan Utara,69.2,73.8,160.6
+2026-09-08 15:00:00,Tanjung Selor,Kalimantan Utara,71.2,76.1,162.0
+2026-09-08 16:00:00,Tanjung Selor,Kalimantan Utara,74.3,79.2,164.2
+2026-09-08 17:00:00,Tanjung Selor,Kalimantan Utara,76.8,81.7,165.9
+2026-09-08 18:00:00,Tanjung Selor,Kalimantan Utara,78.2,83.1,166.9
+2026-09-08 19:00:00,Tanjung Selor,Kalimantan Utara,70.3,74.3,161.4
+2026-09-08 20:00:00,Tanjung Selor,Kalimantan Utara,45.4,47.4,125.4
+2026-09-08 21:00:00,Tanjung Selor,Kalimantan Utara,44.1,46.6,122.2
+2026-09-08 22:00:00,Tanjung Selor,Kalimantan Utara,38.4,40.6,108.1
+2026-09-08 23:00:00,Tanjung Selor,Kalimantan Utara,33.5,35.9,96.4
+2026-09-09 00:00:00,Tanjung Selor,Kalimantan Utara,31.8,34.1,93.2
+2026-09-09 01:00:00,Tanjung Selor,Kalimantan Utara,34.2,37.1,97.7
+2026-09-09 02:00:00,Tanjung Selor,Kalimantan Utara,37.5,40.7,105.9
+2026-09-09 03:00:00,Tanjung Selor,Kalimantan Utara,38.8,42.0,109.1
+2026-09-09 04:00:00,Tanjung Selor,Kalimantan Utara,38.4,41.4,108.1
+2026-09-09 05:00:00,Tanjung Selor,Kalimantan Utara,38.3,41.2,107.9
+2026-09-09 06:00:00,Tanjung Selor,Kalimantan Utara,39.9,42.7,111.8
+2026-09-09 07:00:00,Tanjung Selor,Kalimantan Utara,42.0,44.7,117.0
+2026-09-09 08:00:00,Tanjung Selor,Kalimantan Utara,44.9,47.5,124.1
+2026-09-09 09:00:00,Tanjung Selor,Kalimantan Utara,46.8,49.1,128.8
+2026-09-09 10:00:00,Tanjung Selor,Kalimantan Utara,46.1,48.2,127.1
+2026-09-09 11:00:00,Tanjung Selor,Kalimantan Utara,42.1,43.8,117.3
+2026-09-09 12:00:00,Tanjung Selor,Kalimantan Utara,38.1,39.7,107.4
+2026-09-09 13:00:00,Tanjung Selor,Kalimantan Utara,32.7,34.1,94.9
+2026-09-09 14:00:00,Tanjung Selor,Kalimantan Utara,31.7,32.9,93.1
+2026-09-09 15:00:00,Tanjung Selor,Kalimantan Utara,29.8,30.9,89.5
+2026-09-09 16:00:00,Tanjung Selor,Kalimantan Utara,28.6,29.5,87.2
+2026-09-09 17:00:00,Tanjung Selor,Kalimantan Utara,27.9,28.9,85.9
+2026-09-09 18:00:00,Tanjung Selor,Kalimantan Utara,27.6,28.6,85.4
+2026-09-09 19:00:00,Tanjung Selor,Kalimantan Utara,26.7,27.6,83.7
+2026-09-09 20:00:00,Tanjung Selor,Kalimantan Utara,26.4,27.2,83.1
+2026-09-09 21:00:00,Tanjung Selor,Kalimantan Utara,21.1,21.7,73.2
+2026-09-09 22:00:00,Tanjung Selor,Kalimantan Utara,21.8,22.4,74.5
+2026-09-09 23:00:00,Tanjung Selor,Kalimantan Utara,26.3,27.0,82.9
+2026-09-10 00:00:00,Tanjung Selor,Kalimantan Utara,21.1,21.9,73.2
+2026-09-10 01:00:00,Tanjung Selor,Kalimantan Utara,27.8,29.2,85.7
+2026-09-10 02:00:00,Tanjung Selor,Kalimantan Utara,29.4,31.0,88.7
+2026-09-10 03:00:00,Tanjung Selor,Kalimantan Utara,29.6,31.2,89.1
+2026-09-10 04:00:00,Tanjung Selor,Kalimantan Utara,27.9,29.5,85.9
+2026-09-10 05:00:00,Tanjung Selor,Kalimantan Utara,27.6,29.2,85.4
+2026-09-10 06:00:00,Tanjung Selor,Kalimantan Utara,28.7,30.4,87.4
+2026-09-10 07:00:00,Tanjung Selor,Kalimantan Utara,30.2,31.9,90.2
+2026-09-10 08:00:00,Tanjung Selor,Kalimantan Utara,32.2,34.2,94.0
+2026-09-10 09:00:00,Tanjung Selor,Kalimantan Utara,34.8,36.9,98.9
+2026-09-10 10:00:00,Tanjung Selor,Kalimantan Utara,35.5,37.5,101.0
+2026-09-10 11:00:00,Tanjung Selor,Kalimantan Utara,34.0,35.7,97.4
+2026-09-10 12:00:00,Tanjung Selor,Kalimantan Utara,33.4,34.9,96.2
+2026-09-10 13:00:00,Tanjung Selor,Kalimantan Utara,32.1,33.8,93.8
+2026-09-10 14:00:00,Tanjung Selor,Kalimantan Utara,30.7,32.5,91.2
+2026-09-10 15:00:00,Tanjung Selor,Kalimantan Utara,30.0,31.9,89.9
+2026-09-10 16:00:00,Tanjung Selor,Kalimantan Utara,29.9,31.7,89.7
+2026-09-10 17:00:00,Tanjung Selor,Kalimantan Utara,29.9,31.7,89.7
+2026-09-10 18:00:00,Tanjung Selor,Kalimantan Utara,30.0,31.8,89.9
+2026-09-10 19:00:00,Tanjung Selor,Kalimantan Utara,31.7,33.5,93.1
+2026-09-10 20:00:00,Tanjung Selor,Kalimantan Utara,32.5,34.5,94.6
+2026-09-10 21:00:00,Tanjung Selor,Kalimantan Utara,27.9,29.3,85.9
+2026-09-10 22:00:00,Tanjung Selor,Kalimantan Utara,21.2,22.4,73.3
+2026-09-10 23:00:00,Tanjung Selor,Kalimantan Utara,22.5,24.2,75.8
+2026-09-11 00:00:00,Tanjung Selor,Kalimantan Utara,20.3,22.8,71.7
+2026-09-11 01:00:00,Tanjung Selor,Kalimantan Utara,19.2,21.4,69.6
+2026-09-11 02:00:00,Tanjung Selor,Kalimantan Utara,17.3,19.6,66.0
+2026-09-11 03:00:00,Tanjung Selor,Kalimantan Utara,15.7,17.8,63.0
+2026-09-11 04:00:00,Tanjung Selor,Kalimantan Utara,16.5,19.0,64.5
+2026-09-11 05:00:00,Tanjung Selor,Kalimantan Utara,16.6,19.2,64.7
+2026-09-11 06:00:00,Tanjung Selor,Kalimantan Utara,17.8,20.5,67.0
+2026-09-11 07:00:00,Tanjung Selor,Kalimantan Utara,17.8,20.6,67.0
+2026-09-11 08:00:00,Tanjung Selor,Kalimantan Utara,17.1,19.6,65.6
+2026-09-11 09:00:00,Tanjung Selor,Kalimantan Utara,15.9,18.0,63.4
+2026-09-11 10:00:00,Tanjung Selor,Kalimantan Utara,15.9,17.8,63.4
+2026-09-11 11:00:00,Tanjung Selor,Kalimantan Utara,15.9,17.7,63.4
+2026-09-11 12:00:00,Tanjung Selor,Kalimantan Utara,19.1,21.4,69.4
+2026-09-11 13:00:00,Tanjung Selor,Kalimantan Utara,19.0,21.4,69.2
+2026-09-11 14:00:00,Tanjung Selor,Kalimantan Utara,17.8,20.0,67.0
+2026-09-11 15:00:00,Tanjung Selor,Kalimantan Utara,14.5,16.1,60.8
+2026-09-11 16:00:00,Tanjung Selor,Kalimantan Utara,8.8,9.9,47.8
+2026-09-11 17:00:00,Tanjung Selor,Kalimantan Utara,4.2,4.6,22.8
+2026-09-11 18:00:00,Tanjung Selor,Kalimantan Utara,3.7,4.1,20.1
+2026-09-11 19:00:00,Tanjung Selor,Kalimantan Utara,4.4,5.0,23.9
+2026-09-11 20:00:00,Tanjung Selor,Kalimantan Utara,4.5,4.9,24.5
+2026-09-11 21:00:00,Tanjung Selor,Kalimantan Utara,4.0,4.4,21.7
+2026-09-11 22:00:00,Tanjung Selor,Kalimantan Utara,4.4,4.8,23.9
+2026-09-11 23:00:00,Tanjung Selor,Kalimantan Utara,5.4,6.0,29.3
+2026-09-12 00:00:00,Tanjung Selor,Kalimantan Utara,15.7,18.0,63.0
+2026-09-12 01:00:00,Tanjung Selor,Kalimantan Utara,13.7,16.1,59.3
+2026-09-12 02:00:00,Tanjung Selor,Kalimantan Utara,11.8,14.2,55.7
+2026-09-12 03:00:00,Tanjung Selor,Kalimantan Utara,11.3,13.8,54.8
+2026-09-12 04:00:00,Tanjung Selor,Kalimantan Utara,11.0,13.6,54.2
+2026-09-12 05:00:00,Tanjung Selor,Kalimantan Utara,10.8,13.4,53.8
+2026-09-12 06:00:00,Tanjung Selor,Kalimantan Utara,11.0,13.6,54.2
+2026-09-12 07:00:00,Tanjung Selor,Kalimantan Utara,10.9,13.6,54.0
+2026-09-12 08:00:00,Tanjung Selor,Kalimantan Utara,11.1,13.8,54.4
+2026-09-12 09:00:00,Tanjung Selor,Kalimantan Utara,11.1,13.7,54.4
+2026-09-12 10:00:00,Tanjung Selor,Kalimantan Utara,10.1,12.3,52.5
+2026-09-12 11:00:00,Tanjung Selor,Kalimantan Utara,9.9,12.0,52.1
+2026-09-12 12:00:00,Tanjung Selor,Kalimantan Utara,11.9,14.2,55.9
+2026-09-12 13:00:00,Tanjung Selor,Kalimantan Utara,11.6,14.0,55.3
+2026-09-12 14:00:00,Tanjung Selor,Kalimantan Utara,11.4,13.8,54.9
+2026-09-12 15:00:00,Tanjung Selor,Kalimantan Utara,11.4,13.9,54.9
+2026-09-12 16:00:00,Tanjung Selor,Kalimantan Utara,11.5,14.1,55.1
+2026-09-12 17:00:00,Tanjung Selor,Kalimantan Utara,11.8,14.3,55.7
+2026-09-12 18:00:00,Tanjung Selor,Kalimantan Utara,12.3,14.8,56.6
+2026-09-12 19:00:00,Tanjung Selor,Kalimantan Utara,12.5,14.9,57.0
+2026-09-12 20:00:00,Tanjung Selor,Kalimantan Utara,12.4,14.9,56.8
+2026-09-12 21:00:00,Tanjung Selor,Kalimantan Utara,12.4,14.8,56.8
+2026-09-12 22:00:00,Tanjung Selor,Kalimantan Utara,12.3,14.6,56.6
+2026-09-12 23:00:00,Tanjung Selor,Kalimantan Utara,11.1,12.7,54.4
+2026-09-13 00:00:00,Tanjung Selor,Kalimantan Utara,18.3,22.3,67.9
+2026-09-13 01:00:00,Tanjung Selor,Kalimantan Utara,16.2,20.3,64.0
+2026-09-13 02:00:00,Tanjung Selor,Kalimantan Utara,16.5,20.6,64.5
+2026-09-13 03:00:00,Tanjung Selor,Kalimantan Utara,16.2,20.3,64.0
+2026-09-13 04:00:00,Tanjung Selor,Kalimantan Utara,15.0,18.6,61.7
+2026-09-13 05:00:00,Tanjung Selor,Kalimantan Utara,13.7,16.8,59.3
+2026-09-13 06:00:00,Tanjung Selor,Kalimantan Utara,13.1,16.0,58.1
+2026-09-13 07:00:00,Tanjung Selor,Kalimantan Utara,12.9,15.7,57.8
+2026-09-13 08:00:00,Tanjung Selor,Kalimantan Utara,12.7,15.5,57.4
+2026-09-13 09:00:00,Tanjung Selor,Kalimantan Utara,12.6,15.3,57.2
+2026-09-13 10:00:00,Tanjung Selor,Kalimantan Utara,12.2,14.8,56.4
+2026-09-13 11:00:00,Tanjung Selor,Kalimantan Utara,11.0,13.7,54.2
+2026-09-13 12:00:00,Tanjung Selor,Kalimantan Utara,11.5,13.4,55.1
+2026-09-13 13:00:00,Tanjung Selor,Kalimantan Utara,10.1,12.2,52.5
+2026-09-13 14:00:00,Tanjung Selor,Kalimantan Utara,9.5,11.6,51.4
+2026-09-13 15:00:00,Tanjung Selor,Kalimantan Utara,9.3,11.6,51.0
+2026-09-13 16:00:00,Tanjung Selor,Kalimantan Utara,9.5,11.8,51.4
+2026-09-13 17:00:00,Tanjung Selor,Kalimantan Utara,10.0,12.3,52.3
+2026-09-13 18:00:00,Tanjung Selor,Kalimantan Utara,10.9,13.2,54.0
+2026-09-13 19:00:00,Tanjung Selor,Kalimantan Utara,11.6,13.8,55.3
+2026-09-13 20:00:00,Tanjung Selor,Kalimantan Utara,12.2,14.2,56.4
+2026-09-13 21:00:00,Tanjung Selor,Kalimantan Utara,12.5,14.4,57.0
+2026-09-13 22:00:00,Tanjung Selor,Kalimantan Utara,12.8,14.6,57.6
+2026-09-13 23:00:00,Tanjung Selor,Kalimantan Utara,13.2,14.6,58.3
+2026-09-14 00:00:00,Tanjung Selor,Kalimantan Utara,19.4,22.6,70.0
+2026-09-14 01:00:00,Tanjung Selor,Kalimantan Utara,17.8,21.6,67.0
+2026-09-14 02:00:00,Tanjung Selor,Kalimantan Utara,18.8,22.5,68.8
+2026-09-14 03:00:00,Tanjung Selor,Kalimantan Utara,20.0,23.5,71.1
+2026-09-14 04:00:00,Tanjung Selor,Kalimantan Utara,21.8,25.1,74.5
+2026-09-14 05:00:00,Tanjung Selor,Kalimantan Utara,24.1,27.4,78.8
+2026-09-14 06:00:00,Tanjung Selor,Kalimantan Utara,25.6,28.9,81.6
+2026-09-14 07:00:00,Tanjung Selor,Kalimantan Utara,26.0,29.2,82.4
+2026-09-14 08:00:00,Tanjung Selor,Kalimantan Utara,26.4,29.7,83.1
+2026-09-14 09:00:00,Tanjung Selor,Kalimantan Utara,27.5,30.7,85.2
+2026-09-14 10:00:00,Tanjung Selor,Kalimantan Utara,29.0,32.4,88.0
+2026-09-14 11:00:00,Tanjung Selor,Kalimantan Utara,30.6,33.8,91.0
+2026-09-14 12:00:00,Tanjung Selor,Kalimantan Utara,36.3,39.7,103.0
+2026-09-14 13:00:00,Tanjung Selor,Kalimantan Utara,35.5,38.8,101.0
+2026-09-14 14:00:00,Tanjung Selor,Kalimantan Utara,34.1,37.4,97.6
+2026-09-14 15:00:00,Tanjung Selor,Kalimantan Utara,32.8,36.2,95.1
+2026-09-14 16:00:00,Tanjung Selor,Kalimantan Utara,32.0,35.4,93.6
+2026-09-14 17:00:00,Tanjung Selor,Kalimantan Utara,31.9,35.2,93.4
+2026-09-14 18:00:00,Tanjung Selor,Kalimantan Utara,32.5,35.7,94.6
+2026-09-14 19:00:00,Tanjung Selor,Kalimantan Utara,33.9,36.9,97.2
+2026-09-14 20:00:00,Tanjung Selor,Kalimantan Utara,36.0,39.0,102.2
+2026-09-14 21:00:00,Tanjung Selor,Kalimantan Utara,38.5,41.4,108.4
+2026-09-14 22:00:00,Tanjung Selor,Kalimantan Utara,40.7,43.7,113.8
+2026-09-14 23:00:00,Tanjung Selor,Kalimantan Utara,42.4,45.1,118.0
+2026-09-15 00:00:00,Tanjung Selor,Kalimantan Utara,66.8,71.2,158.9
+2026-09-15 01:00:00,Tanjung Selor,Kalimantan Utara,56.1,60.8,151.4
+2026-09-15 02:00:00,Tanjung Selor,Kalimantan Utara,51.3,55.9,139.9
+2026-09-15 03:00:00,Tanjung Selor,Kalimantan Utara,50.9,55.4,138.9
+2026-09-15 04:00:00,Tanjung Selor,Kalimantan Utara,50.6,55.1,138.2
+2026-09-15 05:00:00,Tanjung Selor,Kalimantan Utara,49.6,53.9,135.7
+2026-09-15 06:00:00,Tanjung Selor,Kalimantan Utara,49.0,53.2,134.2
+2026-09-15 07:00:00,Tanjung Selor,Kalimantan Utara,48.8,52.7,133.7
+2026-09-15 08:00:00,Tanjung Selor,Kalimantan Utara,50.4,54.6,137.7
+2026-09-15 09:00:00,Tanjung Selor,Kalimantan Utara,49.6,53.8,135.7
+2026-09-15 10:00:00,Tanjung Selor,Kalimantan Utara,52.2,55.9,142.1
+2026-09-15 11:00:00,Tanjung Selor,Kalimantan Utara,51.2,54.7,139.7
+2026-09-15 12:00:00,Tanjung Selor,Kalimantan Utara,52.4,55.3,142.6
+2026-09-15 13:00:00,Tanjung Selor,Kalimantan Utara,53.4,55.9,145.1
+2026-09-15 14:00:00,Tanjung Selor,Kalimantan Utara,51.7,53.4,140.9
+2026-09-15 15:00:00,Tanjung Selor,Kalimantan Utara,47.6,49.2,130.8
+2026-09-15 16:00:00,Tanjung Selor,Kalimantan Utara,39.8,40.9,111.6
+2026-09-15 17:00:00,Tanjung Selor,Kalimantan Utara,38.4,39.5,108.1
+2026-09-15 18:00:00,Tanjung Selor,Kalimantan Utara,32.9,34.0,95.3
+2026-09-15 19:00:00,Tanjung Selor,Kalimantan Utara,25.4,26.1,81.2
+2026-09-15 20:00:00,Tanjung Selor,Kalimantan Utara,23.4,24.0,77.5
+2026-09-15 21:00:00,Tanjung Selor,Kalimantan Utara,22.4,22.9,75.6
+2026-09-15 22:00:00,Tanjung Selor,Kalimantan Utara,15.5,15.8,62.6
+2026-09-15 23:00:00,Tanjung Selor,Kalimantan Utara,17.8,18.0,67.0
+2026-09-16 00:00:00,Tanjung Selor,Kalimantan Utara,19.1,19.5,69.4
+2026-09-16 01:00:00,Tanjung Selor,Kalimantan Utara,18.4,18.9,68.1
+2026-09-16 02:00:00,Tanjung Selor,Kalimantan Utara,20.4,21.0,71.8
+2026-09-16 03:00:00,Tanjung Selor,Kalimantan Utara,24.7,25.7,79.9
+2026-09-16 04:00:00,Tanjung Selor,Kalimantan Utara,34.7,36.0,98.7
+2026-09-16 05:00:00,Tanjung Selor,Kalimantan Utara,40.6,41.9,113.6
+2026-09-16 06:00:00,Tanjung Selor,Kalimantan Utara,44.4,45.5,122.9
+2026-09-16 07:00:00,Tanjung Selor,Kalimantan Utara,49.4,50.6,135.2
+2026-09-16 08:00:00,Tanjung Selor,Kalimantan Utara,56.7,58.0,151.8
+2026-09-16 09:00:00,Tanjung Selor,Kalimantan Utara,62.4,63.8,155.8
+2026-09-16 10:00:00,Tanjung Selor,Kalimantan Utara,67.1,68.5,159.1
+2026-09-16 11:00:00,Tanjung Selor,Kalimantan Utara,70.8,71.9,161.7
+2026-09-16 12:00:00,Tanjung Selor,Kalimantan Utara,72.6,73.8,163.0
+2026-09-16 13:00:00,Tanjung Selor,Kalimantan Utara,70.5,71.5,161.5
+2026-09-16 14:00:00,Tanjung Selor,Kalimantan Utara,68.9,69.6,160.4
+2026-09-16 15:00:00,Tanjung Selor,Kalimantan Utara,65.9,66.6,158.3
+2026-09-16 16:00:00,Tanjung Selor,Kalimantan Utara,65.7,66.1,158.2
+2026-09-16 17:00:00,Tanjung Selor,Kalimantan Utara,63.1,63.6,156.3
+2026-09-16 18:00:00,Tanjung Selor,Kalimantan Utara,57.9,58.3,152.7
+2026-09-16 19:00:00,Tanjung Selor,Kalimantan Utara,44.9,45.3,124.1
+2026-09-16 20:00:00,Tanjung Selor,Kalimantan Utara,20.5,20.7,72.0
+2026-09-16 21:00:00,Tanjung Selor,Kalimantan Utara,14.9,15.0,61.5
+2026-09-16 22:00:00,Tanjung Selor,Kalimantan Utara,17.7,17.8,66.8
+2026-09-16 23:00:00,Tanjung Selor,Kalimantan Utara,25.8,26.1,82.0
