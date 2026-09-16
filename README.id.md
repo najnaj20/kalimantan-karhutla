@@ -1,20 +1,27 @@
-# 🔥 Karhutla Kalimantan — Analisis Hotspot Kebakaran (NASA FIRMS)
+# 🔥 Karhutla Indonesia — Analisis Hotspot Kebakaran & Kualitas Udara (NASA FIRMS + CAMS)
 
 > 📖 [English](README.md) · [Bahasa Indonesia](README.id.md)
 
 Analisis data end-to-end **deteksi titik panas (hotspot) kebakaran hutan & lahan di
-Kalimantan** dari NASA FIRMS (VIIRS 375m + MODIS C6.1), ditarik **tanpa kunci API**
-lewat mirror Humanitarian Data Exchange (HDX). Dibangun sebagai proyek portofolio
-data analyst: data asli, cerita yang kuat, pipeline yang bisa direproduksi.
+seluruh Indonesia** dari NASA FIRMS (VIIRS 375m + MODIS C6.1), ditarik **tanpa kunci
+API** lewat mirror Humanitarian Data Exchange (HDX), digabung dengan **kualitas udara
+(PM2.5 / AQI) 34 ibu kota provinsi** dari model Copernicus CAMS (API gratis Open-Meteo).
+Dibangun sebagai proyek portofolio data analyst: data asli, cerita bahasa manusia,
+pipeline harian yang bisa direproduksi, dan **dashboard berbasis peta yang bisa dibaca
+orang awam**.
 
-**Jendela data:** 05–12 September 2026 · **30.712 hotspot terdeteksi** · Puncak: 11 Sep
-(8.914/hari) · Provinsi terparah: Kalimantan Tengah (56.6% dari total)
+**Jendela data:** rolling 7 hari, diperbarui otomatis tiap hari · **±74.000 hotspot**
+tersimpan · **34 kota** dipantau kualitas udaranya (kategori ISPU, label Bahasa).
 
-### 📸 Dashboard
+### 📸 Dashboard (map-centric, ramah orang awam)
 
-| ![Dashboard atas](output/dashboard_top.png) |
+| ![Peta api](output/ui_final_fire.png) |
 |:--:|
-| *Peta hotspot: batas provinsi + titik berwarna FRP, pencarian kota (Nominatim), slider tanggal — basemap OpenStreetMap* |
+| *Layer "🔥 Titik api": peta Esri gelap, titik api agregat grid dengan warna/ukuran sesuai kekuatan panas (FRP) + legenda, ringkasan bahasa manusia per hari, pemilih pulau, slider tanggal* |
+
+| ![Peta AQI](output/ui_final_aqi.png) |
+|:--:|
+| *Layer "🌫️ Kualitas udara": marker 34 kota berwarna sesuai kategori ISPU, saran kesehatan bahasa sederhana, legenda ISPU* |
 
 | ![Tren](output/dashboard_charts.png) | ![Heatmap](output/dashboard_heatmap.png) |
 |:--:|:--:|
@@ -30,12 +37,13 @@ data analyst: data asli, cerita yang kuat, pipeline yang bisa direproduksi.
 kalimantan-karhutla/
 ├── src/
 │   ├── extract.py       # tarik CSV FIRMS VIIRS+MODIS 7 hari (retry + backoff, --refresh)
-│   ├── transform.py     # filter bbox → point-in-polygon → penentuan provinsi
+│   ├── transform.py     # filter bbox (seluruh Indonesia) → point-in-polygon → provinsi + pulau
+│   ├── fetch_aqi.py     # kualitas udara CAMS (PM2.5/AQI) 34 ibu kota provinsi, kategori ISPU
 │   ├── analyze.py       # agregat harian/provinsi, kelas FRP, akumulasi history
 │   ├── export_tableau.py# export CSV siap-Tableau (data/tableau/)
 │   └── pipeline.py      # extract → transform → analyze, ujung ke ujung
 ├── dashboard/
-│   └── app.py           # Streamlit: peta folium interaktif + chart plotly
+│   └── app.py           # Streamlit: peta folium map-centric (layer api / kualitas udara) + chart
 ├── scripts/
 │   ├── screenshot.py    # capture dashboard headless (Playwright)
 │   └── daily_update.sh  # cron: refresh data + export (mode live)

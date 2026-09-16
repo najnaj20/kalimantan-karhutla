@@ -1,5 +1,5 @@
-"""Fetch hourly air quality (PM2.5/PM10, US AQI + ISPU) for Kalimantan capitals
-from Open-Meteo Air Quality API (free, no API key; CAMS ensemble model).
+"""Fetch hourly air quality (PM2.5/PM10, US AQI + ISPU) for major Indonesian
+cities from Open-Meteo Air Quality API (free, no API key; CAMS ensemble model).
 Writes data/processed/aqi_hourly.csv + data/processed/aqi_summary.json.
 """
 from __future__ import annotations
@@ -14,12 +14,48 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 PROC_DIR = ROOT / "data" / "processed"
 
+# city: (lat, lon, province-ID, island group)
 CITIES = {
-    "Pontianak": (-0.02, 109.34, "Kalimantan Barat", "WIB"),
-    "Palangka Raya": (-2.21, 113.92, "Kalimantan Tengah", "WIB"),
-    "Banjarmasin": (-2.23, 114.59, "Kalimantan Selatan", "WITA"),
-    "Samarinda": (-0.49, 117.15, "Kalimantan Timur", "WITA"),
-    "Tanjung Selor": (2.86, 117.36, "Kalimantan Utara", "WITA"),
+    # Sumatra
+    "Banda Aceh": (5.55, 95.32, "Aceh", "Sumatra"),
+    "Medan": (3.59, 98.67, "Sumatera Utara", "Sumatra"),
+    "Padang": (-0.95, 100.35, "Sumatera Barat", "Sumatra"),
+    "Pekanbaru": (0.51, 101.45, "Riau", "Sumatra"),
+    "Jambi": (-1.60, 103.61, "Jambi", "Sumatra"),
+    "Bengkulu": (-3.80, 102.27, "Bengkulu", "Sumatra"),
+    "Palembang": (-2.99, 104.76, "Sumatera Selatan", "Sumatra"),
+    "Bandar Lampung": (-5.43, 105.26, "Lampung", "Sumatra"),
+    "Pangkal Pinang": (-2.13, 106.12, "Kep. Bangka Belitung", "Sumatra"),
+    "Tanjung Pinang": (0.92, 104.46, "Kep. Riau", "Sumatra"),
+    # Java
+    "Jakarta": (-6.21, 106.85, "DKI Jakarta", "Java"),
+    "Bandung": (-6.92, 107.61, "Jawa Barat", "Java"),
+    "Semarang": (-6.97, 110.42, "Jawa Tengah", "Java"),
+    "Yogyakarta": (-7.80, 110.36, "DI Yogyakarta", "Java"),
+    "Surabaya": (-7.26, 112.75, "Jawa Timur", "Java"),
+    "Serang": (-6.11, 106.15, "Banten", "Java"),
+    # Bali & Nusa Tenggara
+    "Denpasar": (-8.67, 115.21, "Bali", "Bali & Nusa Tenggara"),
+    "Mataram": (-8.58, 116.13, "Nusa Tenggara Barat", "Bali & Nusa Tenggara"),
+    "Kupang": (-10.17, 123.60, "Nusa Tenggara Timur", "Bali & Nusa Tenggara"),
+    # Kalimantan
+    "Pontianak": (-0.02, 109.34, "Kalimantan Barat", "Kalimantan"),
+    "Palangka Raya": (-2.21, 113.92, "Kalimantan Tengah", "Kalimantan"),
+    "Banjarmasin": (-2.23, 114.59, "Kalimantan Selatan", "Kalimantan"),
+    "Samarinda": (-0.49, 117.15, "Kalimantan Timur", "Kalimantan"),
+    "Tanjung Selor": (2.86, 117.36, "Kalimantan Utara", "Kalimantan"),
+    # Sulawesi
+    "Makassar": (-5.15, 119.43, "Sulawesi Selatan", "Sulawesi"),
+    "Manado": (1.49, 124.84, "Sulawesi Utara", "Sulawesi"),
+    "Palu": (-0.90, 119.88, "Sulawesi Tengah", "Sulawesi"),
+    "Kendari": (-3.97, 122.52, "Sulawesi Tenggara", "Sulawesi"),
+    "Gorontalo": (0.54, 123.06, "Gorontalo", "Sulawesi"),
+    "Mamuju": (-2.68, 118.89, "Sulawesi Barat", "Sulawesi"),
+    # Maluku & Papua
+    "Ambon": (-3.70, 128.18, "Maluku", "Maluku & Papua"),
+    "Sofifi": (0.73, 127.55, "Maluku Utara", "Maluku & Papua"),
+    "Jayapura": (-2.53, 140.72, "Papua", "Maluku & Papua"),
+    "Manokwari": (-0.87, 134.08, "Papua Barat", "Maluku & Papua"),
 }
 
 # US EPA AQI breakpoints for PM2.5 (conc_low, conc_high, aqi_low, aqi_high)
@@ -52,36 +88,39 @@ def ispu_category(pm24: float | None):
     return None, None, None
 
 def main() -> None:
-    lats = ",".join(str(v[0]) for v in CITIES.values())
-    lons = ",".join(str(v[1]) for v in CITIES.values())
-    r = requests.get(
-        "https://air-quality-api.open-meteo.com/v1/air-quality",
-        params={"latitude": lats, "longitude": lons,
-                "hourly": "pm2_5,pm10", "past_days": 8, "forecast_days": 2,
-                "timezone": "UTC"},
-        timeout=60,
-    )
-    r.raise_for_status()
-    locs = r.json()
-    if not isinstance(locs, list):
-        locs = [locs]
-
     frames = []
-    for (city, (lat, lon, prov, tzname)), loc in zip(CITIES.items(), locs):
-        h = pd.DataFrame({
-            "time_local": pd.to_datetime(loc["hourly"]["time"]),
-            "pm25": loc["hourly"]["pm2_5"],
-            "pm10": loc["hourly"]["pm10"],
-        })
-        h["us_aqi"] = h["pm25"].map(us_aqi_from_pm25)
-        h["city"] = city
-        h["provinsi"] = prov
-        frames.append(h)
+    items = list(CITIES.items())
+    for i in range(0, len(items), 10):  # batch to stay well under URL/response limits
+        batch = items[i:i + 10]
+        lats = ",".join(str(v[0]) for _, v in batch)
+        lons = ",".join(str(v[1]) for _, v in batch)
+        r = requests.get(
+            "https://air-quality-api.open-meteo.com/v1/air-quality",
+            params={"latitude": lats, "longitude": lons,
+                    "hourly": "pm2_5,pm10", "past_days": 8, "forecast_days": 2,
+                    "timezone": "UTC"},
+            timeout=60,
+        )
+        r.raise_for_status()
+        locs = r.json()
+        if not isinstance(locs, list):
+            locs = [locs]
+        for (city, (lat, lon, prov, island)), loc in zip(batch, locs):
+            h = pd.DataFrame({
+                "time_local": pd.to_datetime(loc["hourly"]["time"]),
+                "pm25": loc["hourly"]["pm2_5"],
+                "pm10": loc["hourly"]["pm10"],
+            })
+            h["us_aqi"] = h["pm25"].map(us_aqi_from_pm25)
+            h["city"] = city
+            h["provinsi"] = prov
+            h["pulau"] = island
+            frames.append(h)
 
     df = pd.concat(frames, ignore_index=True)
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M UTC")
     df["time_utc"] = df["time_local"]
-    df = df[["time_utc", "city", "provinsi", "pm25", "pm10", "us_aqi"]]
+    df = df[["time_utc", "city", "provinsi", "pulau", "pm25", "pm10", "us_aqi"]]
     PROC_DIR.mkdir(parents=True, exist_ok=True)
     df.to_csv(PROC_DIR / "aqi_hourly.csv", index=False)
 
@@ -98,6 +137,9 @@ def main() -> None:
         cat, color, _ = ispu_category(mean24)
         summary[city] = {
             "provinsi": str(last["provinsi"]),
+            "pulau": str(last["pulau"]),
+            "lat": CITIES[city][0],
+            "lon": CITIES[city][1],
             "pm25_now": float(last["pm25"]),
             "us_aqi_now": float(last["us_aqi"]),
             "time_utc": str(last["time_utc"]),

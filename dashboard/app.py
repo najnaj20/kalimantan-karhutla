@@ -1,972 +1,317 @@
-"""Streamlit dashboard: Karhutla Kalimantan — hotspot analysis (NASA FIRMS).
+"""Streamlit dashboard — Peta Karhutla Indonesia.
 
-Bilingual (ID/EN) with village/district search via OSM Nominatim.
+Map-centric, ramah orang awam: satu peta besar + dua pilihan sederhana
+(layer titik api / kualitas udara) + pemilih wilayah pulau.
 """
 from __future__ import annotations
-from math import asin, cos, radians, sin, sqrt
+
+import json
 from pathlib import Path
 
 import folium
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.io as pio
-import requests
 import streamlit as st
 from streamlit_folium import st_folium
+
+st.set_page_config(page_title="Peta Karhutla Indonesia", page_icon="🔥", layout="wide")
 
 ROOT = Path(__file__).resolve().parent.parent
 PROC = ROOT / "data" / "processed"
 BOUNDARIES = ROOT / "data" / "boundaries" / "idn_adm1.geojson"
 
-st.set_page_config(page_title="Karhutla Kalimantan", layout="wide")
+ISLANDS = ["Semua (Indonesia)", "Sumatra", "Java", "Bali & Nusa Tenggara",
+           "Kalimantan", "Sulawesi", "Maluku & Papua"]
 
-# ---------- dark theme ----------
-pio.templates.default = "plotly_dark"
+ISLAND_CENTER = {
+    "Semua (Indonesia)": (-2.5, 118.0, 5),
+    "Sumatra": (0.5, 103.0, 5),
+    "Java": (-7.3, 110.5, 7),
+    "Bali & Nusa Tenggara": (-8.6, 118.0, 7),
+    "Kalimantan": (-0.5, 114.0, 6),
+    "Sulawesi": (-1.5, 121.0, 6),
+    "Maluku & Papua": (-3.0, 135.5, 5),
+}
 
-st.markdown("""
+PROV_ID = {
+    "Aceh": "Aceh", "Bali": "Bali", "Bangka-Belitung Islands": "Kep. Bangka Belitung",
+    "Banten": "Banten", "Bengkulu": "Bengkulu", "Central Java": "Jawa Tengah",
+    "Central Kalimantan": "Kalimantan Tengah", "Central Sulawesi": "Sulawesi Tengah",
+    "East Java": "Jawa Timur", "East Kalimantan": "Kalimantan Timur",
+    "East Nusa Tenggara": "Nusa Tenggara Timur", "Gorontalo": "Gorontalo",
+    "Jakarta Special Capital Region": "DKI Jakarta", "Jambi": "Jambi",
+    "Lampung": "Lampung", "Maluku": "Maluku", "North Kalimantan": "Kalimantan Utara",
+    "North Maluku": "Maluku Utara", "North Sulawesi": "Sulawesi Utara",
+    "North Sumatra": "Sumatera Utara", "Papua": "Papua", "Riau": "Riau",
+    "Riau Islands": "Kep. Riau", "South Kalimantan": "Kalimantan Selatan",
+    "South Sulawesi": "Sulawesi Selatan", "South Sumatra": "Sumatera Selatan",
+    "Southeast Sulawesi": "Sulawesi Tenggara",
+    "Special Region of Yogyakarta": "DI Yogyakarta", "West Java": "Jawa Barat",
+    "West Kalimantan": "Kalimantan Barat", "West Nusa Tenggara": "Nusa Tenggara Barat",
+    "West Papua": "Papua Barat", "West Sulawesi": "Sulawesi Barat", "West Sumatra": "Sumatera Barat",
+}
+
+# kategori ISPU -> warna marker udara
+def ispu_color_for(aqi: float) -> str:
+    if aqi <= 50: return "#2ecc71"
+    if aqi <= 100: return "#f1c40f"
+    if aqi <= 200: return "#e67e22"
+    if aqi <= 300: return "#e74c3c"
+    return "#8e44ad"
+
+
+def ispu_label(aqi: float) -> str:
+    if aqi <= 50: return "Baik"
+    if aqi <= 100: return "Sedang"
+    if aqi <= 200: return "Tidak Sehat"
+    if aqi <= 300: return "Sangat Tidak Sehat"
+    return "Berbahaya"
+
+
+CSS = """
 <style>
-    /* === Global dark theme === */
-    .stApp, .stSidebar, .st-emotion-cache-1y4p8pa, .st-emotion-cache-6qob1r {
-        background-color: #0d1117 !important;
-        color: #c9d1d9;
-    }
-    .stSidebar, .st-emotion-cache-1wrcr25 {
-        background-color: #161b22 !important;
-    }
-    /* Metric cards */
-    .stMetric {
-        background: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
-        border: 1px solid #30363d;
-        border-radius: 12px;
-        padding: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .stMetric label, .stMetric [data-testid="stMetricLabel"] {
-        color: #8b949e !important;
-        font-size: 0.85rem !important;
-        letter-spacing: 0.5px;
-    }
-    .stMetric [data-testid="stMetricValue"] {
-        color: #f0f6fc !important;
-        font-size: 2rem !important;
-        font-weight: 700;
-    }
-    .stMetric [data-testid="stMetricDelta"] {
-        color: #e67e22 !important;
-    }
-    /* Metric cards hover */
-    .stMetric:hover {
-        border-color: #e67e22;
-        box-shadow: 0 0 20px rgba(230, 126, 34, 0.15);
-        transition: all 0.3s ease;
-    }
-    /* Headers */
-    h1, h2, h3, h4, h5, h6 {
-        color: #f0f6fc !important;
-    }
-    h1 {
-        background: linear-gradient(135deg, #f0f6fc, #e67e22);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-    /* Subheader accent */
-    h3 {
-        border-left: 3px solid #e67e22;
-        padding-left: 12px;
-    }
-    /* Dataframe */
-    .stDataFrame, [data-testid="stDataFrame"] {
-        background-color: #161b22 !important;
-        border: 1px solid #30363d;
-        border-radius: 8px;
-    }
-    .stDataFrame table {
-        background-color: #161b22 !important;
-        color: #c9d1d9 !important;
-    }
-    .stDataFrame th {
-        background-color: #1c2128 !important;
-        color: #e67e22 !important;
-        font-weight: 600;
-    }
-    .stDataFrame td {
-        color: #c9d1d9 !important;
-    }
-    /* Buttons */
-    .stButton button {
-        background: linear-gradient(135deg, #e67e22, #d35400) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
-    }
-    .stButton button:hover {
-        background: linear-gradient(135deg, #f39c12, #e67e22) !important;
-        box-shadow: 0 4px 16px rgba(230, 126, 34, 0.5);
-    }
-    /* Slider */
-    .stSlider [data-baseweb="slider"] {
-        background-color: #30363d !important;
-    }
-    .stSlider [data-baseweb="slider"] [role="slider"] {
-        background-color: #e67e22 !important;
-    }
-    /* Select slider (date filter) */
-    .stSelectSlider [data-baseweb="slider"] {
-        background-color: #30363d !important;
-    }
-    /* Text input */
-    .stTextInput input {
-        background-color: #161b22 !important;
-        border: 1px solid #30363d !important;
-        color: #c9d1d9 !important;
-        border-radius: 8px !important;
-    }
-    .stTextInput input:focus {
-        border-color: #e67e22 !important;
-        box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.3);
-    }
-    /* Divider */
-    hr {
-        border-color: #30363d !important;
-    }
-    /* Caption / footer */
-    .stCaption, .st-emotion-cache-1aehpvj, .st-emotion-cache-16idsys {
-        color: #8b949e !important;
-    }
-    /* Success / info boxes */
-    .stAlert {
-        background-color: #1c2128 !important;
-        border: 1px solid #30363d !important;
-        color: #c9d1d9 !important;
-    }
-    .stAlert [data-testid="stAlert"] {
-        background-color: #1c2128 !important;
-    }
-    /* Radio */
-    .stRadio label {
-        color: #c9d1d9 !important;
-    }
-    .stRadio [data-testid="stWidgetLabel"] {
-        color: #8b949e !important;
-    }
-    /* Sidebar text */
-    .stSidebar .st-emotion-cache-1aehpvj {
-        color: #8b949e !important;
-    }
-    /* Metric delta icon colors */
-    .st-emotion-cache-1wivap2 {
-        color: #e67e22 !important;
-    }
-    /* Hero metric grid polish */
-    .stMetric > div {
-        gap: 2px;
-    }
-    /* Tab list styling (period selector) */
-    .stTabs [role="tablist"] button {
-        background: #161b22 !important;
-        border: 1px solid #30363d !important;
-        color: #8b949e !important;
-        border-radius: 8px !important;
-        margin-right: 6px !important;
-        font-size: 0.8rem !important;
-    }
-    .stTabs [role="tablist"] button[aria-selected="true"] {
-        background: linear-gradient(135deg, #e67e22, #d35400) !important;
-        color: #fff !important;
-        border-color: #e67e22 !important;
-    }
-    /* Section divider glow */
-    hr {
-        border: none !important;
-        height: 1px !important;
-        background: linear-gradient(90deg, transparent, #30363d, transparent) !important;
-    }
-    /* Insight callout box */
-    .insight-box {
-        background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-        border: 1px solid #30363d;
-        border-left: 4px solid #e67e22;
-        border-radius: 10px;
-        padding: 14px 18px;
-        margin: 10px 0;
-    }
-    .insight-box .title {
-        color: #e67e22;
-        font-weight: 700;
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-    .insight-box .body {
-        color: #c9d1d9;
-        font-size: 0.88rem;
-        margin-top: 4px;
-        line-height: 1.5;
-    }
-    /* scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #0d1117;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #30363d;
-        border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #484f58;
-    }
+html, body, [class*="css"] { font-family: 'Inter', -apple-system, sans-serif; }
+.stApp { background-color: #0d1117; color: #c9d1d9; }
+[data-testid="stMetric"] {
+    background: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
+    border: 1px solid #30363d; border-radius: 12px; padding: 14px;
+}
+[data-testid="stMetricValue"] { color: #e6edf3 !important; }
+[data-testid="stMetricDelta"] { color: #8b949e !important; }
+[data-testid="stMetricLabel"] { color: #8b949e !important; }
+.human-box {
+    background: linear-gradient(135deg, #161b22, #1c2128);
+    border-left: 4px solid #e67e22; border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 10px; color: #e6edf3; font-size: 1.02rem;
+    line-height: 1.55;
+}
+.legend-chip { display:inline-block; width: 12px; height: 12px; border-radius: 50%;
+    margin: 0 4px 0 12px; }
 </style>
-""", unsafe_allow_html=True)
-
-# ---------- i18n strings ----------
-TEXT = {
-    "sidebar_title": {"id": "Bahasa", "en": "Language"},
-    "lang_labels": {"id": "Indonesian", "en": "English"},
-    "caption_data": {
-        "id": "Data: NASA FIRMS VIIRS 375m + MODIS C6.1 · {min} – {max} · lisensi CC BY",
-        "en": "Data: NASA FIRMS VIIRS 375m + MODIS C6.1 · {min} – {max} · CC BY",
-    },
-    "metric_total": {"id": "Total Hotspot (7 hari)", "en": "Total Hotspots (7 days)"},
-    "metric_days": {"id": "Hari Cakupan", "en": "Days Covered"},
-    "metric_days_val": {"id": "{n} hari", "en": "{n} days"},
-    "metric_worst": {"id": "Provinsi Terparah", "en": "Worst Province"},
-    "metric_worst_val": {"id": "{n:,} titik", "en": "{n:,} points"},
-    "metric_peak": {"id": "Puncak Harian", "en": "Daily Peak"},
-    "map_title": {"id": "🗺️ Peta Hotspot", "en": "🗺️ Hotspot Map"},
-    "map_filter": {"id": "Filter tanggal", "en": "Filter date"},
-    "map_empty": {"id": "Tidak ada hotspot pada tanggal ini.", "en": "No hotspots on this date."},
-    "map_tooltip": {"id": "Provinsi", "en": "Province"},
-    "map_popup_frp": {"id": "FRP", "en": "FRP"},
-    "search_label": {"id": "🔍 Cari desa / kecamatan", "en": "🔍 Search village / district"},
-    "search_placeholder": {"id": "Contoh: Pangkalan Bun, Sampit...", "en": "E.g.: Pangkalan Bun, Sampit..."},
-    "search_btn": {"id": "Cari", "en": "Search"},
-    "search_radius": {"id": "Radius pencarian", "en": "Search radius"},
-    "search_km": {"id": "{n} km", "en": "{n} km"},
-    "search_result": {
-        "id": "📍 **{n} hotspot** dalam radius **{r} km** dari **{place}**",
-        "en": "📍 **{n} hotspot(s)** within **{r} km** of **{place}**",
-    },
-    "search_none": {
-        "id": "Tidak ada hotspot dalam radius {r} km dari lokasi tersebut. Coba perbesar radius.",
-        "en": "No hotspots within {r} km of that location. Try increasing the radius.",
-    },
-    "search_notfound": {
-        "id": "Lokasi '{q}' tidak ditemukan. Coba nama desa atau kecamatan lain.",
-        "en": "Location '{q}' not found. Try a different village or district name.",
-    },
-    "search_error": {
-        "id": "Gagal mencari lokasi. Coba lagi nanti.",
-        "en": "Failed to search location. Please try again later.",
-    },
-    "clear_btn": {"id": "✕ Hapus pencarian", "en": "✕ Clear search"},
-    "side_table_title": {"id": "📊 Ringkasan Provinsi", "en": "📊 Province Summary"},
-    "side_table_subtitle": {"id": "({n} hari, hasil pencarian)", "en": "({n} days, search results)"},
-    "col_province": {"id": "Provinsi", "en": "Province"},
-    "col_hotspot": {"id": "Hotspot", "en": "Hotspots"},
-    "col_frp_mean": {"id": "FRP rata-rata", "en": "Avg FRP"},
-    "col_frp_max": {"id": "FRP max", "en": "Max FRP"},
-    "col_pct": {"id": "Porsi %", "en": "Share %"},
-    "band_title": {"id": "🔥 Intensitas (FRP)", "en": "🔥 Intensity (FRP)"},
-    "band_x": {"id": "Kelas Intensitas", "en": "Intensity Class"},
-    "band_y": {"id": "Jumlah Hotspot", "en": "Hotspot Count"},
-    "trend_title": {"id": "📈 Tren Hotspot", "en": "📈 Hotspot Trend"},
-    "trend_daily": {"id": "Hotspot per Hari (semua sensor)", "en": "Hotspots per Day (all sensors)"},
-    "trend_top3": {"id": "Top 3 Provinsi per Hari", "en": "Top 3 Provinces per Day"},
-    "x_date": {"id": "Tanggal", "en": "Date"},
-    "y_hotspot": {"id": "Jumlah Hotspot", "en": "Hotspot Count"},
-    "heat_title": {"id": "🗓️ Heatmap Provinsi × Hari", "en": "🗓️ Province × Day Heatmap"},
-    "heat_x": {"id": "Tanggal", "en": "Date"},
-    "heat_y": {"id": "Provinsi", "en": "Province"},
-    "heat_c": {"id": "Hotspot", "en": "Hotspots"},
-    "footer": {
-        "id": "Sumber: NASA FIRMS (VIIRS 375m & MODIS C6.1) via Humanitarian Data Exchange (HDX), "
-        "CC BY. Batas admin: geoBoundaries / HDX COD. Pencarian desa: OpenStreetMap Nominatim. "
-        "Proyek portofolio — bukan alat peringatan dini resmi.",
-        "en": "Source: NASA FIRMS (VIIRS 375m & MODIS C6.1) via Humanitarian Data Exchange (HDX), "
-        "CC BY. Admin boundaries: geoBoundaries / HDX COD. Village search: OpenStreetMap Nominatim. "
-        "Portfolio project — not an official early-warning system.",
-    },
-}
-
-# province english name → localized
-PROV_EN = {
-    "West Kalimantan": "Kalimantan Barat",
-    "Central Kalimantan": "Kalimantan Tengah",
-    "East Kalimantan": "Kalimantan Timur",
-    "South Kalimantan": "Kalimantan Selatan",
-    "North Kalimantan": "Kalimantan Utara",
-}
-
-BAND_EN = {"Rendah": "Low", "Sedang": "Medium", "Tinggi": "High", "Ekstrem": "Extreme"}
-BAND_COLOR = {
-    "Rendah": "#2ecc71",
-    "Sedang": "#f1c40f",
-    "Tinggi": "#e67e22",
-    "Ekstrem": "#e74c3c",
-}
-
-PROV_WARNA = {
-    "West Kalimantan": "#d62728",
-    "Central Kalimantan": "#ff7f0e",
-    "South Kalimantan": "#2ca02c",
-    "East Kalimantan": "#1f77b4",
-    "North Kalimantan": "#9467bd",
-}
+"""
+st.markdown(CSS, unsafe_allow_html=True)
 
 
-# ---------- helpers ----------
-def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    """Haversine distance in km between two (lat,lon) pairs."""
-    R = 6371.0
-    dlat = radians(lat2 - lat1)
-    dlon = radians(lon2 - lon1)
-    a = sin(dlat / 2) ** 2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon / 2) ** 2
-    return R * 2 * asin(sqrt(a))
-
-
-def T(key: str) -> str:
-    return TEXT[key][lang]
-
-
-def loc_prov(name: str) -> str:
-    return PROV_EN.get(name, name) if lang == "id" else name
-
-
-def loc_band(name: str) -> str:
-    return BAND_EN.get(name, name) if lang == "en" else name
-
-
-# ---------- data ----------
 @st.cache_data(show_spinner=False)
-def load_data() -> tuple[pd.DataFrame, dict]:
-    df = pd.read_csv(PROC / "kalimantan_hotspots.csv", parse_dates=["acq_date"])
-    gjson = __import__("json").loads(BOUNDARIES.read_text())
+def load_data():
+    df = pd.read_csv(PROC / "indonesia_hotspots.csv", parse_dates=["acq_date"])
+    gjson = json.loads(BOUNDARIES.read_text())
     return df, gjson
 
 
 @st.cache_data(show_spinner=False, ttl=1800)
 def load_aqi():
-    """Hourly modelled air quality (Open-Meteo/CAMS) + summary. None if missing."""
-    import json as _json
-    csv_p, js_p = PROC / "aqi_hourly.csv", PROC / "aqi_summary.json"
-    if not (csv_p.exists() and js_p.exists()):
-        return None, None
-    aqi = pd.read_csv(csv_p, parse_dates=["time_utc"])
-    summary = _json.loads(js_p.read_text())
-    return aqi, summary
-
-
-@st.cache_data(show_spinner=False)
-def load_aggs() -> dict[str, pd.DataFrame]:
-    return {
-        "daily": pd.read_csv(PROC / "agg_daily.csv"),
-        "province": pd.read_csv(PROC / "agg_province.csv"),
-        "province_daily": pd.read_csv(PROC / "agg_province_daily.csv", index_col=0),
-        "bands": pd.read_csv(PROC / "agg_bands.csv"),
-        "daynight": pd.read_csv(PROC / "agg_daynight.csv"),
-        "top3_daily": pd.read_csv(PROC / "agg_top3_daily.csv", parse_dates=["tanggal"]),
-    }
-
-
-@st.cache_data(show_spinner=False, ttl=3600)
-def geocode_location(query: str):
-    """Geocode a place name via OSM Nominatim. Returns dict with lat, lon, display_name or None."""
-    url = "https://nominatim.openstreetmap.org/search"
-    params = {"q": query, "format": "json", "limit": 1, "countrycodes": "ID"}
-    headers = {"User-Agent": "KarhutlaDashboard/1.0 (hackathon project)"}
-    try:
-        resp = requests.get(url, params=params, headers=headers, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
-        if data:
-            return {
-                "lat": float(data[0]["lat"]),
-                "lon": float(data[0]["lon"]),
-                "display_name": data[0]["display_name"],
-            }
+    p = PROC / "aqi_summary.json"
+    if not p.exists():
         return None
-    except Exception:
-        return None
-
-
-# ---------- language toggle ----------
-lang = st.sidebar.radio(TEXT["sidebar_title"]["en"], ["English", "Indonesian"],
-                        index=0, format_func=lambda x: x)
-lang = "en" if lang == "English" else "id"
+    return json.loads(p.read_text())
 
 
 df, gjson = load_data()
-aggs = load_aggs()
+aqi = load_aqi()
 
-# ---------- session state ----------
-if "search_query" not in st.session_state:
-    st.session_state.search_query = ""
-if "search_coords" not in st.session_state:
-    st.session_state.search_coords = None  # {"lat": ..., "lon": ..., "display_name": ...}
-if "search_radius" not in st.session_state:
-    st.session_state.search_radius = 10.0
+st.title("🔥 Peta Kebakaran Hutan & Lahan — Indonesia")
+st.caption("Titik panas terdeteksi NASA (update tiap hari) + kualitas udara model CAMS. "
+           "Pilih apa yang ingin dilihat, lalu pilih wilayahnya.")
 
-# ---------- header ----------
-total_all = len(df)
-days = df["acq_date"].dt.date.nunique()
-worst = aggs["province"].iloc[0]
-peak = aggs["daily"].loc[aggs["daily"]["hotspot"].idxmax()]
+HARI = {"Monday": "Senin", "Tuesday": "Selasa", "Wednesday": "Rabu",
+        "Thursday": "Kamis", "Friday": "Jumat", "Saturday": "Sabtu", "Sunday": "Minggu"}
+BULAN = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "Mei", 6: "Jun",
+         7: "Jul", 8: "Agu", 9: "Sep", 10: "Okt", 11: "Nov", 12: "Des"}
+BULAN_PANJANG = {1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
+                 7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"}
 
-st.title("🔥 Karhutla Kalimantan — Wildfire Hotspot Analysis (NASA FIRMS)")
 
-# ---------- ENSO / climate context ----------
-ENSO = {
-    "label": {"en": "CLIMATE CONTEXT · EL NIÑO 2026", "id": "KONTEKS IKLIM · EL NIÑO 2026"},
-    "oni": "JJA 2026: +1.80 °C",
-    "phase": {"en": "Strong El Niño", "id": "El Niño Kuat"},
-    "body": {
-        "en": (
-            "Equatorial Pacific sea-surface temperature anomalies drive Indonesia's "
-            "fire season. The 2026 El Niño (ONI +1.80 °C in JJA 2026, climbing from "
-            "-0.39 in DJF) deepens the dry season across Kalimantan — suppressing "
-            "monsoon rains and elevating peat-fire risk. The 29 Aug hotspot peak "
-            "lines up with this drying signal."
-        ),
-        "id": (
-            "Anomali suhu permukaan laut Pasifik ekuatorial mengendalikan musim "
-            "kebakaran Indonesia. El Niño 2026 (ONI +1,80 °C pada JJA 2026, naik dari "
-            "-0,39 di DJF) memperpanjang musim kering di Kalimantan — menekan hujan "
-            "monsun dan meningkatkan risiko kebakaran gambut. Puncak hotspot 29 Agt "
-            "selaras dengan sinyal kekeringan ini."
-        ),
+def tgl_id(d, panjang=False) -> str:
+    h = HARI.get(d.strftime("%A"), d.strftime("%a"))
+    b = BULAN_PANJANG[d.month] if panjang else BULAN[d.month]
+    return f"{h}, {d.day} {b} {d.year}" if not panjang else f"{d.day} {b} {d.year}"
+
+# ---------- pemilih sederhana ----------
+c1, c2, c3 = st.columns([1, 1.2, 1.6])
+with c1:
+    layer = st.radio("Ingin melihat apa?", ["🔥 Titik api", "🌫️ Kualitas udara"], label_visibility="visible")
+with c2:
+    island = st.selectbox("Wilayah", ISLANDS)
+with c3:
+    tanggal = None
+    if layer == "🔥 Titik api":
+        opsi = sorted(df["acq_date"].dt.date.unique())
+        tanggal = st.select_slider("Tanggal", opsi, value=opsi[-1],
+                                   format_func=lambda d: tgl_id(d))
+
+lat0, lon0, zoom0 = ISLAND_CENTER[island]
+TILES = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+TILES_ATTR = "Tiles © Esri — Source: Esri, OpenStreetMap contributors"
+sub = df if island == "Semua (Indonesia)" else df[df["pulau"] == island]
+
+# ---------- ringkasan bahasa manusia ----------
+if layer == "🔥 Titik api":
+    day = sub[sub["acq_date"].dt.date == tanggal]
+    n = len(day)
+    if n:
+        top = day.groupby("provinsi").size().sort_values(ascending=False)
+        top_p = PROV_ID.get(top.index[0], top.index[0])
+        strong = int((day["frp"] >= 100).sum())
+        st.markdown(
+            f"<div class='human-box'>📅 <b>{tgl_id(tanggal, True)} — {island}:</b> "
+            f"ditemukan <b>{n:,} titik api</b>, paling banyak di <b>{top_p}</b> ({int(top.iloc[0]):,} titik). "
+            f"<b>{strong} titik berukuran besar/panas tinggi</b> — potensi kebakaran nyata, "
+            f"bukan hanya panas matahari."
+            + (" 🔥" if strong > 200 else "") + "</div>",
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(f"<div class='human-box'>📅 {tgl_id(tanggal, True)} — {island}: "
+                    f"tidak ada titik api terdeteksi. ✅</div>", unsafe_allow_html=True)
+else:
+    if aqi:
+        cities = aqi["cities"]
+        cs = [(c, v) for c, v in cities.items()
+              if island == "Semua (Indonesia)" or v.get("pulau") == island]
+        cs.sort(key=lambda kv: -kv[1]["us_aqi_now"])
+        worst_c, worst_v = cs[0]
+        ok = sum(1 for _, v in cs if v["us_aqi_now"] <= 50)
+        bad = sum(1 for _, v in cs if v["us_aqi_now"] > 100)
+        st.markdown(
+            f"<div class='human-box'>🌫️ <b>Kualitas udara {island} sekarang:</b> "
+            f"terburuk di <b>{worst_c}</b> — {worst_v['ispu_category']} "
+            f"(PM2.5 24 jam rata-rata {worst_v['pm25_24h_mean']:.0f} µg/m³). "
+            f"Dari {len(cs)} kota: {ok} kota udaranya Baik, {bad} kota Tidak Sehat atau lebih buruk. "
+            f"Kalau kategori Tidak Sehat, kurangi aktivitas luar tanpa masker.</div>",
+            unsafe_allow_html=True,
+        )
+    else:
+        st.info("Data kualitas udara belum tersedia.")
+
+# ---------- peta besar ----------
+m = folium.Map(location=[lat0, lon0], zoom_start=zoom0, tiles=TILES, attr=TILES_ATTR)
+
+# base: batas provinsi (tip: nama + jumlah)
+counts = sub.groupby("provinsi").size().to_dict()
+folium.GeoJson(
+    gjson,
+    name="provinsi",
+    style_function=lambda f: {
+        "fillColor": "#e67e22",
+        "color": "#484f58", "weight": 1, "fillOpacity": 0.06,
     },
-    "source": "NOAA Climate Prediction Center · ONI (Oceanic Niño Index)",
-}
+    tooltip=folium.GeoJsonTooltip(
+        fields=["shapeName"], aliases=["Provinsi:"],
+        labels=True, localize=True, sticky=True,
+    ),
+).add_to(m)
 
-with st.container():
-    st.markdown(
-        f"""
-        <div style="
-            background: linear-gradient(135deg, #1c2128 0%, #2a1a0a 100%);
-            border: 1px solid #30363d;
-            border-left: 4px solid #e67e22;
-            border-radius: 12px;
-            padding: 18px 22px;
-            margin: 6px 0 12px;
-        ">
-            <div style="font-size:0.75rem;letter-spacing:1.5px;color:#e67e22;font-weight:700;text-transform:uppercase;">
-                {ENSO['label'][lang]}
-            </div>
-            <div style="font-size:1.05rem;color:#f0f6fc;font-weight:600;margin-top:4px;">
-                {ENSO['phase'][lang]} · {ENSO['oni']}
-            </div>
-            <div style="font-size:0.88rem;color:#c9d1d9;margin-top:8px;line-height:1.5;">
-                {ENSO['body'][lang]}
-            </div>
-            <div style="font-size:0.72rem;color:#8b949e;margin-top:8px;">
-                🛰️ Source: {ENSO['source']}
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-st.caption(T("caption_data").format(
-    min=df["acq_date"].min().strftime("%d %b %Y"),
-    max=df["acq_date"].max().strftime("%d %b %Y"),
-))
-
-c1, c2, c3, c4 = st.columns(4)
-c1.metric(T("metric_total"), f"{total_all:,}")
-c2.metric(T("metric_days"), T("metric_days_val").format(n=days))
-
-# determine what to show in worst & peak — honour search filter if active
-if st.session_state.search_coords is not None:
-    search_mask = (
-        df.apply(
-            lambda r: haversine_km(
-                r["latitude"], r["longitude"],
-                st.session_state.search_coords["lat"],
-                st.session_state.search_coords["lon"],
-            )
-            <= st.session_state.search_radius,
-            axis=1,
-        )
-    )
-    df_filtered = df[search_mask]
-    if len(df_filtered):
-        w = df_filtered.groupby("provinsi").size().reset_index(name="hotspot").sort_values("hotspot", ascending=False).iloc[0]
-        pk = df_filtered.groupby(df_filtered["acq_date"].dt.date).size().reset_index(name="hotspot").sort_values("hotspot", ascending=False).iloc[0]
-        worst_name = w["provinsi"]
-        worst_val = int(w["hotspot"])
-        peak_date = str(pk.iloc[0])
-        peak_val = int(pk["hotspot"])
-    else:
-        worst_name = "—"
-        worst_val = 0
-        peak_date = "—"
-        peak_val = 0
-else:
-    worst_name = worst["provinsi"]
-    worst_val = int(worst["hotspot"])
-    peak_date = peak["tanggal"]
-    peak_val = int(peak["hotspot"])
-
-c3.metric(T("metric_worst"), loc_prov(worst_name), T("metric_worst_val").format(n=worst_val))
-c4.metric(T("metric_peak"), peak_date, T("metric_worst_val").format(n=peak_val))
-
-# ---------- Air Quality (AQI / PM2.5) ----------
-aqi_df, aqi_summary = load_aqi()
-if aqi_df is not None and aqi_summary:
-    st.divider()
-    st.subheader({"en": "🌫️ Air Quality (modelled)", "id": "🌫️ Kualitas Udara (model)"}[lang])
-    st.caption({
-        "en": ("PM2.5 and US AQI per provincial capital — CAMS ensemble via Open-Meteo "
-               "(hourly model data, not ground sensors). ISPU category uses Indonesia's "
-               "PP 41/1999 24h PM2.5 bands. Haze from the fires shows up here first."),
-        "id": ("PM2.5 & US AQI per ibu kota provinsi — ensemble CAMS via Open-Meteo "
-               "(data model per jam, bukan sensor permukaan). Kategori ISPU pakai "
-               "banding PM2.5 24 jam PP 41/1999. Asap kebakaran terlihat di sini lebih dulu."),
-    }[lang])
-
-    cities = list(aqi_summary["cities"].keys())
-    acols = st.columns(len(cities))
-    for acol, city in zip(acols, cities):
-        s = aqi_summary["cities"][city]
-        aqi_now = s["us_aqi_now"]
-        band_lbl = {"en": {0: "Good", 51: "Moderate", 101: "Unhealthy-SG", 151: "Unhealthy", 201: "Very Unhealthy", 301: "Hazardous"}[max([k for k in (0,51,101,151,201,301) if aqi_now >= k])],
-                    "id": {0: "Baik", 51: "Sedang", 101: "TDK Sehat-Peka", 151: "Tidak Sehat", 201: "Sangat Tdk Sehat", 301: "Berbahaya"}[max([k for k in (0,51,101,151,201,301) if aqi_now >= k])]}[lang]
-        with acol:
-            st.markdown(
-                f"""<div style="background:#1c2128;border:1px solid #30363d;border-top:4px solid {s['ispu_color']};
-                border-radius:10px;padding:14px 16px;">
-                  <div style="color:#f0f6fc;font-weight:700;font-size:1.0rem;">{city}</div>
-                  <div style="color:#8b949e;font-size:0.75rem;">{s['provinsi']}</div>
-                  <div style="margin:10px 0 2px;"><span style="font-size:1.9rem;font-weight:800;color:{s['ispu_color']};">{aqi_now:.0f}</span>
-                       <span style="color:#8b949e;font-size:0.8rem;">US AQI</span></div>
-                  <div style="display:inline-block;background:{s['ispu_color']}22;color:{s['ispu_color']};
-                       border:1px solid {s['ispu_color']};border-radius:999px;padding:2px 10px;font-size:0.72rem;font-weight:700;">{band_lbl} · ISPU: {s['ispu_category']}</div>
-                  <div style="color:#c9d1d9;font-size:0.8rem;margin-top:8px;">PM2.5 <b>{s['pm25_now']:.0f} µg/m³</b> · 24h avg {s['pm25_24h_mean']:.0f}</div>
-                </div>""",
-                unsafe_allow_html=True,
-            )
-
-    tab_hist, tab_now = st.tabs(
-        [{"en": "📈 PM2.5 — 7-day trend", "id": "📈 PM2.5 — tren 7 hari"}[lang],
-         {"en": "🗺️ AQI vs hotspots (24h)", "id": "🗺️ AQI vs hotspot (24j)"}[lang]])
-    with tab_hist:
-        recent = aqi_df[aqi_df["time_utc"] >= pd.Timestamp.now("UTC").tz_localize(None) - pd.Timedelta(days=7)]
-        fig_a = px.line(
-            recent, x="time_utc", y="pm25", color="city", markers=True,
-            labels={"time_utc": "", "pm25": {"en": "PM2.5 (µg/m³)", "id": "PM2.5 (µg/m³)"}[lang], "city": ""},
-        )
-        for lvl, colr, lbl in [(15, "#22c55e", "Baik"), (50, "#eab308", "Sedang"),
-                               (150, "#f97316", "Tidak Sehat")]:
-            fig_a.add_hline(y=lvl, line_dash="dot", line_color=colr, opacity=0.5,
-                            annotation_text=lbl, annotation_font_color=colr)
-        fig_a.update_layout(height=340, legend=dict(orientation="h", y=1.08),
-                            margin=dict(l=10, r=10, t=30, b=10))
-        st.plotly_chart(fig_a, width="stretch")
-
-    with tab_now:
-        # scatter hotspots + AQI badge positions (last 24h)
-        day_ago = df["acq_date"].max() - pd.Timedelta(days=1)
-        df24 = df[df["acq_date"] >= day_ago]
-        fig_b = px.scatter_map(
-            df24, lat="latitude", lon="longitude", color="provinsi",
-            opacity=0.55, zoom=5, center={"lat": -1.5, "lon": 114.5},
-            labels={"provinsi": ""},
-        )
-        for city in cities:
-            s = aqi_summary["cities"][city]
-            coord = {"Pontianak": (109.34, -0.02), "Palangka Raya": (113.92, -2.21),
-                     "Banjarmasin": (114.59, -2.23), "Samarinda": (117.15, -0.49),
-                     "Tanjung Selor": (117.36, 2.86)}[city]
-            fig_b.add_trace(go.Scattermap(
-                lon=[coord[0]], lat=[coord[1]],
-                text=[f"{city} · {s['us_aqi_now']:.0f} AQI"],
-                mode="markers+text", textposition="top center",
-                marker=dict(size=10, color=s["ispu_color"]),
-                textfont=dict(color=s["ispu_color"], size=12), showlegend=False,
-            ))
-        fig_b.update_layout(height=460, margin=dict(l=0, r=0, t=10, b=0))
-        st.plotly_chart(fig_b, width="stretch")
-        st.caption({"en": f"Orange points = hotspots in the last 24h; AQI badges = current US AQI per capital. Fetched {aqi_summary['fetched_at_utc']}.",
-                    "id": f"Titik oranye = hotspot 24 jam terakhir; badge AQI = US AQI terkini per ibu kota. Diambil {aqi_summary['fetched_at_utc']}."}[lang])
-
-st.divider()
-
-# ---------- map + side panel ----------
-col_map, col_side = st.columns([3, 2], gap="large")
-
-with col_map:
-    st.subheader(T("map_title"))
-
-    # --- search section ---
-    sc1, sc2 = st.columns([4, 1])
-    with sc1:
-        search_input = st.text_input(
-            T("search_label"),
-            value=st.session_state.search_query,
-            placeholder=T("search_placeholder"),
-            label_visibility="collapsed",
-        )
-    with sc2:
-        search_clicked = st.button(T("search_btn"), use_container_width=True)
-
-    if search_clicked and search_input.strip():
-        st.session_state.search_query = search_input.strip()
-        result = geocode_location(st.session_state.search_query)
-        if result:
-            st.session_state.search_coords = result
-        else:
-            st.session_state.search_coords = None
-            st.warning(T("search_notfound").format(q=st.session_state.search_query))
-    elif search_clicked and not search_input.strip():
-        st.session_state.search_query = ""
-        st.session_state.search_coords = None
-
-    # default search state (used below even when inactive)
-    search_hits = 0
-    src = None
-    mask = None
-
-    # --- search controls when active ---
-    if st.session_state.search_coords is not None:
-        src = st.session_state.search_coords
-        rcol1, rcol2 = st.columns([3, 1])
-        with rcol1:
-            st.session_state.search_radius = st.slider(
-                T("search_radius"),
-                min_value=1, max_value=50, value=int(st.session_state.search_radius), step=1,
-                format=T("search_km").format(n="%d"),
-            )
-        with rcol2:
-            if st.button(T("clear_btn"), use_container_width=True):
-                st.session_state.search_query = ""
-                st.session_state.search_coords = None
-                st.rerun()
-
-        # compute distance for every point
-        distances = df.apply(
-            lambda r: haversine_km(r["latitude"], r["longitude"], src["lat"], src["lon"]),
-            axis=1,
-        )
-        mask = distances <= st.session_state.search_radius
-        search_hits = int(mask.sum())
-        if search_hits:
-            st.success(T("search_result").format(
-                n=search_hits,
-                r=st.session_state.search_radius,
-                place=src["display_name"][:70],
-            ))
-        else:
-            st.info(T("search_none").format(r=st.session_state.search_radius))
-
-    # --- date filter (applies to search results or full data) ---
-    tanggal_opsi = sorted(df["acq_date"].dt.date.unique())
-    pilih = st.select_slider(T("map_filter"), tanggal_opsi, value=tanggal_opsi[-1])
-
-    # build subset: date filter + optional search filter
-    subset = df[df["acq_date"].dt.date == pilih]
-    if src is not None and search_hits > 0 and mask is not None:
-        subset = subset[mask.loc[subset.index]]
-
-    # --- map ---
-    if src is not None and search_hits > 0:
-        map_center = [src["lat"], src["lon"]]
-        zoom = 11
-    else:
-        map_center = [-1.5, 114.5]
-        zoom = 6
-
-    m = folium.Map(location=map_center, zoom_start=zoom, tiles="OpenStreetMap")
-    folium.GeoJson(
-        gjson,
-        name="provinsi",
-        style_function=lambda f: {
-            "fillColor": PROV_WARNA.get(f["properties"].get("shapeName"), "#cccccc"),
-            "color": "#888888",
-            "weight": 1.5,
-            "fillOpacity": 0.1,
-        },
-        tooltip=folium.GeoJsonTooltip(fields=["shapeName"], aliases=[T("map_tooltip")]),
-    ).add_to(m)
-
-    # search radius circle
-    if st.session_state.search_coords is not None:
-        folium.Circle(
-            location=[src["lat"], src["lon"]],
-            radius=st.session_state.search_radius * 1000,
-            color="#3498db",
-            fill=True,
-            fill_opacity=0.05,
-            weight=2,
-            tooltip=f"{st.session_state.search_radius} km",
-        ).add_to(m)
-        folium.Marker(
-            location=[src["lat"], src["lon"]],
-            popup=src["display_name"][:100],
-            icon=folium.Icon(icon="crosshairs", prefix="fa", color="blue"),
-        ).add_to(m)
-
-    if len(subset):
-        cmap = folium.LinearColormap(
-            ["#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"], vmin=0, vmax=300
-        )
-        for _, row in subset.iterrows():
+if layer == "🔥 Titik api":
+    day = sub[sub["acq_date"].dt.date == tanggal]
+    if len(day):
+        # agregasi per grid ~3km supaya peta ringan (ratusan marker, bukan ribuan)
+        g = (day.assign(rlat=(day["latitude"] / 0.03).round(),
+                        rlon=(day["longitude"] / 0.03).round())
+                .groupby(["rlat", "rlon"])
+                .agg(lat=("latitude", "mean"), lon=("longitude", "mean"),
+                     n=("frp", "size"), frp=("frp", "max"),
+                     prov=("provinsi", "first"),
+                     sensor=("sensor", "first"),
+                     when=("acq_datetime", "first"))
+                .reset_index())
+        # warna berdasar kekuatan panas maksimum di sel
+        def cell_color(frp):
+            if frp >= 500: return "#ff2d2d"
+            if frp >= 100: return "#e67e22"
+            if frp >= 20: return "#f1c40f"
+            return "#9acd32"
+        for _, r in g.iterrows():
             folium.CircleMarker(
-                location=[row["latitude"], row["longitude"]],
-                radius=2.2,
-                color=None,
-                fill=True,
-                fill_color=cmap(min(row["frp"], 300)),
-                fill_opacity=0.65,
-                popup=(
-                    f"{T('map_popup_frp')}: {row['frp']:.0f} MW<br>"
-                    f"{loc_prov(row['provinsi'])}<br>{row['acq_datetime']}"
-                ),
+                location=[r["lat"], r["lon"]],
+                radius=min(4 + 1.6 * r["n"], 16),
+                color=None, fill=True, fill_color=cell_color(r["frp"]), fill_opacity=0.8,
+                popup=(f"<b>{int(r['n'])} titik</b> di area ini (±3 km)<br>"
+                       f"Kekuatan panas maks: {r['frp']:.0f} MW<br>"
+                       f"{PROV_ID.get(r['prov'], r['prov'])}<br>"
+                       f"Deteksi pertama: {r['when']} (satelit {str(r['sensor']).upper()})"),
             ).add_to(m)
-        cmap.add_to(m)
-        cmap.caption = "FRP (MW)"
+        m.get_root().html.add_child(folium.Element(
+            "<style>.pn-legend{position:absolute;bottom:30px;left:20px;z-index:999;"
+            "background:#161b22e8;color:#e6edf3;padding:8px 12px;border-radius:8px;"
+            "font-size:13px;line-height:1.6}</style>"
+            "<div class='pn-legend'><b>Kekuatan panas</b><br>"
+            "<span style='color:#9acd32'>●</span> kecil &nbsp;"
+            "<span style='color:#f1c40f'>●</span> sedang<br>"
+            "<span style='color:#e67e22'>●</span> besar &nbsp;"
+            "<span style='color:#ff2d2d'>●</span> sangat besar</div>"))
     else:
-        st.info(T("map_empty"))
+        st.info("Tidak ada titik api pada tanggal ini di wilayah ini.")
 
-    st_folium(m, width="100%", height=520)
-
-with col_side:
-    # province table (respects search)
-    if st.session_state.search_coords is not None and search_hits > 0:
-        prov_agg = subset.groupby("provinsi").agg(
-            hotspot=("frp", "count"),
-            frp_mean=("frp", "mean"),
-            frp_max=("frp", "max"),
-        ).reset_index().sort_values("hotspot", ascending=False)
-        prov_title = T("side_table_title")
-    else:
-        prov_agg = aggs["province"].copy()
-        prov_title = T("side_table_title")
-
-    if len(prov_agg):
-        prov_agg["persen"] = (prov_agg["hotspot"] / prov_agg["hotspot"].sum() * 100).round(1)
-        prov_agg["provinsi"] = prov_agg["provinsi"].map(loc_prov)
-        prov_disp = prov_agg.rename(
-            columns={
-                "provinsi": T("col_province"),
-                "hotspot": T("col_hotspot"),
-                "frp_mean": T("col_frp_mean"),
-                "frp_max": T("col_frp_max"),
-                "persen": T("col_pct"),
-            }
-        )
-        prov_disp[T("col_frp_mean")] = prov_disp[T("col_frp_mean")].round(1)
-        prov_disp[T("col_frp_max")] = prov_disp[T("col_frp_max")].round(1)
-        st.subheader(prov_title)
-        st.dataframe(prov_disp, hide_index=True, width="stretch")
-    else:
-        st.subheader(prov_title)
-        st.dataframe(pd.DataFrame(), hide_index=True, width="stretch")
-
-    st.subheader(T("band_title"))
-    bands = aggs["bands"].copy()
-    bands["frp_band_loc"] = bands["frp_band"].map(loc_band)
-    fig_b = px.bar(
-        bands,
-        x="frp_band_loc",
-        y="count",
-        color="frp_band_loc",
-        color_discrete_map={loc_band(k): v for k, v in BAND_COLOR.items()},
-        labels={"frp_band_loc": T("band_x"), "count": T("band_y")},
-    )
-    fig_b.update_layout(height=260, margin=dict(l=10, r=10, t=30, b=10))
-    st.plotly_chart(fig_b, width="stretch")
-
-st.divider()
-
-# ---------- trend charts ----------
-st.subheader(T("trend_title"))
-t1, t2 = st.columns(2)
-
-with t1:
-    daily = aggs["daily"].copy()
-    daily["tanggal"] = pd.to_datetime(daily["tanggal"])
-    fig_d = px.line(
-        daily,
-        x="tanggal",
-        y="hotspot",
-        markers=True,
-        labels={"tanggal": T("x_date"), "hotspot": T("y_hotspot")},
-        title=T("trend_daily"),
-    )
-    fig_d.update_layout(height=320, margin=dict(l=10, r=10, t=40, b=10))
-    st.plotly_chart(fig_d, width="stretch")
-
-with t2:
-    top3 = aggs["top3_daily"].copy()
-    top3["provinsi"] = top3["provinsi"].map(loc_prov)
-    fig_t = px.line(
-        top3,
-        x="tanggal",
-        y="hotspot",
-        color="provinsi",
-        markers=True,
-        color_discrete_map=PROV_WARNA,
-        labels={"tanggal": T("x_date"), "hotspot": T("y_hotspot"), "provinsi": T("col_province")},
-        title=T("trend_top3"),
-    )
-    fig_t.update_layout(height=320, margin=dict(l=10, r=10, t=40, b=10))
-    st.plotly_chart(fig_t, width="stretch")
-
-st.divider()
-
-# ---------- heatmap + footer ----------
-st.subheader(T("heat_title"))
-heat = aggs["province_daily"].astype(int)
-heat.index = [loc_prov(x) for x in heat.index] if lang == "id" else heat.index
-fig_h = px.imshow(
-    heat,
-    labels=dict(x=T("heat_x"), y=T("heat_y"), color=T("heat_c")),
-    aspect="auto",
-    color_continuous_scale="YlOrRd",
-    text_auto=True,
-)
-fig_h.update_layout(height=380, margin=dict(l=10, r=10, t=30, b=10))
-st.plotly_chart(fig_h, width="stretch")
-
-# ---------- Year-over-Year comparison (auto-loads data/historical/*.csv) ----------
-st.divider()
-st.subheader({"en": "📅 Year-over-Year Comparison", "id": "📅 Perbandingan per Tahun"}[lang])
-
-HIST_DIR = Path(__file__).resolve().parent.parent / "data" / "historical"
-
-
-def load_historical() -> dict[int, int]:
-    """Return {year: total_hotspots} from data/historical/*.csv.
-    Each CSV must have columns: provinsi, tanggal, hotspot (or acq_date, frp/conf)."""
-    years: dict[int, int] = {}
-    if HIST_DIR.exists():
-        for f in sorted(HIST_DIR.glob("*.csv")):
-            try:
-                h = pd.read_csv(f)
-                ycol = "tanggal" if "tanggal" in h.columns else ("acq_date" if "acq_date" in h.columns else None)
-                if ycol is None:
-                    continue
-                h[ycol] = pd.to_datetime(h[ycol], errors="coerce")
-                yr = int(h[ycol].dt.year.dropna().mode().iloc[0]) if len(h) else None
-                if yr:
-                    years[yr] = years.get(yr, 0) + int(h["hotspot"].sum() if "hotspot" in h.columns else len(h))
-            except Exception:
+else:  # kualitas udara
+    if aqi:
+        for c_name, v in aqi["cities"].items():
+            if island != "Semua (Indonesia)" and v.get("pulau") != island:
                 continue
-    return years
+            aqi_now = v["us_aqi_now"]
+            col = v.get("ispu_color") or ispu_color_for(aqi_now)
+            lat, lon = v.get("lat"), v.get("lon")
+            if lat is None:
+                continue
+            folium.Marker(
+                location=[lat, lon],
+                icon=folium.DivIcon(
+                    icon_size=(84, 40), icon_anchor=(42, 20),
+                    html=(f"<div style='background:{col};color:#0d1117;font-weight:800;"
+                          f"padding:3px 8px;border-radius:14px;font-size:13px;"
+                          f"text-align:center;border:2px solid #0d111780;white-space:nowrap;"
+                          f"box-shadow:0 2px 6px #0008'>{c_name}<br>{aqi_now:.0f}</div>"),
+                ),
+                popup=(f"{c_name} — {PROV_ID.get(v['provinsi'], v['provinsi'])}<br>"
+                       f"Udara: <b>{v['ispu_category']}</b> (AQI {aqi_now:.0f})<br>"
+                       f"PM2.5 rata-rata 24 jam: {v['pm25_24h_mean']:.0f} µg/m³<br>"
+                       f"PM2.5 saat ini: {v['pm25_now']:.1f} µg/m³"),
+            ).add_to(m)
+        m.get_root().html.add_child(folium.Element(
+            "<style>.pn-legend{position:absolute;bottom:30px;left:20px;z-index:999;"
+            "background:#161b22e8;color:#e6edf3;padding:8px 12px;border-radius:8px;"
+            "font-size:13px;line-height:1.6}</style>"
+            "<div class='pn-legend'><b>Kategori udara (AQI)</b><br>"
+            "<span style='color:#2ecc71'>●</span> 0–50 Baik &nbsp;"
+            "<span style='color:#f1c40f'>●</span> 51–100 Sedang<br>"
+            "<span style='color:#e67e22'>●</span> 101–200 Tidak Sehat &nbsp;"
+            "<span style='color:#e74c3c'>●</span> 201–300 Sangat Buruk<br>"
+            "<span style='color:#8e44ad'>●</span> &gt;300 Berbahaya</div>"))
 
+st_folium(m, width="1180", height=620)
 
-hist = load_historical()
-# current 2026 (from loaded df) always included
-cur_year = int(df["acq_date"].dt.year.mode().iloc[0])
-cur_total = len(df)
-hist[cur_year] = hist.get(cur_year, 0) + cur_total
-
-if len(hist) >= 2:
-    yoy_df = pd.DataFrame(
-        [{"year": y, "hotspots": n} for y, n in sorted(hist.items())]
-    )
-    fig_y = px.bar(
-        yoy_df, x="year", y="hotspots",
-        color="year", color_continuous_scale="Oranges",
-        labels={"year": "Year", "hotspots": "Total Hotspots"},
-        title={"en": "Annual Hotspot Count (Kalimantan)", "id": "Total Hotspot per Tahun (Kalimantan)"}[lang],
-        text_auto=True,
-    )
-    fig_y.update_layout(height=360, margin=dict(l=10, r=10, t=40, b=10),
-                        coloraxis_showscale=False, showlegend=False)
-    fig_y.update_traces(marker_line_color="#1c2128", marker_line_width=1)
-    st.plotly_chart(fig_y, width="stretch")
-    delta_txt = {
-        "en": f"<b>2026 (to {df['acq_date'].max().strftime('%d %b')})</b> already shows <b>{cur_total:,}</b> hotspots — "
-              f"trending toward one of the higher-activity years given the strong El Niño.",
-        "id": f"<b>2026 (sampai {df['acq_date'].max().strftime('%d %b')})</b> sudah mencatat <b>{cur_total:,}</b> hotspot — "
-              f"berkorelasi dengan tahun beraktivitas tinggi seiring El Niño kuat.",
-    }[lang]
-    st.markdown(f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'
-               f'<div class="body">{delta_txt}</div></div>', unsafe_allow_html=True)
+# ---------- angka pendukung (tetap sederhana) ----------
+k1, k2, k3, k4 = st.columns(4)
+if layer == "🔥 Titik api":
+    day = sub[sub["acq_date"].dt.date == tanggal]
+    k1.metric(f"Titik api {island}", f"{len(day):,}")
+    k2.metric("Provinsi terdampak", f"{day['provinsi'].nunique()}")
+    k3.metric("Titik panas tinggi", f"{int((day['frp'] >= 100).sum()):,}")
+    k4.metric("7 hari terakhir", f"{len(sub):,}")
 else:
-    st.info({
-        "en": "Drop yearly hotspot CSVs into `data/historical/` (columns: `provinsi, tanggal, hotspot`) to unlock "
-              "multi-year comparison. Currently only 2026 data is loaded.",
-        "id": "Letakkan CSV hotspot per-tahun di `data/historical/` (kolom: `provinsi, tanggal, hotspot`) untuk "
-              "membuka perbandingan multi-tahun. Saat ini hanya data 2026 yang dimuat.",
-    }[lang])
+    cities = aqi["cities"] if aqi else {}
+    cs = [v for v in cities.values()
+          if island == "Semua (Indonesia)" or v.get("pulau") == island]
+    if cs:
+        worst = max(cs, key=lambda v: v["us_aqi_now"])
+        k1.metric("Kota dipantau", f"{len(cs)}")
+        k2.metric("AQI terburuk sekarang", f"{worst['us_aqi_now']:.0f}", worst.get("provinsi"))
+        k3.metric("Baik / Sedang", f"{sum(1 for v in cs if v['us_aqi_now'] <= 100)}")
+        k4.metric("Tidak Sehat ke atas", f"{sum(1 for v in cs if v['us_aqi_now'] > 100)}")
 
-# within-2026 phase comparison (real, from accumulated history)
-st.markdown("#### " + {"en": "2026 Fire-Season Phases", "id": "Fase Musim Kebakaran 2026"}[lang])
-hist_daily_path = Path(__file__).resolve().parent.parent / "data" / "processed" / "history_daily.csv"
-if hist_daily_path.exists():
-    hd = pd.read_csv(hist_daily_path, parse_dates=["tanggal"])
-    phase_src = hd.groupby("tanggal")["hotspot"].sum().reset_index()
-else:
-    phase_src = df.groupby(df["acq_date"].dt.date).size().reset_index(name="hotspot")
-    phase_src.columns = ["tanggal", "hotspot"]
-phase_src["tanggal"] = pd.to_datetime(phase_src["tanggal"])
-phase_defs = [
-    {"name": {"en": "Mid–Late Aug", "id": "Agt Pertengahan–Akhir"}, "span": ("2026-08-14", "2026-08-31")},
-    {"name": {"en": "Early Sep (peak)", "id": "Sep Awal (puncak)"}, "span": ("2026-09-01", "2026-09-07")},
-    {"name": {"en": "Recent (last 5d)", "id": "Terbaru (5h)"}, "span": (str((phase_src["tanggal"].max() - pd.Timedelta(days=4)).date()), str(phase_src["tanggal"].max().date()))},
-]
-phase_rows = []
-for ph in phase_defs:
-    pm = (phase_src["tanggal"] >= ph["span"][0]) & (phase_src["tanggal"] <= ph["span"][1])
-    phase_rows.append({"phase": ph["name"][lang], "hotspots": int(phase_src.loc[pm, "hotspot"].sum())})
-if any(r["hotspots"] for r in phase_rows):
-    fig_p = px.bar(
-        pd.DataFrame(phase_rows), x="phase", y="hotspots",
-        color="phase", color_discrete_sequence=["#f5b041", "#e67e22", "#d35400"],
-        labels={"phase": "Phase", "hotspots": "Hotspots"},
-        text_auto=True,
-    )
-    fig_p.update_layout(height=300, margin=dict(l=10, r=10, t=20, b=10), showlegend=False)
-    fig_p.update_traces(marker_line_color="#1c2128", marker_line_width=1)
-    st.plotly_chart(fig_p, width="stretch")
+# ---------- detail untuk yang mau ngulik ----------
+with st.expander("📊 Lihat tren & data lengkap"):
+    cc1, cc2 = st.columns(2)
+    with cc1:
+        st.markdown("**Titik api per hari, per pulau**")
+        daily = (df.groupby([df["acq_date"].dt.date, "pulau"]).size()
+                 .unstack(fill_value=0))
+        st.line_chart(daily, height=280)
+    with cc2:
+        st.markdown(f"**Top 10 provinsi — 7 hari terakhir{' (' + island + ')' if island != 'Semua (Indonesia)' else ''}**")
+        top10 = (sub.groupby("provinsi").size().sort_values(ascending=False).head(10))
+        top10.index = [PROV_ID.get(i, i) for i in top10.index]
+        st.bar_chart(top10, height=280)
+    st.caption("Sumber: NASA FIRMS (satelit MODIS & VIIRS), Open-Meteo/CAMS untuk kualitas udara. "
+               "PM2.5 = partikel halus hasil pembakaran; AQI = indeks 0–500, makin besar makin berbahaya.")
 
-# ---------- "Inspect a Period" timeline tabs ----------
-st.divider()
-st.subheader({"en": "🗓️ Inspect a Period", "id": "🗓️ Pilih Periode"}[lang])
-
-periods = [
-    {"key": "all", "label": {"en": "All 2026", "id": "Semua 2026"}, "span": None},
-    {"key": "el_nino_rise", "label": {"en": "El Niño Rise (Apr–Jun)", "id": "Naik El Niño (Apr–Jun)"}, "span": ("2026-04-01", "2026-06-30")},
-    {"key": "peak", "label": {"en": "Peak (Aug)", "id": "Puncak (Agt)"}, "span": ("2026-08-01", "2026-08-31")},
-    {"key": "recent", "label": {"en": "Recent (last 7d)", "id": "Terbaru (7h)"}, "span": None},
-]
-tabs = st.tabs([p["label"][lang] for p in periods])
-for i, p in enumerate(periods):
-    with tabs[i]:
-        if p["span"]:
-            pmask = (df["acq_date"] >= p["span"][0]) & (df["acq_date"] <= p["span"][1])
-        elif p["key"] == "recent":
-            latest = df["acq_date"].max()
-            pmask = df["acq_date"] >= (latest - pd.Timedelta(days=7))
-        else:
-            pmask = pd.Series([True] * len(df))
-        pdf = df[pmask]
-        if len(pdf):
-            pc = len(pdf)
-            pworst = pdf.groupby("provinsi").size().idxmax()
-            pworst_n = int(pdf.groupby("provinsi").size().max())
-            ppeak = pdf.groupby(pdf["acq_date"].dt.date).size().idxmax()
-            ppeak_n = int(pdf.groupby(pdf["acq_date"].dt.date).size().max())
-            insight = {
-                "en": f"<b>{pc:,}</b> hotspots across this window. Worst province: <b>{loc_prov(pworst)}</b> ({pworst_n:,}). "
-                      f"Peak day: <b>{ppeak}</b> ({ppeak_n:,}).",
-                "id": f"<b>{pc:,}</b> hotspot di rentang ini. Provinsi terparah: <b>{loc_prov(pworst)}</b> ({pworst_n:,}). "
-                      f"Hari puncak: <b>{ppeak}</b> ({ppeak_n:,}).",
-            }[lang]
-            st.markdown(
-                f'<div class="insight-box"><div class="title">{T("metric_total")}</div>'
-                f'<div class="body">{insight}</div></div>',
-                unsafe_allow_html=True,
-            )
-        else:
-            st.info({"en": "No data in this window.", "id": "Tidak ada data di rentang ini."}[lang])
-
-st.caption(T("footer"))
+st.caption("Diperbarui otomatis setiap hari. Data hotspot = 7 hari terakhir.")

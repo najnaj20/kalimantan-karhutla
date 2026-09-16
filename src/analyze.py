@@ -110,5 +110,5 @@ def analyze(df: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
 
 if __name__ == "__main__":
-    df = pd.read_csv(PROC_DIR / "kalimantan_hotspots.csv", parse_dates=["acq_date"])
+    df = pd.read_csv(PROC_DIR / "indonesia_hotspots.csv", parse_dates=["acq_date"])
     analyze(df)

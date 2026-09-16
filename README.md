@@ -1,28 +1,30 @@
-# 🔥 Karhutla Kalimantan — Wildfire Hotspot Analysis (NASA FIRMS)
+# 🔥 Karhutla Indonesia — Wildfire Hotspot & Air Quality Analysis (NASA FIRMS + CAMS)
 
 > 📖 [English](README.md) · [Bahasa Indonesia](README.id.md)
 
-End-to-end data analysis of **active fire detections in Kalimantan (Indonesian
-Borneo)** from NASA's FIRMS (VIIRS 375m + MODIS C6.1), pulled **without an API key**
-via the Humanitarian Data Exchange (HDX) mirror. Built as a data-analyst portfolio
-project: real data, real storytelling, reproducible pipeline.
+End-to-end data analysis of **active fire detections across Indonesia** from NASA's
+FIRMS (VIIRS 375m + MODIS C6.1), pulled **without an API key** via the Humanitarian
+Data Exchange (HDX mirror), combined with **air quality (PM2.5 / AQI) for 34 capital
+cities** from the free Copernicus CAMS model (Open-Meteo API). Built as a
+data-analyst portfolio project: real data, plain-language storytelling, reproducible
+daily pipeline, and a **map-centric dashboard anyone can read**.
 
-**Live data window:** 05–12 Sep 2026 · **30,712 hotspots detected** · Peak: 11 Sep
-(8,914/day) · Worst province: Central Kalimantan (56.6% of total)
+**Live data window:** rolling 7 days, updated daily by cron · **~74,000 hotspots**
+archived · **34 cities** monitored for air quality (ISPU categories, Bahasa labels).
 
-### 📸 Dashboard
+### 📸 Dashboard (map-centric, built for non-technical readers)
 
-| ![Dashboard top](output/dashboard_top.png) |
+| ![Fire map](output/ui_final_fire.png) |
 |:--:|
-| *Hotspot map: province boundaries + FRP-colored points, town search (Nominatim), date slider — on an OpenStreetMap basemap* |
+| *Layer "🔥 Titik api": Esri dark map, grid-aggregated fire points sized/colored by heat intensity (FRP) + legend, human-language daily summary, island/region picker, date slider* |
 
-| ![Trend](output/dashboard_charts.png) | ![Heatmap](output/dashboard_heatmap.png) |
-|:--:|:--:|
-| *Daily trend with weekly MA + fire-risk ribbon; FRP distribution; province leaderboard* | *Weekly × month heatmap with zoomable "Inspect a Period" tabs (All 2026 / El Niño Rise / Peak Aug / Recent)* |
+| ![AQI map](output/ui_final_aqi.png) |
+|:--:|
+| *Layer "🌫️ Kualitas udara": AQI badge markers for 34 cities colored by ISPU category, plain-language health advice, ISPU legend* |
 
 | ![ENSO & phases](output/dashboard_yoy.png) |
 |:--:|
-| *ENSO climate-context banner (NOAA ONI) + 2026 fire-season phase breakdown; multi-year comparison unlocks when CSVs are dropped into `data/historical/`* |
+| *ENSO climate-context banner (NOAA ONI) + 2026 fire-season phase breakdown (now behind "Lihat tren & data lengkap" on the dashboard)* |
 
 ## What's inside
 
@@ -30,12 +32,13 @@ project: real data, real storytelling, reproducible pipeline.
 kalimantan-karhutla/
 ├── src/
 │   ├── extract.py       # pull FIRMS VIIRS+MODIS 7d CSVs (retry + backoff, --refresh)
-│   ├── transform.py     # bbox filter → point-in-polygon → province assignment
+│   ├── transform.py     # bbox filter (all Indonesia) → point-in-polygon → province + island
+│   ├── fetch_aqi.py     # CAMS air quality (PM2.5/AQI) for 34 provincial capitals, ISPU bands
 │   ├── analyze.py       # daily/province aggregates, FRP bands, history accumulation
 │   ├── export_tableau.py# Tableau-ready CSVs (data/tableau/)
 │   └── pipeline.py      # extract → transform → analyze, end to end
 ├── dashboard/
-│   └── app.py           # Streamlit: interactive folium map + plotly charts
+│   └── app.py           # Streamlit: map-centric folium (fire / air-quality layers) + charts
 ├── scripts/
 │   ├── screenshot.py    # headless dashboard capture (Playwright)
 │   └── daily_update.sh  # cron job: refresh data + export (live mode)

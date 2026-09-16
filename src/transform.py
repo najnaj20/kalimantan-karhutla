@@ -1,4 +1,4 @@
-"""Transform: filter detections to Kalimantan, standardize schema, spatial-join
+"""Transform: filter detections to Indonesia, standardize schema, spatial-join
 hotspots to provinces (point-in-polygon via shapely), compute intensity bands."""
 from __future__ import annotations
 
@@ -13,9 +13,8 @@ RAW_DIR = ROOT / "data" / "raw"
 PROC_DIR = ROOT / "data" / "processed"
 BOUNDARIES = ROOT / "data" / "boundaries" / "idn_adm1.geojson"
 
-BBOX = (108.6, -4.3, 119.4, 7.2)
+BBOX = (95.0, -11.5, 141.5, 6.5)  # seluruh Indonesia (lon_min, lat_min, lon_max, lat_max)
 
-# Only the five Kalimantan provinces are in scope for this analysis
 KALIMANTAN_PROVINCES = {
     "West Kalimantan",
     "Central Kalimantan",
@@ -26,6 +25,26 @@ KALIMANTAN_PROVINCES = {
 
 # FRP (Fire Radiative Power, MW) thresholds — VIIRS-based intensity bands
 FRP_BANDS = [(0, 20, "Rendah"), (20, 100, "Sedang"), (100, 500, "Tinggi"), (500, 1e9, "Ekstrem")]
+
+# Province -> island group (for the region selector in the dashboard)
+ISLAND_GROUPS = {
+    "Aceh": "Sumatra", "North Sumatra": "Sumatra", "West Sumatra": "Sumatra",
+    "Riau": "Sumatra", "Jambi": "Sumatra", "Bengkulu": "Sumatra",
+    "South Sumatra": "Sumatra", "Bangka-Belitung Islands": "Sumatra",
+    "Lampung": "Sumatra", "Riau Islands": "Sumatra", "Banten": "Java",
+    "West Java": "Java", "Central Java": "Java",
+    "Special Region of Yogyakarta": "Java", "East Java": "Java",
+    "Jakarta Special Capital Region": "Java", "Bali": "Bali & Nusa Tenggara",
+    "West Nusa Tenggara": "Bali & Nusa Tenggara",
+    "East Nusa Tenggara": "Bali & Nusa Tenggara", "West Kalimantan": "Kalimantan",
+    "Central Kalimantan": "Kalimantan", "South Kalimantan": "Kalimantan",
+    "East Kalimantan": "Kalimantan", "North Kalimantan": "Kalimantan",
+    "North Sulawesi": "Sulawesi", "Gorontalo": "Sulawesi",
+    "Central Sulawesi": "Sulawesi", "West Sulawesi": "Sulawesi",
+    "South Sulawesi": "Sulawesi", "Southeast Sulawesi": "Sulawesi",
+    "Maluku": "Maluku & Papua", "North Maluku": "Maluku & Papua",
+    "Papua": "Maluku & Papua", "West Papua": "Maluku & Papua",
+}
 
 
 def _standardize(df: pd.DataFrame, sensor: str) -> pd.DataFrame:
@@ -103,19 +122,22 @@ def transform(frames: dict[str, pd.DataFrame]) -> pd.DataFrame:
         df = _standardize(df, sensor)
         df = _in_bbox(df)
         parts.append(df)
-        print(f"[transform] {sensor}: {len(df):,} detections in Kalimantan bbox")
+        print(f"[transform] {sensor}: {len(df):,} detections in Indonesia bbox")
 
     all_df = pd.concat(parts, ignore_index=True)
     polys = _load_provinces(BOUNDARIES)
     all_df = _assign_province(all_df, polys)
     all_df["frp_band"] = all_df["frp"].apply(_frp_band)
 
-    # Keep only the five Kalimantan provinces (bbox is a rectangle, so it
-    # captures a few hotspots from neighbouring islands — out of scope)
-    n_out = (~all_df["provinsi"].isin(KALIMANTAN_PROVINCES)).sum()
-    all_df = all_df[all_df["provinsi"].isin(KALIMANTAN_PROVINCES)].copy()
+    # Keep only detections inside an Indonesian province (bbox is a rectangle,
+    # so it captures neighbours — Singapore, Malaysia, Timor-Leste, etc.)
+    n_out = (all_df["provinsi"] == "Luar Provinsi").sum()
+    all_df = all_df[all_df["provinsi"] != "Luar Provinsi"].copy()
     if n_out:
-        print(f"[transform] dropped {n_out:,} detections outside the 5 Kalimantan provinces")
+        print(f"[transform] dropped {n_out:,} detections outside Indonesia")
+
+    # Island group per province (Sumatra/Java/Kalimantan/...)
+    all_df["pulau"] = all_df["provinsi"].map(ISLAND_GROUPS).fillna("Lainnya")
 
     # clean time
     all_df["acq_datetime"] = pd.to_datetime(
@@ -126,7 +148,7 @@ def transform(frames: dict[str, pd.DataFrame]) -> pd.DataFrame:
     all_df = all_df.drop(columns=["acq_time"])
     all_df = all_df.sort_values("acq_datetime").reset_index(drop=True)
 
-    out = PROC_DIR / "kalimantan_hotspots.csv"
+    out = PROC_DIR / "indonesia_hotspots.csv"
     all_df.to_csv(out, index=False)
     print(f"[transform] total: {len(all_df):,} hotspots -> {out.name}")
     return all_df

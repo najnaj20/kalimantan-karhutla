@@ -29,7 +29,7 @@ WARNA = {
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    df = pd.read_csv(PROC / "kalimantan_hotspots.csv", parse_dates=["acq_date"])
+    df = pd.read_csv(PROC / "indonesia_hotspots.csv", parse_dates=["acq_date"])
     gjson = json.loads(BOUNDARIES.read_text())
 
     m = folium.Map(location=[-1.2, 114.5], zoom_start=6, tiles="CartoDB positron")

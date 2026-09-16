@@ -30,7 +30,7 @@ PROVINSI_ID = {
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    df = pd.read_csv(PROC / "kalimantan_hotspots.csv", parse_dates=["acq_date"])
+    df = pd.read_csv(PROC / "indonesia_hotspots.csv", parse_dates=["acq_date"])
     df["acq_datetime"] = pd.to_datetime(df["acq_datetime"])
     df["provinsi_id"] = df["provinsi"].map(PROVINSI_ID).fillna(df["provinsi"])
 
