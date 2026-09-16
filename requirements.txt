@@ -1,8 +1,6 @@
 pandas>=2.0
-shapely>=2.0
 folium>=0.16
 plotly>=5.18
 streamlit>=1.36
 streamlit-folium>=0.21
 requests>=2.31
-matplotlib>=3.8
